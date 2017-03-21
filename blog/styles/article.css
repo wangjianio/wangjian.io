@@ -1,0 +1,35 @@
+h1 {
+  font-size: 40px;
+  font-weight: normal;
+  margin: 24px 0 0 0;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.article-edit-time {
+  color: #888;
+  font-size: 14px;
+  text-align: right;
+  margin: 24px 0;
+}
+
+p {
+  font-size: 16px;
+  margin: 16px 0;
+}
+
+.source {
+  font-size: 14px;
+  text-align: right;
+}
+
+hr {
+  margin: 32px 0;
+}
+
+img {
+  max-width: 100%;
+}

@@ -1,0 +1,38 @@
+    <h2>还原 macOS 中的 DNS 缓存设置</h2>
+    <p>OS X 10.10.4 及更高版本：<code>sudo killall -HUP mDNSResponder</code></p>
+    <p>OS X 10.10 至 10.10.3 中：<code>sudo discoveryutil mdnsflushcache</code></p>
+    <p>OS X 10.9.5 及更低版本：<code>sudo killall -HUP mDNSResponder</code></p>
+    <p>OS X 10.6 至 10.6.8 中：<code>sudo dscacheutil -flushcache</code></p>
+    <p class="source">来源：<a href="https://support.apple.com/zh-cn/HT202516" target="_blank">https://support.apple.com/zh-cn/HT202516</a></p>
+
+    <hr>
+
+    <h2>macOS Sierra 允许从以下位置下载的应用：任何来源</h2>
+    <p><code>sudo spctl --master-disable</code></p>
+
+    <hr>
+
+    <h2>重置 Launchpad</h2>
+    <p><code>defaults write com.apple.dock ResetLaunchPad -bool true && killall Dock</code></p>
+
+    <h2>重置 Dock</h2>
+    <p><code>rm ~/Library/Application\ Support/Dock/*.db && killall Dock</code></p>
+    <p>即：删除<code>~/Library/Application Support/Dock/</code>目录下的<code>desktoppicture.db</code></p>
+
+    <hr>
+
+    <h2>校验 SHA-1 值</h2>
+    <p><code>shasum /path</code></p>
+
+    <h2>校验 MD5 值</h2>
+    <p><code>md5 /path</code></p>
+
+    <hr>
+
+    <h2>显示隐藏文件</h2>
+    <p><code>defaults write com.apple.finder AppleShowAllFiles -bool true; killall Finder</code></p>
+    <p>macOS Sierra 下快捷键：<code>Command + Shift + .</code></p>
+
+    <h2>隐藏隐藏文件</h2>
+    <p><code>defaults write com.apple.finder AppleShowAllFiles -bool false; killall Finder</code></p>
+    <p>macOS Sierra 下快捷键：<code>Command + Shift + .</code></p>

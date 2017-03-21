@@ -1,0 +1,26 @@
+.index-title {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 32px 0 0 0;
+}
+
+ul {
+  list-style: none;
+  margin: 32px 0;
+}
+
+.index-add-time {
+  color: #888;
+  font-size: 14px;
+  margin: 32px 0 0 0;
+}
+
+.index-article-title {
+  font-size: 24px;
+  margin: 4px 0 0 0;
+}
+
+a:link {text-decoration: none;}
+a:visited {color: rgba(0, 112, 201, 0.8);}
+a:hover {text-decoration: underline;}
+a:active {color: rgba(0, 112, 201, 0.8); text-decoration: underline;}
