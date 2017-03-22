@@ -2,5 +2,5 @@ RewriteEngine On
 DirectorySlash On
 
 RewriteRule ^index$ index.php
-RewriteRule ^blog$ blog.php
+RewriteRule ^about$ about.php
 RewriteRule ^article/(\d)$  article/article.php?id=$1
