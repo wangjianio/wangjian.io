@@ -1,5 +1,5 @@
 <?php
-
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'GitHub-Hookshot/') == 0) {
+$str = file_get_contents('../X-Hub-Signature');
+if ($_SERVER['X-Hub-Signature'] == $str) {
     shell_exec('git pull');
 }
