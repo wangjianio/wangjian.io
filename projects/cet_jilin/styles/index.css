@@ -1,0 +1,18 @@
+form {
+  margin-bottom: 20px;
+}
+
+.alert {
+  display: none;
+}
+
+.btn-custom-copy {
+  opacity: 0;
+}
+
+tr:hover .btn-custom-copy {
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}

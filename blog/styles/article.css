@@ -1,16 +1,17 @@
 h1 {
-  font-size: 40px;
-  font-weight: normal;
-  margin: 24px 0 0 0;
+  font-size: 38px;
+  font-style: normal;
+  line-height: 1;
+  margin: 64px 0 0 0;
 }
 
 h2 {
-  font-size: 24px;
-  font-weight: normal;
+  font-size: 30px;
+  margin: 38px 0 18px 0;
 }
 
 .article-edit-time {
-  color: #888;
+  color: rgb(102, 102, 102);
   font-size: 14px;
   text-align: right;
   margin: 24px 0;
@@ -18,10 +19,11 @@ h2 {
 
 p {
   font-size: 16px;
-  margin: 16px 0;
+  margin: 13px 0 0 0;
+  line-height: 26px;
 }
 
-.source {
+.reference {
   font-size: 14px;
   text-align: right;
 }
@@ -32,4 +34,37 @@ hr {
 
 img {
   max-width: 100%;
+}
+
+pre {
+  background-color: rgb(250, 251, 252);
+  border: rgb(222, 222, 222) solid 1px;
+  color: rgb(102, 102, 102);
+  font-size: 16px;
+  line-height: 23px;
+  margin: 16px 0 0 0;
+  overflow: auto;
+  padding: 8px;
+}
+
+code {
+  background-color: rgb(250, 251, 252);
+  border: 1px solid rgb(222, 222, 222);
+  color: rgb(102, 102, 102);
+  font-size: 16px;
+  line-height: 24px;
+  padding: 2px 4px;
+}
+
+img.img-mac {
+  margin: 8px 0;
+  -webkit-filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.9))
+}
+
+bak.img-mac {
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 26px 30px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0px 28px 45px rgba(0, 0, 0, 0.3));
 }

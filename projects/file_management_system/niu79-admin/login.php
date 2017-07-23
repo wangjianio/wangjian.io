@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>管理员登录</title>
+    <link href="css/main.css" rel="stylesheet">
+    <script>
+        function inputCheck(loginForm) {
+            if (loginForm.username.value == "") {
+                alert("请输入用户名!");
+                loginForm.username.focus();
+                return (false);
+            }
+            if (loginForm.password.value == "") {
+                alert("请输入密码!");
+                loginForm.password.focus();
+                return (false);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <form name="loginForm" method="post" action="login_server.php" onsubmit="return inputCheck(this)">
+            <fieldset>
+                <legend>管理员登录</legend>
+                <label>用户名:<input id="username" name="username" type="text"></label><br>
+                <label>密　码:<input id="password" name="password" type="password"></label><br>
+                <label><input type="submit" name="submit"</label>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

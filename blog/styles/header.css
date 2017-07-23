@@ -24,3 +24,8 @@ header .wrapper {
   margin: auto;
   padding: 0 16px;
 }
+
+header img {
+  height: 24px;
+  margin: 10px 0px;
+}
