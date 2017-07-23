@@ -1,0 +1,172 @@
+@import 'common.css';
+@import 'header.css';
+
+.content {
+  min-width: 640px;
+}
+
+.left-div {
+  float: left;
+  width: 45%;
+}
+
+.right-div {
+  float: right;
+  width: 45%;
+}
+
+.date {
+  width: 250px;
+  margin: 8px 0;
+}
+
+.day, .week, .month {
+  float: left;
+}
+
+.week, .month {
+  font-size: 1em;
+  line-height: 1.2;
+}
+
+.day {
+  font-size: 3em;
+  margin-right: 8px;
+}
+
+.week {
+  margin-top: 18px;
+}
+
+.add {
+  float: right;
+  position: relative;
+  top: -29px;
+}
+
+.svg {
+  height: 56px;
+}
+
+.that-day {
+  clear: both;
+  position: relative;
+  top: -9px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tfoot {
+  text-align: right;
+}
+
+th, td {
+  border: 1px solid gray;
+}
+
+.sum {
+  font-weight: bold;
+}
+
+.category, .money {
+  width: 50%;
+}
+
+#hideDiv {
+  display: none;
+}
+
+#bgDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1001;
+}
+
+#editDiv {
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  border: 8px solid lightgray;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+div.button {
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+span.close, span.submit {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px 32px;
+}
+
+span.submit {
+  margin-left: 20%;
+  margin-right: auto;
+  float: left;
+  border: 2px solid rgba(0, 112, 201, 1);
+  color: rgba(0, 112, 201, 1);
+  font-weight: bold;
+}
+
+span.close {
+  border: 2px solid #8E8E93;
+  margin-right: 20%;
+  margin-left: auto;
+  float: right;
+  color: #8E8E93;
+}
+
+form {
+  padding: 24px 32px 0 32px;
+  text-align: center;
+}
+
+h3 {
+  text-align: left;
+  margin-bottom: 8px;
+  text-indent: 2em;
+}
+
+input, select {
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid lightgray;
+}
+
+input {
+  width: 240px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('/php/money/assets/select.svg') no-repeat 220px 0px;
+    background-size: 36px;
+    width: 258px;
+}
+
+/*
+input[type=number] {
+    background: url('/php/money/assets/select.svg') no-repeat 220px 0px;
+}
+*/

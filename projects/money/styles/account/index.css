@@ -1,0 +1,92 @@
+@import "../common.css";
+@import "../header.css";
+
+table {
+  min-width: 480px;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid gray;
+}
+
+.a_name {
+  text-align: left;
+  width: 12em;
+}
+
+.sum {
+  text-align: right;
+}
+
+h2 {
+  display: inline-block;
+}
+
+.edit {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+#hideDiv {
+  display: none;
+}
+
+#bgDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1001;
+}
+
+#editDiv {
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  height: 480px;
+  border: 8px solid lightgray;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+div.button {
+  margin: auto;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+span.close, span.submit {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px 32px;
+}
+
+span.submit {
+  margin-left: 20%;
+  margin-right: auto;
+  float: left;
+  border: 2px solid rgba(0, 112, 201, 1);
+  color: rgba(0, 112, 201, 1);
+  font-weight: bold;
+}
+
+span.close {
+  border: 2px solid #8E8E93;
+  margin-right: 20%;
+  margin-left: auto;
+  float: right;
+  color: #8E8E93;
+}
+
+iframe {
+  width: 100%;
+  height: 408px;
+}

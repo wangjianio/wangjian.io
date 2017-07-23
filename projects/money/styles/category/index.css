@@ -1,0 +1,89 @@
+@import "../common.css";
+@import "../header.css";
+
+th, td {
+  border: 1px solid gray;
+}
+
+span.type {
+  margin-right: 8px;
+}
+
+h2 a:hover {
+  text-decoration: none;
+}
+
+.primary {
+  color: black;
+}
+
+.secondary {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.secondary:hover {
+  color: black;
+}
+
+.svg {
+  height: 22px;
+  float: left;
+}
+
+table {
+  width: auto;
+}
+
+.cate-name {
+  border-right: none;
+  cursor: pointer;
+}
+
+.edit {
+  border-left: none;
+  border-right: none;
+}
+
+.delete {
+  border-left: none;
+}
+
+.blank {
+  max-width: 20em;
+  min-width: 12em;
+  padding: 0;
+  text-align: center;
+}
+
+.add {
+  text-align: center;
+  width: 5em;
+}
+
+tbody a {
+  color: white;
+}
+
+tbody tr:hover a {
+  color: rgba(0, 112, 201, 1);
+  text-decoration: none;
+}
+
+tbody tr:hover a:hover {
+  text-decoration: underline;
+}
+
+tbody tr:active a:active {
+  text-decoration: none;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  margin: 4px;
+  padding: 4px;
+  width: 10.6em;
+  height: 100%;
+  font-size: 1em;
+}
