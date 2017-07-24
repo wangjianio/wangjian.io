@@ -59,4 +59,4 @@
       </div>
     </nav>
 
-    <div class="container main">
+    <div class="container">
