@@ -24,7 +24,7 @@ for ($article_id=10; $article_id>=0; $article_id--) {
             <li class="h3">
               <small>发布于：<time datetime="$add_datetime">$add_date</time></small>
               <br>
-              <a href="article/$article_id">$article_title</a>
+              <a href="post/$article_id">$article_title</a>
             </li>
 LI;
     }

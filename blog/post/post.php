@@ -1,7 +1,7 @@
 <?php
 include '../assets/include.php';
 $nav_type = 'blog';
-$subnav_type = 'article';
+$subnav_type = 'post';
 $extra_css = '<link rel="stylesheet" href="/blog/styles/article.css">';
 $id = $_GET['id'];
 

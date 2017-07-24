@@ -100,7 +100,7 @@ UL;
     {
         if ($nav_type == 'blog') {
             switch ($subnav_type) {
-                case 'article':
+                case 'post':
                     echo <<<UL
                     <ul class="nav navbar-nav">
                       <li><a href="/blog/index">返回文章列表</a></li>
