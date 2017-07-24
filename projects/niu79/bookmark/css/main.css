@@ -1,0 +1,43 @@
+html {
+  font-family: sans-serif;
+}
+
+div.content {
+  width: 100%;
+}
+
+div.card {
+  width: 100%;
+  text-align: center;
+}
+
+span{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+img {
+  width: 100%;
+  max-width: 640px;
+  max-height: 800px;
+  text-align: center;
+}
+
+.tip-title {
+  color: rgb(51, 51, 51);
+  margin: 40px 8px 8px 8px;
+}
+
+.tip-content {
+  white-space: pre;
+  line-height: 1.5;
+  color: #888;
+  margin: 0 8px;
+}
+
+div.tip {
+  width: 100%;
+  max-width: 640px;
+  margin-right: auto;
+  margin-left: auto;
+}
