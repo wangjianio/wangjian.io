@@ -3,8 +3,8 @@ $title = '主页';
 $nav_type = 'index';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
-
-      <div class="jumbotron">
+    <div class="jumbotron">
+      <div class="container" style="max-width: 970px">
         <h1>Navbar example</h1>
         <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes
           the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
@@ -13,5 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
           <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
         </p>
       </div>
+    </div>
+    
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

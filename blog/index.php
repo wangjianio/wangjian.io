@@ -6,6 +6,7 @@ $extra_css = '<link rel="stylesheet" href="styles/index.css">';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 echo <<<H1
+  <div class="container">
     <div class="page-header">
       <h1>文章列表</h1>
     </div>
@@ -30,5 +31,5 @@ LI;
 }
 
 echo '</ul>';
-
+    echo '</div><!-- .container -->';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

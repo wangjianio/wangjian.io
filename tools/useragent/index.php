@@ -4,7 +4,7 @@ $nav_type = 'ua';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
-
+    <div class="container">
 <?php
     echo $_SERVER['HTTP_USER_AGENT'];
     /*echo '<br />';
@@ -24,5 +24,5 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         echo '正在使用Internet Explorer。';
     }*/
 ?>
-
+</div><!-- .container -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

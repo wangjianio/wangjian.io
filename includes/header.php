@@ -31,6 +31,7 @@
     </style>
     -->
     <style>
+      .navbar { margin-bottom: 0; }
       .container { max-width: 970px; }
     </style>
   </head>
@@ -58,5 +59,3 @@
         </div>
       </div>
     </nav>
-
-    <div class="container">
