@@ -1,6 +1,7 @@
 <?php
-$title = 'IP';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
+$title = 'OLD';
+$nav_type = 'old';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 
@@ -13,4 +14,4 @@ preg_match_all('/word/', $page, $isName);
 print_r($isName);
 ?>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/footer.php';
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

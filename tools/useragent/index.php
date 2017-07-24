@@ -1,6 +1,7 @@
 <?php
 $title = 'User Agent';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
+$nav_type = 'ua';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 
@@ -24,4 +25,4 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
     }*/
 ?>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/footer.php';
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

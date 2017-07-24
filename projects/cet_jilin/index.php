@@ -1,10 +1,11 @@
 <?php
 $title = '吉林省 CET 准考证号查询';
+$nav_type = 'cet';
 $id = htmlspecialchars($_GET['id']);
 $extra_css = '<link rel="stylesheet" href="styles/index.css">';
 $extra_js = '<script src="scripts/index.js"></script>';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="row">
@@ -83,4 +84,4 @@ echo <<<AAA
 
 AAA;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/footer.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

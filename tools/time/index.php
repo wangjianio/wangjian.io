@@ -1,6 +1,7 @@
 <?php
 $title = '时间';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
+$nav_type = 'time';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <?php
@@ -12,4 +13,4 @@ echo
 
 ?>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/footer.php';
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

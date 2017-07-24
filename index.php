@@ -1,6 +1,7 @@
 <?php
 $title = '主页';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
+$nav_type = 'index';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
       <div class="jumbotron">
@@ -13,4 +14,4 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/header.php';
         </p>
       </div>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/php-includes/footer.php';
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';
