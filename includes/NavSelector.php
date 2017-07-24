@@ -98,21 +98,20 @@ UL;
 
     public function printLeftNav($nav_type = null, $subnav_type = null)
     {
-        if ($nav_type == '!blog') {
+        if ($nav_type == 'blog') {
             switch ($subnav_type) {
-                case 'index':
-                    $blog_index = ' class="active"';
+                case 'article':
+                    echo <<<UL
+                    <ul class="nav navbar-nav">
+                      <li><a href="/blog/index">返回文章列表</a></li>
+                    </ul>
+UL;
                     break;
                 
                 default:
                     # code...
                     break;
             }
-            echo <<<UL
-          <ul class="nav navbar-nav">
-            <li$blog_index><a href="/blog/index">文章列表</a></li>
-          </ul>
-UL;
         }
 
         if ($nav_type == 'money') {
