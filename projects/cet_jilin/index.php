@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-7">
+  <div class="col-xs-12 col-sm-12 col-md-8">
     <form method="get" onSubmit="return checkInput(this)">
       <div class="input-group input-group-lg">
         <input name="id" type="text" class="form-control" placeholder="输入身份证号" value="<?php echo $id; ?>">

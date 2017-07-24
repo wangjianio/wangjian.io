@@ -30,6 +30,9 @@
       }
     </style>
     -->
+    <style>
+      .container { max-width: 970px; }
+    </style>
   </head>
 
   <body>

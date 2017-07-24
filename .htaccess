@@ -1,1 +1,3 @@
 RewriteEngine On
+
+RewriteRule ^article/(\d)$  article/article.php?id=$1
