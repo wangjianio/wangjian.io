@@ -11,6 +11,7 @@
           </div>
           <div class="col-sm-4">
             <p class="h3">wangjian.io</p>
+            <p>© 2017 Wang Jian</p>
           </div>
         </div>
       </div>
