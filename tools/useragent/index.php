@@ -5,9 +5,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
     <div class="container">
-<?php
-    echo $_SERVER['HTTP_USER_AGENT'];
-    /*echo '<br />';
+      <div class="page-header">
+        <h1>当前浏览器设定的 User Agent</h1>
+      </div>
+      <p><?php echo $_SERVER['HTTP_USER_AGENT']; ?></p>
+    </div><!-- .container -->
+
+    <!-- /*echo '<br />';
     if (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE) {
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE) {
             if (strpos($_SERVER['HTTP_USER_AGENT'], 'Edge') !== FALSE) {
@@ -22,7 +26,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         echo '正在使用Firefox。';
     } else if ((strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE) || (strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE)) {
         echo '正在使用Internet Explorer。';
-    }*/
-?>
-</div><!-- .container -->
+    }*/-->
+
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

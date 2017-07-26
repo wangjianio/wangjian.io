@@ -1,36 +1,55 @@
 <?php 
-$ini = parse_ini_file('posts/posts.ini', TRUE);
-
-$title = "博客";
+$title = "文章列表";
 $nav_type = 'blog';
 $extra_css = '<link rel="stylesheet" href="/styles/blog.css">';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
+
 echo <<<H1
   <div class="container">
     <div class="page-header">
-      <h1>文章列表</h1>
+      <h1>$title</h1>
     </div>
+    <ul class="list-unstyled">
 H1;
 
-echo '<ul class="list-unstyled">';
 
-for ($article_id=10; $article_id>=0; $article_id--) {
-    $article_title = $ini[$article_id]['title'];
-    $add_date = date('Y-m-d', strtotime($ini[$article_id]['add_datetime']));
-    $add_datetime = date('c', strtotime($ini[$article_id]['add_datetime']));
-    
-    if ($ini[$article_id]['valid']) {
-        echo <<<LI
-            <li class="h3">
-              <small>发布于：<time datetime="$add_datetime">$add_date</time></small>
-              <br>
-              <a href="posts/$article_id">$article_title</a>
-            </li>
+$file_list = scandir('posts/source');
+rsort($file_list);
+
+
+foreach ($file_list as &$file_name) {
+
+    if ($file_name != '.' && $file_name != '..' && $file_name != '.DS_Store') {
+
+        if (preg_match("/(20\d{6})\.(\d)\.(\d)\.(\d)\..+/", $file_name)) {
+            $post_info = preg_split("/\./", $file_name);
+
+            $post_date  = $post_info[0];
+            $post_id    = $post_info[1];
+            $post_valid = $post_info[2];
+            $post_index = $post_info[3];
+            $post_title = $post_info[4];
+
+            $post_date = date('Y-m-d', strtotime($post_date));
+
+            if ($post_valid && $post_index) {
+                echo <<<LI
+                    <li class="h3">
+                    <small>发布于：<time datetime="$post_date">$post_date</time></small>
+                    <br>
+                    <a href="posts/$post_id">$post_title</a>
+                    </li>
 LI;
+            }
+        }
     }
 }
 
+unset($file_name);
+
+
 echo '</ul>';
-    echo '</div><!-- .container -->';
+echo '</div><!-- .container -->';
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';
