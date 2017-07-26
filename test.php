@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
+  <head>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <script src="/scripts/jquerys-3.2.1.min.js"></script>
+    <script>
+      function placeFooter() {
+        var footerHeight = $("footer").outerHeight();
 
-        <title>onresize test</title>
+        if ($(document).height() + footerHeight != $(window).height()) {
+          $("footer").removeClass("navbar-fixed-bottom");
+        }
 
-    </head>
+        if ($(document).height() == $(window).height()) {
+          $("footer").addClass("navbar-fixed-bottom");
+        }
+      }
 
-    <body>
-        <p>Resize the browser window to fire the resize event.</p>
+      $(document).ready(placeFooter);
+      window.onresize = placeFooter;
+    </script>
+  </head>
 
-        <p>Window height: <span id="height"></span></p>
-        <p>Window width: <span id="width"></span></p>
-
-        <script type="text/javascript">
-            var heightOutput = document.querySelector('#height');
-            var widthOutput = document.querySelector('#width');
-
-            function resize() {
-                heightOutput.textContent = document.documentElement.clientHeight;
-                widthOutput.textContent = document.documentElement.clientWidth;
-            }
-
-            window.onresize = resize;
-
-        </script>
-    </body>
+  <body>
+    <div style="width:100%; height:400px; border:10px solid gray">content</div>
+    <footer style="width:100%; height:100px; border:10px solid gray">footer</footer>
+  </body>
 
 </html>

@@ -19,6 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
           <li><a href="https://clipboardjs.com" target="_blank">clipboard.js</a></li>
           <li><a href="https://getcomposer.org" target="_blank">Composer</a></li>
           <li><a href="http://xdsoft.net/jqplugins/datetimepicker/" target="_blank">DateTimePicker</a></li>
+          <li><a href="https://git-scm.com" target="_blank">Git</a></li>
           <li><a href="https://github.com" target="_blank">GitHub</a></li>
           <li><a href="http://glyphicons.com" target="_blank">GLYPHICONS</a></li>
           <li><a href="https://www.javascript.com" target="_blank">JavaScript</a></li>

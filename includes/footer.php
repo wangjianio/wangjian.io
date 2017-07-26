@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-4">
             <p class="h3">wangjian.io</p>
-            <p>© 2017 Wang Jian</p>
+            <p>Made by Wang Jian,<br>and open sourced on <a href="https://github.com/wangjianio/wangjian.io" target="_blank">Github</a>.</p>
           </div>
         </div>
       </div>
