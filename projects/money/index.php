@@ -1,10 +1,20 @@
 <?php
 namespace lopedever\money;
 
-include __DIR__ . '/includes/config.php';
 include __DIR__ . '/includes/database/database.php';
 include __DIR__ . '/includes/index/PrintIndexTransData.php';
 include __DIR__ . '/includes/index/PrintAddTransForm.php';
+
+$title = 'Money - 个人财务管理';
+$nav_type = 'money';
+$subnav_type = 'index';
+
+$extra_css .= '<link rel="stylesheet" href="/styles/jquery.datetimepicker.css">';
+$extra_js = '<script src="/scripts/jquery.datetimepicker.full.min.js"></script>';
+
+$extra_js .= '<script src="scripts/money.js"></script>';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 $year = date('Y');
 $month = date('n');
@@ -45,7 +55,7 @@ switch ($month) {
   case '12':
     $month = '十二月';
     break;
-  
+
   default:
     break;
 }
@@ -72,112 +82,73 @@ switch ($week) {
   case '7':
     $week = '星期日';
     break;
-  
+
   default:
     break;
 }
 $day = date('d');
 ?>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="row">
+          <div class="col-xs-12 h1" style="width:320px;">
+                <span class="pull-left day" style="font-size: 80px; margin-right: 8px;"><?php echo $day; ?></span>
+                <span class="pull-left week" style="font-size: 24px; margin-top: 16px;"><?php echo $week; ?></span>
+                <span class="pull-left month" style="font-size: 32px;"><?php echo "$month $year"; ?></span>
+          </div>
+          <a class="pull-right hidden-xs hidden-sm" id="addLink" href data-toggle="modal" data-target="#addTransFormModal" style="position: absolute; right: 15px; top: 20px">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 80px"></span>
+          </a>
+        </div><!-- .row -->
+        <button class="btn btn-primary btn-lg btn-block hidden-md hidden-lg" id="addButton" type="button" data-toggle="modal" data-target="#addTransFormModal" style="margin-bottom: 8px;">
+          添加记录
+        </button>
+<?php $print_index_trans_data->printTable(); ?>
+      </div><!-- .col -->
 
-<!DOCTYPE html>
-<html>
+      <div class="col-xs-12 col-sm-6">
+        <div class="page-header">
+          <h1>概况</h1>
+        </div>
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>借记账户</th>
+              <th class="money">980.32</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>工商银行</td>
+              <td class="money">100.11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-<head>
-  <title>主页</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="styles/index.css">
-  <link rel="stylesheet" href="styles/jquery.datetimepicker.css">
-  <script src="scripts/jquery-3.2.1.min.js"></script>
-  <script src="scripts/jquery.datetimepicker.full.min.js"></script>
-  <script src="scripts/svg.js"></script>
-  <script src="scripts/common.js"></script>
-  <script>
-  // 弹出隐藏层
-  function showDiv(hideDiv) {
-      document.getElementById(hideDiv).style.display = 'block';
-  }
+    </div><!-- .row -->
+  </div><!-- .container -->
 
-  // 关闭弹出层
-  function hideDiv(hideDiv) {
-      document.getElementById(hideDiv).style.display = 'none';
-  }
-
-  function getNowFormatDate() {
-      // yyyy-MM-dd HH:MM:SS
-      var date = new Date();
-      var seperator1 = "-";
-      var seperator2 = ":";
-      var month = date.getMonth() + 1;
-      var strDate = date.getDate();
-      if (month >= 1 && month <= 9) {
-          month = "0" + month;
-      }
-      if (strDate >= 0 && strDate <= 9) {
-          strDate = "0" + strDate;
-      }
-      var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-          + " " + date.getHours() + seperator2 + date.getMinutes()
-          //+ seperator2 + date.getSeconds();
-      return currentdate;
-  }
-  </script>
-</head>
-
-<body>
-
-<?php
-include __DIR__ . '/includes/header.php';
-
-echo "<div class='content'>";
-echo "<div class='left-div'>";
-
-echo <<<H2
-        <h2 class="date">
-          <span class="day">$day</span>
-          <span class="week">$week</span>
-          <span class="month">$month $year</span>
-        </h2>
-        <a class="add" href="javascript:void(0)" onclick="showDiv('hideDiv')">
-          <img class="svg" src="assets/add.svg">
-        </a>
-H2;
-
-$print_index_trans_data->printTable();
-
-echo "</div>";
-    
-?>
-    <div class="right-div">
-      <h2>概况</h2>
-      <table class="general">
-        <thead>
-          <tr>
-            <th>借记账户</th>
-            <th class="money">980.32</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>工商银行</td>
-            <td class="money">100.11</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-
-  <div id="hideDiv">
-    <div id="bgDiv">
-      <div id="editDiv">
-        <?php $print_add_trans_form->printAddTransForm(); ?>
-        <div class="button">
-          <span class="submit" onclick="submitForm('addTransForm')">保存</span>
-          <span class="close" onclick="hideDiv('hideDiv')">关闭</span>
+  <!-- Modal -->
+  <div class="modal fade" id="addTransFormModal" tabindex="-1" role="dialog" aria-labelledby="addTransFormModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">添加记录：</h4>
+        </div>
+        <div class="modal-body" style="padding-right: 24px; padding-left: 24px">
+          <?php $print_add_trans_form->printAddTransForm(); ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary" onclick="submitForm('addTransForm')">提交</button>
         </div>
       </div>
     </div>
   </div>
+
   <script>
     $.datetimepicker.setLocale('zh');
     $('#datetimepicker').datetimepicker({
@@ -185,6 +156,11 @@ echo "</div>";
         step: 1
     });
   </script>
-</body>
+  <script>
+  $('#addTransFormModal').on('hidden.bs.modal', function (e) {
+    window.setTimeout("$('#addLink').blur()", 0);
+    window.setTimeout("$('#addButton').blur()", 0);
+  })
+  </script>
 
-</html>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

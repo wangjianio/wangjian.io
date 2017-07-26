@@ -9,23 +9,27 @@ class PrintAddTransForm extends Database
         $this->connect($username);
 
         echo <<<FORM_START
-        <form id="addTransForm" name="addTransForm" method="post" action="transaction/add.php">
-        <h3>添加记录：</h3>
+        <form class="form-horizontal" id="addTransForm" name="addTransForm" method="post" action="transaction/add.php">
 FORM_START;
 
         echo <<<FORM_T_TYPE
-        <label>类　型：
-            <select name="t_type">
-                <option value="out" selected>支出</option>
-                <option value="in">收入</option>
-                <option value="transfer">转账</option>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="t_type" style="text-align: left">类　型：</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="t_type" name="t_type">
+              <option value="out" selected>支出</option>
+              <option value="in">收入</option>
+              <option value="transfer">转账</option>
             </select>
-        </label><br>
+          </div><!-- .col -->
+        </div><!-- .form-group -->
 FORM_T_TYPE;
 
         echo <<<FORM_ACCOUNT
-        <label>账　户：
-            <select name="a_name">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="a_name" style="text-align: left">账　户：</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="a_name" name="a_name">
 FORM_ACCOUNT;
 
         $sql = "SELECT a_name FROM account WHERE a_type != 'asset'";
@@ -40,27 +44,38 @@ FORM_ACCOUNT;
 
         echo <<<FORM_ACCOUNT
             </select>
-        </label><br>
+          </div><!-- .col -->
+        </div><!-- .form-group -->
 FORM_ACCOUNT;
 
         echo <<<FORM_T_DATETIME
-        <label>时　间：
-            <input name="t_datetime" type="text" id="datetimepicker"/>
-        </label><br>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="datetimepicker" style="text-align: left">时　间：</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="datetimepicker" name="t_datetime" type="text" placeholder="2017/01/01 00:00">
+          </div><!-- .col -->
+        </div><!-- .form-group -->
 FORM_T_DATETIME;
 
         echo <<<FORM_T_MONEY
-        <label>金　额：
-            <input name="t_money"
-                type="number"
-                placeholder="输入金额"
-                step="0.01">
-        </label><br>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="t_money" style="text-align: left">金　额：</label>
+          <div class="col-sm-10">
+            <input class="form-control"
+                   id="t_money"
+                   name="t_money"
+                   type="number"
+                   placeholder="0.00"
+                   step="0.01">
+          </div><!-- .col -->
+        </div><!-- .form-group -->
 FORM_T_MONEY;
 
         echo <<<FORM_CATEGORY
-        <label>类　别：
-            <select name="category">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="category" style="text-align: left">类　别：</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="category" name="category">
 FORM_CATEGORY;
 
         $sql = 'SELECT out_1 FROM category_out GROUP BY out_1';
@@ -75,19 +90,31 @@ FORM_CATEGORY;
 
         echo <<<FORM_CATEGORY
             </select>
-        </label><br>
+          </div><!-- .col -->
+        </div><!-- .form-group -->
 FORM_CATEGORY;
 
         echo <<<FORM_LOCATION_AGENT_REMARK
-        <label>地　点：
-            <input name="t_location" type="text" placeholder="选填">
-        </label><br>
-        <label>相关人：
-            <input name="t_agent" type="text" placeholder="选填">
-        </label><br>
-        <label>备　注：
-            <input name="t_remark" type="text" placeholder="选填">
-        </label>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="t_location" style="text-align: left">地　点：</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="t_location" name="t_location" type="text" placeholder="选填">
+          </div><!-- .col -->
+        </div><!-- .form-group -->
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="t_agent" style="text-align: left">相关人：</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="t_agent" name="t_agent" type="text" placeholder="选填">
+          </div><!-- .col -->
+        </div><!-- .form-group -->
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="t_remark" style="text-align: left">备　注：</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="t_remark" name="t_remark" type="text" placeholder="选填">
+          </div><!-- .col -->
+        </div><!-- .form-group -->
 FORM_LOCATION_AGENT_REMARK;
         echo '</form>';
         $this->mysqli->close();

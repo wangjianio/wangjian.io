@@ -6,49 +6,32 @@ if (!isset($_GET['errno'])) {
     exit;
 }
 
+$title = '遇到错误';
+$nav_type = 'money';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html>
 
-<head>
-  <title>错误</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="styles/index.css">
-  <style>
-    p {
-      text-align: center;
-      margin: 16px 0 8px 0;
-    }
-
-    .error-tip {
-      margin-top: 80px;
-      padding: 8px;
-      border: 1px solid gray;
-    }
-  </style>
-</head>
-
-<body>
-
-<?php include __DIR__ . '/includes/header.php';?>
-
-  <div class='content'>
-
-    <div class="error-tip">
+  <div class='container'>
+    <div class="page-header">
+      <h1>遇到错误</h1>
+    </div>
+    <div class="jumbotron">
+      <h1>
       <?php
       switch ($_GET['errno']) {
-        case '1451':
-          echo '<p>此类别已被占用，不能删除。</p>';
-          break;
+          case '1451':
+              echo '此类别已被占用，不能删除。';
+              break;
         
-        default:
-          echo '<p>未知错误。</p>';
-          break;
+          default:
+              echo '未知错误。';
+              break;
       }
       ?>
-      <p><a href="javascript:history.back(-1)">返回</a></p>
-    </div>
-  </div>
-</body>
+      </h1>
+      <p>...</p>
+      <p><a class="btn btn-primary btn-lg" href="javascript:history.back(-1)" role="button">返回</a></p>
+    </div><!-- .jumbotron -->
+  </div><!-- .container -->
 
-</html>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

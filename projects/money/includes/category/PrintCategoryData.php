@@ -10,13 +10,9 @@ class PrintCategoryData extends Database
         switch ($type) {
             case '收入':
                 $t_type = 'in';
-                $class_in = 'class="primary"';
-                $class_out = 'class="secondary"';
                 break;
             case '支出':
                 $t_type = 'out';
-                $class_out = 'class="primary"';
-                $class_in = 'class="secondary"';
                 break;
 
             default:
@@ -31,7 +27,7 @@ class PrintCategoryData extends Database
 
         $current_url = $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
         $back_url = preg_replace("/-[^-]+$/", '', $current_url);
-        $back_img = '<a href="' . $back_url . '"><img class="svg" src="/php/money/assets/back.svg"></a>';
+        $back_img = '<a href="' . $back_url . '"><img class="svg" src="/icons/back.svg"></a>';
 
         if (empty($cate_1)) {
             $cate_head = '类别';
@@ -63,9 +59,10 @@ class PrintCategoryData extends Database
             }
         }
 
-        $this->printH2($class_out, $class_in);
-
-        echo "<table>";
+        $this->printH1($t_type);
+        echo '<div class="row">';
+        echo '<div class="col-xs-12 col-sm-6 col-md-5">';
+        echo '<table class="table table-hover">';
         $this->printTableHead($cate_head);
         $this->printTableFoot();
         echo "<tbody>";
@@ -92,16 +89,33 @@ TR;
             $this->mysqli->close();
         echo "</tbody>";
         echo "</table>";
+        echo '</div><!-- .col -->';
+        echo '</div><!-- .row -->';
     }
 
-    public function printH2($class_out, $class_in)
+    public function printH1($t_type)
     {
-        echo <<<H2
-        <h2>
-          <span class="type"><a $class_out href="/php/money/category/index.php?c=支出">支出</a></span>
-          <span class="type"><a $class_in href="/php/money/category/index.php?c=收入">收入</a></span>
-        </h2>
-H2;
+        if ($t_type === 'out') {
+            echo <<<H1
+            <div class="page-header">
+              <h1>
+                <a href="/projects/money/category/index.php?c=支出">支出</a>
+                <small><a href="/projects/money/category/index.php?c=收入">收入</a></small>
+              </h1>
+            </div>
+H1;
+        } elseif ($t_type === 'in') {
+            echo <<<H1
+            <div class="page-header">
+              <h1>
+                <small><a href="/projects/money/category/index.php?c=支出">支出</a></small>
+                <a href="/projects/money/category/index.php?c=收入">收入</a>
+              </h1>
+            </div>
+H1;
+        } else {
+            echo 'error';
+        }
     }
 
     public function printTable()

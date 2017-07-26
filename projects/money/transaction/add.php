@@ -28,7 +28,7 @@ if ($stmt = $database->mysqli->prepare($sql)) {
 $database->mysqli->close();
 
 if ($mysql_errno) {
-    header("Location: /php/money/error.php?errno=$mysql_errno");
+    header("Location: /projects/money/error.php?errno=$mysql_errno");
 } else {
-    header("Location: /php/money/index.php");
+    header("Location: /projects/money/index.php");
 }

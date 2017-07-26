@@ -1,29 +1,5 @@
-@import "../common.css";
-@import "../header.css";
-
-th, td {
-  border: 1px solid gray;
-}
-
-span.type {
-  margin-right: 8px;
-}
-
-h2 a:hover {
-  text-decoration: none;
-}
-
-.primary {
-  color: black;
-}
-
-.secondary {
-  font-size: 0.8em;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.secondary:hover {
-  color: black;
+h1 a, h1 a:hover{
+  color: rgb(51, 51, 51);
 }
 
 .svg {
@@ -31,8 +7,8 @@ h2 a:hover {
   float: left;
 }
 
-table {
-  width: auto;
+.table {
+  border: 1px solid #ddd;
 }
 
 .cate-name {

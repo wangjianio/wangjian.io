@@ -91,3 +91,5 @@ for ($i = 0; $i < $count; $i++) {
 }
 
 $database->mysqli->close();
+
+header('Location: /projects/money/account/');

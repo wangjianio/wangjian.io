@@ -76,7 +76,7 @@ class NavSelector
                 <li$file><a href="/projects/file_management_system/">文件管理系统</a></li>
                 <li$old><a href="/projects/old_pronunciation/">OLD 英语发音</a></li>
                 <li$tl12306><a href="/projects/12306/">12306 信息处理</a></li>
-                <li$money><a href="/projects/money/">Money - 个人财物管理</a></li>
+                <li$money><a href="/projects/money/">Money - 个人财务管理</a></li>
               </ul>
             </li>
 
@@ -100,7 +100,7 @@ UL;
     {
         if ($nav_type == 'blog') {
             switch ($subnav_type) {
-                case 'post':
+                case 'posts':
                     echo <<<UL
                     <ul class="nav navbar-nav">
                       <li><a href="/blog/index">返回文章列表</a></li>
@@ -135,10 +135,10 @@ UL;
             }
             echo <<<UL
           <ul class="nav navbar-nav">
-            <li$money_index><a href="/money/index">Money</a></li>
-            <li$money_account><a href="/money/account">账户详情</a></li>
-            <li$money_transaction><a href="/money/transaction">交易</a></li>
-            <li$money_category><a href="/money/category">交易</a></li>
+            <li$money_index><a href="/projects/money/index">Money</a></li>
+            <li$money_account><a href="/projects/money/account">账户详情</a></li>
+            <li$money_transaction><a href="/projects/money/transaction">交易</a></li>
+            <li$money_category><a href="/projects/money/category/index?c=支出">类别管理</a></li>
           </ul>
 UL;
         }

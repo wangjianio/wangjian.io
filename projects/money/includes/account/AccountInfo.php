@@ -27,7 +27,7 @@ class AccountInfo extends DataQuery
 
     public function printTable($a_type)
     {
-        echo '<table>';
+        echo '<table class="table table-hover table-bordered">';
         $this->printTableHead($a_type);
         $this->printTableFoot($a_type);
         $this->printTableBody($a_type);

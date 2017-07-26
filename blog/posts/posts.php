@@ -1,15 +1,18 @@
 <?php
-include '../assets/include.php';
+$ini = parse_ini_file('posts.ini', TRUE);
+
 $nav_type = 'blog';
-$subnav_type = 'post';
+$subnav_type = 'posts';
 $extra_css = '<link rel="stylesheet" href="/blog/styles/article.css">';
 $id = $_GET['id'];
 
 $title = $ini[$id]['title'];
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
+
 $file_m_date = date('Y-m-d', filemtime('source/'.$id.'.html'));
 $file_m_datetime = date('c', filemtime('source/'.$id.'.html'));
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 if ($ini[$id]['valid']) {
     echo <<<H1

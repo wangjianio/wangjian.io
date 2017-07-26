@@ -10,5 +10,6 @@ function placeFooter() {
     }
 }
 
+placeFooter();
 $(document).ready(placeFooter);
 window.onresize = placeFooter;

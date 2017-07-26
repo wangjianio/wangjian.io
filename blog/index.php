@@ -1,5 +1,6 @@
 <?php 
-include 'assets/include.php';
+$ini = parse_ini_file('posts/posts.ini', TRUE);
+
 $title = "博客";
 $nav_type = 'blog';
 $extra_css = '<link rel="stylesheet" href="styles/index.css">';
@@ -24,7 +25,7 @@ for ($article_id=10; $article_id>=0; $article_id--) {
             <li class="h3">
               <small>发布于：<time datetime="$add_datetime">$add_date</time></small>
               <br>
-              <a href="post/$article_id">$article_title</a>
+              <a href="posts/$article_id">$article_title</a>
             </li>
 LI;
     }

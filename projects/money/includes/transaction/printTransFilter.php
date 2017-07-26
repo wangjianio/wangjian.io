@@ -2,8 +2,9 @@
 namespace lopedever\money;
 
 echo <<<START
-<div class="filter-option" id="filter-option">
-  <ul>
+<div class="collapse in" id="filterOption">
+  <div class="well">
+  <ul class="list-inline">
   类　型：
 START;
 
@@ -34,5 +35,11 @@ LI_ALL;
 
 echo <<<END
   </ul>
+
+  <ul class="list-inline">
+  账　户：
+  <li>aa</li>
+  </ul>
+  </div>
 </div>
 END;

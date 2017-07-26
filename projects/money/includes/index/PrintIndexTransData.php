@@ -5,7 +5,7 @@ class PrintIndexTransData extends Database
 {
     public function printTable()
     {
-        echo '<table class="that-day">';
+        echo '<table class="table table-hover table-bordered">';
         $this->printTableHead();
         $this->printTableFoot();
         $this->printTableBody();

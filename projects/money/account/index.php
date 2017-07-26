@@ -3,56 +3,93 @@ namespace lopedever\money;
 
 include dirname(__DIR__) . '/includes/account/AccountInfo.php';
 
+
+$title = '账户详情';
+$nav_type = 'money';
+$subnav_type = 'account';
+
+$extra_js = '<script src="../scripts/money.js"></script>';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html>
+<script>
 
-<head>
-  <title>账户详情</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../styles/account/index.css">
-  <script src="../scripts/account.js"></script>
-  <script>
-    function iframeFormSubmit(iframeId, formId) {
-        var i = document.getElementById(iframeId).contentDocument;
-        i.getElementById(formId).submit();
-    }
-  </script>
-</head>
+</script>
 
-<body>
 
-<?php include dirname(__DIR__) . '/includes/header.php'; ?>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h1><?php echo $account_info->getAccountTypeDescription('debit'); ?>
+            <small>
+              <button class="btn btn-primary btn-xs" id="editButtonDebit" type="button">
+                编辑
+              </button>
+            </small>
+          </h1>
+        </div>
+          <?php $account_info->printTable('debit'); ?>
 
-  <div class="content">
-    <div class="account-info">
-      <h2><?php echo $account_info->getAccountTypeDescription('debit'); ?></h2>
-      <a class="edit" href="javascript:void(0)" onclick="ShowDiv('hideDiv', 'debit')">[编辑]</a>
-      <?php $account_info->printTable('debit'); ?>
+        <div class="page-header">
+          <h1><?php echo $account_info->getAccountTypeDescription('credit'); ?>
+            <small>
+              <button class="btn btn-primary btn-xs" id="editButtonCredit" type="button">
+                编辑
+              </button>
+            </small>
+          </h1>
+        </div>
+          <?php $account_info->printTable('credit'); ?>
 
-      <h2>
-        <?php echo $account_info->getAccountTypeDescription('credit'); ?></h2>
-        <a class="edit" href="javascript:void(0)" onclick="ShowDiv('hideDiv', 'credit')">[编辑]</a>
-      <?php $account_info->printTable('credit'); ?>
+        <div class="page-header">
+          <h1><?php echo $account_info->getAccountTypeDescription('asset'); ?>
+            <small>
+              <button class="btn btn-primary btn-xs" id="editButtonAsset" type="button">
+                编辑
+              </button>
+            </small>
+          </h1>
+        </div>
+          <?php $account_info->printTable('asset'); ?>
 
-      <h2>
-        <?php echo $account_info->getAccountTypeDescription('asset'); ?></h2>
-        <a class="edit" href="javascript:void(0)" onclick="ShowDiv('hideDiv', 'asset')">[编辑]</a>
-      <?php $account_info->printTable('asset'); ?>
-    </div>
-  </div>
+      </div><!-- .col -->
+    </div><!-- .row -->
+  </div><!-- .container -->
 
-  <div id="hideDiv">
-    <div id="bgDiv">
-      <div id="editDiv">
-        <iframe id="iframe" frameborder="0"></iframe>
-        <div class="button">
-          <span class="submit" onclick="iframeFormSubmit('iframe', 'edit_account'); CloseDiv('hideDiv', 1);">保存</span>
-          <span class="close" onclick="CloseDiv('hideDiv')">关闭</span>
+  <div class="modal fade" id="editAccountFormModal" tabindex="-1" role="dialog" aria-labelledby="editAccountFormModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">添加记录：</h4>
+        </div>
+        <div class="modal-body" id="modalBody" style="padding-right: 24px; padding-left: 24px">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary" id="submitButton" onclick="submitForm('editAccountForm')">提交</button>
         </div>
       </div>
     </div>
   </div>
-</body>
 
-</html>
+<script>
+  $(document).ready(function () {
+    $("#editButtonDebit").click(function () {
+      $('#modalBody').load('edit.php?a_type=debit');
+      $('#editAccountFormModal').modal('show')
+    })
+    $("#editButtonCredit").click(function () {
+      $('#modalBody').load('edit.php?a_type=credit');
+      $('#modalBody').load('test.php');
+      $('#editAccountFormModal').modal('show')
+    })
+    $("#editButtonAsset").click(function () {
+      $('#modalBody').load('edit.php?a_type=asset');
+      $('#editAccountFormModal').modal('show')
+    })
+  })
+</script>
+
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

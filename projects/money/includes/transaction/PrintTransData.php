@@ -7,9 +7,9 @@ class PrintTransData extends Database
 {
     public function printTable()
     {
-        echo '<table>';
+        echo '<table class="table table-hover table-condensed">';
         $this->printTableHead();
-        $this->printTableFoot();
+        //$this->printTableFoot();
         $this->printTableBody();
         echo '</table>';
     }
@@ -46,7 +46,7 @@ TFOOT;
 
     public function printTableBody()
     {
-        echo "<tbody>";
+        echo '<tbody>';
 
         $username = 'money_root';
         $this->connect($username);

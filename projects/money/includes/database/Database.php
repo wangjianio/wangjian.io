@@ -1,8 +1,6 @@
 <?php
 namespace lopedever\money;
 
-include dirname(__DIR__) . '/config.php';
-
 /**
  * 用于连接数据库的类。
  */
