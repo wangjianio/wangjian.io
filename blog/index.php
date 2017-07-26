@@ -3,7 +3,7 @@ $ini = parse_ini_file('posts/posts.ini', TRUE);
 
 $title = "博客";
 $nav_type = 'blog';
-$extra_css = '<link rel="stylesheet" href="styles/index.css">';
+$extra_css = '<link rel="stylesheet" href="/styles/blog.css">';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 echo <<<H1
