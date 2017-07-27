@@ -9,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-md-8">
-        <p>aaa</p>
+        <p>根据自己需要，做的小网站。</p>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4">
         <h2>特别感谢</h2>
