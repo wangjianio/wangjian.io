@@ -1,8 +1,8 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/Common.php';
-include dirname(__DIR__) . '/includes/database/Database.php';
+require_once dirname(__DIR__) . '/includes/Common.php';
+require_once dirname(__DIR__) . '/includes/Database.php';
 
 $new_cate_name = $_POST['new_cate'];
 

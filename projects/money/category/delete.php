@@ -1,8 +1,8 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/Common.php';
-include dirname(__DIR__) . '/includes/database/Database.php';
+require_once dirname(__DIR__) . '/includes/Common.php';
+require_once dirname(__DIR__) . '/includes/Database.php';
 
 $c = preg_split("/-/", $_GET['c']);
 
@@ -14,9 +14,9 @@ $cate_4 = $c[4];
 $cate_5 = $c[5];
 
 if (!isset($_GET['c'])) {
-    $common->redirectTo('/php/money/category/index.php?c=支出');
+    $common->redirectTo('/projects/money/category/index.php?c=支出');
 } elseif ($type != '支出' && $type != '收入') {
-    $common->redirectTo('/php/money/category/index.php?c=支出');
+    $common->redirectTo('/projects/money/category/index.php?c=支出');
 } else {
 
     switch ($type) {
@@ -38,7 +38,7 @@ if (!isset($_GET['c'])) {
     $database->connect($username);
 
     if (empty($cate_1)) {
-        $common->redirectTo('/php/money/category/index.php?c=支出');
+        $common->redirectTo('/projects/money/category/index.php?c=支出');
     } else if (empty($cate_2)) {
         $sql = "DELETE FROM $table WHERE {$t_type}_1 = ?";
         if ($stmt = $database->mysqli->prepare($sql)) {
@@ -73,9 +73,9 @@ if (!isset($_GET['c'])) {
     $database->mysqli->close();
 
     if ($mysql_errno) {
-        header("Location: /php/money/error.php?errno=$mysql_errno");
+        header("Location: /projects/money/error.php?errno=$mysql_errno");
     } else {
-        $back_url = '/php/money/category/index.php?'.$_SERVER['QUERY_STRING'];
+        $back_url = '/projects/money/category/index.php?'.$_SERVER['QUERY_STRING'];
         $back_url = preg_replace("/-[^-]+$/", '', $back_url);
         header("Location: $back_url");
     }

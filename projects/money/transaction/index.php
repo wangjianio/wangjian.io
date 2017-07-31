@@ -1,7 +1,7 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/transaction/PrintTransData.php';
+require_once dirname(__DIR__) . '/includes/TransData.php';
 
 $title = '交易记录';
 $nav_type = 'money';
@@ -19,12 +19,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       <small><button class="btn btn-xs btn-primary" type="button" data-toggle="collapse" data-target="#filterOption" aria-expanded="false" aria-controls="filterOption">
         筛选
       </button></small></h1>
-      <?php //include dirname(__DIR__) . '/includes/transaction/PrintTransFilter.php'; ?>
     </div>
 
 <?php
-include dirname(__DIR__) . '/includes/transaction/PrintTransFilter.php';
-$print_trans_data->printTable();
+include_once 'filter.php';
+$trans_data->printTable();
 ?>
 
       <nav aria-label="Page navigation">

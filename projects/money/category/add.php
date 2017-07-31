@@ -1,14 +1,14 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/Common.php';
-include dirname(__DIR__) . '/includes/database/Database.php';
+require_once dirname(__DIR__) . '/includes/Common.php';
+require_once dirname(__DIR__) . '/includes/Database.php';
 
 if (empty($_POST['new_cate'])) {
-    $common->redirectTo('/php/money/category/index.php?c=支出');
+    $common->redirectTo('/projects/money/category/index?c=支出');
     exit;
 } else if (preg_match("/-/", $_POST['new_cate'])) {
-    $common->redirectTo('/php/money/category/index.php?c=支出');
+    $common->redirectTo('/projects/money/category/index?c=支出');
     exit;
 }
 
@@ -23,9 +23,9 @@ $cate_5 = $c[5];
 
 
 if (!isset($_GET['c'])) {
-    $common->redirectTo('/php/money/category/index.php?c=支出');
+    $common->redirectTo('/projects/money/category/index?c=支出');
 } elseif ($type != '支出' && $type != '收入') {
-    $common->redirectTo('/php/money/category/index.php?c=支出');
+    $common->redirectTo('/projects/money/category/index?c=支出');
 } else {
 
     switch ($type) {
@@ -83,6 +83,6 @@ if (!isset($_GET['c'])) {
 
     $database->mysqli->close();
 
-    $back_url = '/php/money/category/index.php?'.$_SERVER['QUERY_STRING'];
+    $back_url = '/projects/money/category/index?'.$_SERVER['QUERY_STRING'];
     header("Location: $back_url");
 }

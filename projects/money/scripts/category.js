@@ -1,3 +1,4 @@
+
 function showAddForm(query) {
     form = '<form id="addCateForm" name="add_cate_form" method="post" action="add.php?' + query + '"><input name="new_cate" id="addInput" type="text" placeholder="输入新类别"></form>';
     document.getElementById("blank").innerHTML = form;

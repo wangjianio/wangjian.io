@@ -1,7 +1,9 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-class PrintIndexTransData extends Database
+require_once __DIR__ . '/Database.php';
+
+class IndexTransData extends Database
 {
     public function printTable()
     {
@@ -138,4 +140,4 @@ TFOOT;
     }
 }
 
-$print_index_trans_data = new PrintIndexTransData;
+$index_trans_data = new IndexTransData;

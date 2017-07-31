@@ -1,26 +1,12 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/account/EditAccount.php';
+require_once dirname(__DIR__) . '/includes/EditAccount.php';
 
 $a_type = $_GET['a_type'];
 
-switch ($a_type) {
-    case 'asset':
-        $col_name = 'asset_balance';
-        break;
-    case 'credit':
-        $col_name = 'credit_debt';
-        $col_name_2 = 'credit_limit';
-        break;
-    case 'debit':
-        $col_name = 'debit_balance';
-        break;
-
-    default:
-        exit('Error.account.editor.' . __LINE__);
-        break;
-}
+$col_name_1 = $account_info->col_name[$a_type];
+$col_name_2 = $account_info->col_name['credit_2'];
 
 /**
  * 修改 account_type 表的 description 列。
@@ -63,25 +49,25 @@ for ($i = 0; $i < $count; $i++) {
 
     $sql_a_name = $post_info[$i]['a_name'];
 
-    if (is_float((float)$post_info[$i][$col_name])) {
-        $sql_col_name = $post_info[$i][$col_name];
+    if (is_float((float)$post_info[$i][$col_name_1])) {
+        $sql_col_name_1 = $post_info[$i][$col_name_1];
     }
 
     if ($a_type == 'credit') {
         if (is_float((float)$post_info[$i][$col_name_2])) {
             $sql_col_name_2 = $post_info[$i][$col_name_2];
         }
-        $sql = "UPDATE account SET a_name = ?, $col_name = ?, $col_name_2 = ? WHERE a_id = ?";
+        $sql = "UPDATE account SET a_name = ?, $col_name_1 = ?, $col_name_2 = ? WHERE a_id = ?";
     } else {
-        $sql = "UPDATE account SET a_name = ?, $col_name = ? WHERE a_id = ?";
+        $sql = "UPDATE account SET a_name = ?, $col_name_1 = ? WHERE a_id = ?";
     }
 
     if ($stmt = $database->mysqli->prepare($sql)) {
 
         if ($a_type == 'credit') {
-            $stmt->bind_param("sddi", $sql_a_name, $sql_col_name, $sql_col_name_2, $sql_a_id);
+            $stmt->bind_param("sddi", $sql_a_name, $sql_col_name_1, $sql_col_name_2, $sql_a_id);
         } else {
-            $stmt->bind_param("sdi", $sql_a_name, $sql_col_name, $sql_a_id);
+            $stmt->bind_param("sdi", $sql_a_name, $sql_col_name_1, $sql_a_id);
         }
 
         $stmt->execute();

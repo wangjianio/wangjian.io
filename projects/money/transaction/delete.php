@@ -1,14 +1,14 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/Common.php';
-include dirname(__DIR__) . '/includes/database/Database.php';
+require_once dirname(__DIR__) . '/includes/Common.php';
+require_once dirname(__DIR__) . '/includes/Database.php';
 
 if (!isset($_GET['id'])) {
-    $common->redirectTo('/php/money/transaction/index.php');
+    $common->redirectTo('/projects/money/transaction/');
     exit;
 } else if (!is_numeric($_GET['id'])) {
-    $common->redirectTo('/php/money/transaction/index.php');
+    $common->redirectTo('/projects/money/transaction/');
     exit;
 } else {
     $t_id = $_GET['id'];
@@ -26,4 +26,4 @@ if ($stmt = $database->mysqli->prepare($sql)) {
 
 $database->mysqli->close();
 
-header("Location: index.php");
+header("Location: index");

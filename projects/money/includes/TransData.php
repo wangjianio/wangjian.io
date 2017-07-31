@@ -1,9 +1,9 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/database/Database.php';
+require_once __DIR__ . '/Database.php';
 
-class PrintTransData extends Database
+class TransData extends Database
 {
     public function printTable()
     {
@@ -149,4 +149,4 @@ TR;
     }
 }
 
-$print_trans_data = new PrintTransData;
+$trans_data = new TransData;

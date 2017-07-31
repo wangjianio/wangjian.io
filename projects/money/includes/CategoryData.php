@@ -1,9 +1,9 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/database/Database.php';
+require_once __DIR__ . '/Database.php';
 
-class PrintCategoryData extends Database
+class CategoryData extends Database
 {
     public function printData($type, $cate_1 = null, $cate_2 = null, $cate_3 = null, $cate_4 = null, $cate_5 = null)
     {
@@ -157,4 +157,4 @@ TFOOT;
     }
 }
 
-$print_category_data = new PrintCategoryData;
+$category_data = new CategoryData;

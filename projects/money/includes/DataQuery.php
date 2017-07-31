@@ -1,7 +1,7 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include __DIR__ . '/Database.php';
+require_once __DIR__ . '/Database.php';
 
 /**
  * 用于数据库查询的类。
@@ -20,14 +20,15 @@ class DataQuery extends Database
     {
         $this->connect($username);
 
-        if ($result = $this->execSql($sql)) {
+        $result = $this->execSql($sql);
+
+        if ($result) {
             return $result;
         } else {
-            return -1;
+            return false;
         }
 
         $this->mysqli->close();
-
     }
 
     /**
@@ -76,7 +77,7 @@ class DataQuery extends Database
         if (is_array($result) && isset($result)) {
             return $result;
         } elseif (!isset($result)) {
-            exit('无');
+            exit('Error.' . __FUNCTION__ . __LINE__);
         } else {
             exit('Error.' . __FUNCTION__ . __LINE__);
         }

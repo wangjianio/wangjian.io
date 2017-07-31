@@ -1,5 +1,5 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
 if (!isset($_GET['errno'])) {
     header("Location: index.php");

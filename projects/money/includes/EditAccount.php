@@ -1,33 +1,20 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include __DIR__ . '/AccountInfo.php';
+require_once __DIR__ . '/AccountInfo.php';
 
 class EditAccount extends AccountInfo
 {
     public function printEditForm($a_type)
     {
+        $col_name_1 = $this->col_name[$a_type];
+        $col_name_2 = $this->col_name['credit_2'];
+
         $account_info = $this->query('money_view_select', "SELECT * FROM account_$a_type");
         $count = count($account_info);
 
-        switch ($a_type) {
-            case 'asset':
-                $col_name = 'asset_balance';
-                break;
-            case 'credit':
-                $col_name = 'credit_debt';
-                $col_name_2 = 'credit_limit';
-                break;
-            case 'debit':
-                $col_name = 'debit_balance';
-                break;
-
-            default:
-                exit('Error.' . __FUNCTION__ . __LINE__);
-                break;
-        }
         echo <<<FORM_START
-        <form class="form-horizontal" id="editAccountForm" name="editAccountForm" method="post" action="editor.php?a_type=$a_type">
+        <form class="form-horizontal" id="editAccountForm" name="editAccountForm" method="post" action="editor?a_type=$a_type">
 FORM_START;
 
         echo <<<FORM1
@@ -38,7 +25,7 @@ FORM_START;
                     id="aTypeDescription" 
                     name="a_type_description" 
                     type="text" 
-                    value="{$this->getAccountTypeDescription($a_type)}"
+                    value="{$this->getDescriptionByAccountType($a_type)}"
                     placeholder="输入类别名称">
           </div><!-- .col -->
         </div><!-- .form-group -->
@@ -68,9 +55,9 @@ HIDDEN;
 
                   <div class="col-xs-4">
                     <input class="form-control" 
-                           name="{$a_type}[{$account_info[$i]['a_id']}][$col_name]"
+                           name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_1]"
                            type="number" 
-                           value="{$account_info[$i][$col_name]}"
+                           value="{$account_info[$i][$col_name_1]}"
                            placeholder="输入金额"
                            step="0.01">
                   </div><!-- .col -->
@@ -97,9 +84,9 @@ NAME_MONEY;
                   </div><!-- .col -->
                   <div class="col-xs-6">
                     <input class="form-control" 
-                            name="{$a_type}[{$account_info[$i]['a_id']}][$col_name]"
+                            name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_1]"
                             type="number" 
-                            value="{$account_info[$i][$col_name]}"
+                            value="{$account_info[$i][$col_name_1]}"
                             placeholder="输入金额"
                             step="0.01">
                   </div><!-- .col -->
@@ -123,37 +110,22 @@ NAME_MONEY;
 
     public function printFormHead($a_type)
     {
-        switch ($a_type) {
-            case 'asset':
-                $th = '价值';
-                break;
-            case 'credit':
-                $th = '负债';
-                $th_2 = '额度';
-                break;
-            case 'debit':
-                $th = '余额';
-                break;
-
-            default:
-                exit ('Error.PrintInfo.' . __LINE__);
-                break;
-        }
-
+        $table_head_1 = $this->table_head[$a_type];
+        $table_head_2 = $this->table_head['credit_2'];
 
         if ($a_type == 'credit') {
             echo <<<FORM_HEAD
             <div class="form-group">
               <label class="col-sm-4 control-label" style="text-align: center">账户名称</label>
-              <label class="col-sm-4 control-label" style="text-align: center">$th</label>
-              <label class="col-sm-4 control-label" style="text-align: center">$th_2</label>
+              <label class="col-sm-4 control-label" style="text-align: center">$table_head_1</label>
+              <label class="col-sm-4 control-label" style="text-align: center">$table_head_2</label>
             </div><!-- .form-group -->
 FORM_HEAD;
         } else {
             echo <<<FORM_HEAD
             <div class="form-group">
               <label class="col-sm-6 control-label" style="text-align: center">账户名称</label>
-              <label class="col-sm-6 control-label" style="text-align: center">$th</label>
+              <label class="col-sm-6 control-label" style="text-align: center">$table_head_1</label>
             </div><!-- .form-group -->
 FORM_HEAD;
         }

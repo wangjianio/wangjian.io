@@ -1,8 +1,8 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-include dirname(__DIR__) . '/includes/Common.php';
-include dirname(__DIR__) . '/includes/database/Database.php';
+require_once dirname(__DIR__) . '/includes/Common.php';
+require_once dirname(__DIR__) . '/includes/Database.php';
 
 $t_type = $_POST['t_type'];
 $a_name = $_POST['a_name'];

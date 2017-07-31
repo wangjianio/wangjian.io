@@ -1,7 +1,9 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
-class PrintAddTransForm extends Database
+require_once __DIR__ . '/Database.php';
+
+class AddTransForm extends Database
 {
     public function printAddTransForm()
     {
@@ -121,4 +123,4 @@ FORM_LOCATION_AGENT_REMARK;
     }
 }
 
-$print_add_trans_form = new PrintAddTransForm;
+$add_trans_form = new AddTransForm;

@@ -1,5 +1,5 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
 class Common
 {

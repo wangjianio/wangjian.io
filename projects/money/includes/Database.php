@@ -1,5 +1,5 @@
 <?php
-namespace lopedever\money;
+namespace wangjian\wangjianio\projects\money;
 
 /**
  * 用于连接数据库的类。
