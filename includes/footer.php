@@ -4,9 +4,9 @@
           <div class="col-sm-8">
             <p class="h5">联系方式</p>
             <ul class="list-unstyled">
-              <li><a href="mailto:admin@wangjian.blog"><img class="svg" src="/icons/mail.svg">contact@wangjian.io</a></li>
-              <li><a href="https://twitter.com/lopedever" target="_blank"><img class="svg" src="/icons/twitter-icon.svg">@lopedever</a></li>
-              <li><a href="https://github.com/wangjianio" target="_blank"><img class="svg" src="/icons/github-icon.svg">@wangjianio</a></li>
+              <li><a href="mailto:admin@wangjian.blog"><img class="svg" alt="mail-icon" src="/icons/mail.svg">contact@wangjian.io</a></li>
+              <li><a href="https://twitter.com/lopedever" target="_blank"><img class="svg" alt="twitter-icon" src="/icons/twitter-icon.svg">@lopedever</a></li>
+              <li><a href="https://github.com/wangjianio" target="_blank"><img class="svg" alt="github-icon" src="/icons/github-icon.svg">@wangjianio</a></li>
             </ul>
           </div>
           <div class="col-sm-4">
