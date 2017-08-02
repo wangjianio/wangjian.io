@@ -27,31 +27,31 @@ FORM_START;
                     type="text" 
                     value="{$this->getDescriptionByAccountType($a_type)}"
                     placeholder="输入类别名称">
-          </div><!-- .col -->
-        </div><!-- .form-group -->
+          </div>
+        </div>
 FORM1;
 
         $this->printFormHead($a_type);
 
         for ($i = 0; $i < $count; $i++) {
             echo <<<HIDDEN
-            <input class="form-control" 
-                    name="{$a_type}[{$account_info[$i]['a_id']}][a_id]"
-                    type="hidden" 
-                    value="{$account_info[$i]['a_id']}">
+            <div class="form-group">
+              <input class="form-control" 
+                      name="{$a_type}[{$account_info[$i]['a_id']}][a_id]"
+                      type="hidden" 
+                      value="{$account_info[$i]['a_id']}">
 HIDDEN;
 
 
             if ($a_type == 'credit') {
                 echo <<<NAME_MONEY
-                <div class="form-group">
                   <div class="col-xs-4">
                     <input class="form-control" 
                            name="{$a_type}[{$account_info[$i]['a_id']}][a_name]"
                            type="text" 
                            value="{$account_info[$i]['a_name']}"
                            placeholder="输入名称">
-                  </div><!-- .col -->
+                  </div>
 
                   <div class="col-xs-4">
                     <input class="form-control" 
@@ -60,7 +60,7 @@ HIDDEN;
                            value="{$account_info[$i][$col_name_1]}"
                            placeholder="输入金额"
                            step="0.01">
-                  </div><!-- .col -->
+                  </div>
 
                   <div class="col-xs-4">
                     <input class="form-control" 
@@ -69,19 +69,21 @@ HIDDEN;
                            value="{$account_info[$i][$col_name_2]}"
                            placeholder="输入金额"
                            step="0.01">
-                  </div><!-- .col -->
-                </div><!-- .form-group -->
+                  </div>
+                  <a class="pull-right text-danger btn-custom-del" href="javascript:void(0);" onclick="delAccount('$a_type', '{$account_info[$i]['a_id']}')">
+                    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </a>
+                </div>
 NAME_MONEY;
             } else {
                 echo <<<NAME_MONEY
-                <div class="form-group">
                   <div class="col-xs-6">
                     <input class="form-control" 
                             name="{$a_type}[{$account_info[$i]['a_id']}][a_name]"
                             type="text" 
                             value="{$account_info[$i]['a_name']}"
                             placeholder="输入名称">
-                  </div><!-- .col -->
+                  </div>
                   <div class="col-xs-6">
                     <input class="form-control" 
                             name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_1]"
@@ -89,8 +91,11 @@ NAME_MONEY;
                             value="{$account_info[$i][$col_name_1]}"
                             placeholder="输入金额"
                             step="0.01">
-                  </div><!-- .col -->
-                </div><!-- .form-group -->
+                  </div>
+                  <a class="pull-right text-danger btn-custom-del" href="javascript:void(0);" onclick="delAccount('$a_type', '{$account_info[$i]['a_id']}')">
+                    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </a>
+                </div>
 NAME_MONEY;
             }
         }
@@ -116,17 +121,17 @@ NAME_MONEY;
         if ($a_type == 'credit') {
             echo <<<FORM_HEAD
             <div class="form-group">
-              <label class="col-sm-4 control-label" style="text-align: center">账户名称</label>
-              <label class="col-sm-4 control-label" style="text-align: center">$table_head_1</label>
-              <label class="col-sm-4 control-label" style="text-align: center">$table_head_2</label>
-            </div><!-- .form-group -->
+              <label class="col-xs-4 control-label" style="text-align: center">账户名称</label>
+              <label class="col-xs-4 control-label" style="text-align: center">$table_head_1</label>
+              <label class="col-xs-4 control-label" style="text-align: center">$table_head_2</label>
+            </div>
 FORM_HEAD;
         } else {
             echo <<<FORM_HEAD
             <div class="form-group">
-              <label class="col-sm-6 control-label" style="text-align: center">账户名称</label>
-              <label class="col-sm-6 control-label" style="text-align: center">$table_head_1</label>
-            </div><!-- .form-group -->
+              <label class="col-xs-6 control-label" style="text-align: center">账户名称</label>
+              <label class="col-xs-6 control-label" style="text-align: center">$table_head_1</label>
+            </div>
 FORM_HEAD;
         }
     }

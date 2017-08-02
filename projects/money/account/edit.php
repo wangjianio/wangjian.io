@@ -1,6 +1,7 @@
 <?php
 namespace wangjian\wangjianio\projects\money;
 
+
 require_once dirname(__DIR__) . '/includes/EditAccount.php';
 
 $a_type = $_GET['a_type'];

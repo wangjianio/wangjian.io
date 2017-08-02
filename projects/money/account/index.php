@@ -8,6 +8,7 @@ $nav_type = 'money';
 $subnav_type = 'account';
 
 $extra_js = '<script src="../scripts/money.js"></script>';
+$extra_css = '<link rel="stylesheet" href="edit.css">';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
@@ -37,7 +38,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
           <h4 class="modal-title">添加记录：</h4>
         </div>
         <!-- 主体 -->
-        <div class="modal-body" id="modalBody" style="padding-right: 24px; padding-left: 24px">
+        <div class="modal-body" id="modalBody" style="padding-right: 24px; padding-left: 24px; margin:16px">
           <!-- 根据点击的按钮用 js 动态载入表单 -->
         </div>
         <!-- 按钮 -->

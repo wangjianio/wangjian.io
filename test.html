@@ -1,0 +1,198 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+	<HEAD>
+		<title>行政班级课表</title>
+		<meta name="vs_snapToGrid" content="False">
+		<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
+		<meta name="CODE_LANGUAGE" Content="C#">
+		<meta name="vs_defaultClientScript" content="JavaScript">
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<link rel="stylesheet" href="http://202.198.0.69/jwweb/_style/styles_Qry.css" type="text/css">
+		<script language="JavaScript" src='http://202.198.0.69/jwweb/include/scr/ind_HTML_hr.js'></script>
+		<script language="javascript" src='http://202.198.0.69/jwweb/XSCJ/Private/ind_PrintSet.js'></script>
+
+		<script language="javascript">
+			function ChkValue()
+			{
+				var vXZBJ;
+				var d='';
+				var schoolcode="10193";
+				try{
+					if(schoolcode == "10533" || schoolcode == "10842" || schoolcode == "10691")//中南大学、三门峡职业技术学院、云南民族大学
+					   vXZBJ=document.all.Sel_BJ.value;
+					else
+					  vXZBJ=document.all.Sel_XZBJ.value;
+					if((vXZBJ=="")||(vXZBJ=="Nothing")){
+						alert('需选定行政班级！');
+						if(schoolcode == "10533" || schoolcode == "10842" || schoolcode == "10691")//中南大学、三门峡职业技术学院、云南民族大学
+						   document.all.Sel_BJ.focus();
+					    else
+					       document.all.Sel_XZBJ.focus();
+						return false;
+					}
+					else if(document.all.txt_yzm.value=="" && d=="")
+					{
+					    alert("须录入验证码！");
+					    document.all.txt_yzm.focus();
+					    return true;
+					}
+					else{
+						form.method='post';
+						form.action='KBFB_ClassSel_rpt.aspx';
+						form.target='frmRpt';
+						form.submit();
+						return true;
+					}
+				}catch(e){}
+			}
+			
+			function ShowListValue(theID,vP)
+			{
+				var vNJ,vYX,vZY,vXZBJ,theURL;
+				
+				try{
+					if(vP=="NJYXZY"){
+						vYX=document.all.Sel_YX.value;
+						vNJ=document.all.Sel_NJ.value;
+						theURL="http://202.198.0.69/jwweb/XSXJ/Private/List_"+vP+".aspx?yx="+vYX+"&nj="+vNJ;
+					}else if(vP=="ZYBJ"){
+						vZY=document.all.Sel_ZY.value;
+						vNJ=document.all.Sel_NJ.value;
+						theURL="http://202.198.0.69/jwweb/XSXJ/Private/List_"+vP+".aspx?zy="+vZY+"&nj="+vNJ;
+					}else if(vP=="XNXQ_NJ"){
+						vXNXQ=document.all.Sel_XNXQ.value;
+						theURL="http://202.198.0.69/jwweb/XSXJ/Private/List_"+vP+".aspx?xnxq="+vXNXQ+"&str=shownj";
+						document.getElementById("Sel_YX").value="";
+						document.getElementById("Sel_ZY").value="";
+						document.getElementById("Sel_BJ").value="";						
+					}
+					window.vfrmRpt.location.href=theURL;
+				}
+				catch(e){}
+			}
+			function changexnxq(obj)
+			{
+			    if(obj.value!="")
+			    {
+			       window.vfrmRpt.location.href="http://202.198.0.69/jwweb/ZNPK/Private/List_XZBJ.aspx?flag=1&xnxq="+obj.value+"&xzbj="+document.all.txtxzbj.value;
+			    }
+			}
+			function ShowListValue2()
+			{
+				var vXNXQ,theURL,bj;
+				var dt = new Date();
+				try{
+					vXNXQ=document.all.Sel_XNXQ.value;
+					bj = document.all.txtxzbj.value;
+					if(vXNXQ!="")
+					{
+						theURL="http://202.198.0.69/jwweb/ZNPK/Private/List_XZBJ.aspx?xnxq="+vXNXQ+"&xzbj="+bj+"&t="+dt.getMilliseconds();
+						window.vfrmRpt.location.href=theURL;
+					}
+				}
+				catch(e){}
+			}
+			
+			function chkRad(type){
+				if(type=="type1"){
+					document.all.span_area.style.display='none';
+				}else if(type=="type2"){
+					document.all.span_area.style.display='';
+				}
+			}
+			
+			function doPrint(){
+			    var note=window.navigator.userAgent;
+			    var IE=window.navigator.userAgent.indexOf('MSIE');
+				//alert(note);
+				if(note.indexOf('MSIE 6.0')>0 || note.indexOf('MSIE 7.0')>0 || note.indexOf('MSIE 10.0')>0 || (/rv:11.0/g.test(note)))
+				{
+					alert("请使用IE8、IE9、火狐(Firefox)或谷歌(Chrome)等浏览器打印！");
+				}
+				else if(IE>0)
+				{
+				    window.frames["frmRpt"].document.execCommand("Print",true);
+				}
+				else
+				{
+				    window.frames["frmRpt"].print();
+				}
+
+			}
+
+			function changeValidateCode(){document.getElementById("imgCode").src="http://202.198.0.69/jwweb/sys/ValidateCode.aspx?t="+new Date().getMilliseconds();}
+			//function doExport(){
+				//frmRpt.document.execCommand("Export",true);
+			//	Export();
+			//}
+			
+			//
+		</script>
+	</HEAD>
+	<body oncontextmenu="window.event.returnValue=false" ondragstart="window.event.returnValue=false" onsource="window.event.returnValue=false"  leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+		<form name="form" method="post" >
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+				<tr>
+					<td valign="top" align="center">
+						<table width="660" border="0" cellspacing="0" cellpadding="0" align="center" height="26">
+							<tr>
+								<td valign="bottom" align="center"><b>行政班级课表</b></td>
+							</tr>
+							<tr>
+								<td valign="bottom" align="center"><script language="JavaScript">Draw_HR('99.5%')</script>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="52px">
+						<table width="660" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr><td colspan=2 align=left height=28px><table border=0><tr><td >学年学期&ensp;<select name='Sel_XNXQ'  style='WIDTH:165px' onchange=changexnxq(this)><option value='20170'>2017-2018学年第一学期</option><option value='20161'>2016-2017学年第二学期</option><option value='20160'>2016-2017学年第一学期</option><option value='20151'>2015-2016学年第二学期</option><option value='20150'>2015-2016学年第一学期</option></select></td><td >行政班级&ensp;<Input type=text name=txtxzbj maxlength=10 onchange=ShowListValue2(this,'XNXQXZBJ') style='width:80'></td><td id=theXZBJ ><select name=Sel_XZBJ style="width:200"><option value=021461>14保险1班</option><option value=021462>14保险2班</option><option value=021441>14财管1班</option><option value=021442>14财管2班</option><option value=021443>14财管3班</option><option value=051461>14草业1班</option><option value=051462>14草业2班</option><option value=101451>14传播1班</option><option value=101452>14传播2班</option><option value=121431>14电子1班</option><option value=121432>14电子2班</option><option value=121433>14电子3班</option><option value=051471>14动科1班</option><option value=051472>14动科2班</option><option value=051473>14动科3班</option><option value=051474>14动科4畜禽教育班</option><option value=051475>14动科5一本班</option><option value=071421>14动药1班</option><option value=071422>14动药2班</option><option value=141431>14风景1班</option><option value=141432>14风景2班</option><option value=021451>14工管1班</option><option value=021452>14工管2班</option><option value=021453>14工管3班</option><option value=101471>14广告1班</option><option value=031421>14环工1班</option><option value=031422>14环工2班</option><option value=031411>14环科1班</option><option value=031412>14环科2班</option><option value=041421>14机制1班</option><option value=041422>14机制2班</option><option value=121421>14计算机1班</option><option value=121422>14计算机2班</option><option value=121423>14计算机3班</option><option value=101431>14家政1班</option><option value=101432>14家政2班</option><option value=041431>14交通1班</option><option value=041432>14交通2班</option><option value=081421>14粮食1班</option><option value=081422>14粮食2班</option><option value=081423>14粮食3班</option><option value=071411>14旅游1班</option><option value=071412>14旅游2班</option><option value=041471>14能源1班</option><option value=041411>14农机1班</option><option value=041412>14农机2班</option><option value=041441>14农建1班</option><option value=021411>14农经1班</option><option value=021412>14农经2班</option><option value=011411>14农学1班</option><option value=011412>14农学2班</option><option value=031441>14农资1班</option><option value=031442>14农资2班</option><option value=141441>14设施1班</option><option value=141442>14设施2班</option><option value=101421>14社会1班</option><option value=101422>14社会2班</option><option value=111421>14生物工程1班</option><option value=111422>14生物工程2班</option><option value=111423>14生物工程3班</option><option value=111441>14生物合作1班</option><option value=111442>14生物合作2班</option><option value=111443>14生物合作3班</option><option value=111411>14生物技术1班</option><option value=111412>14生物技术2班</option><option value=081411>14食科1实验班</option><option value=081412>14食科2实验班</option><option value=081413>14食科3实验班</option><option value=081414>14食科4实验班</option><option value=081415>14食科5英才班</option><option value=081431>14食品安全1班</option><option value=081432>14食品安全2班</option><option value=081433>14食品安全3班</option><option value=021431>14市销1班</option><option value=021432>14市销2班</option><option value=021433>14市销3班</option><option value=031431>14水保1班</option><option value=031432>14水保2班</option><option value=051491>14水产1班</option><option value=051492>14水产2班</option><option value=051493>14水产3班</option><option value=021421>14土管1班</option><option value=021422>14土管2班</option><option value=121451>14物联网1班</option><option value=121452>14物联网2班</option><option value=101441>14心理1班</option><option value=101442>14心理2班</option><option value=121441>14信管1班</option><option value=121442>14信管2班</option><option value=121411>14信息1班</option><option value=121412>14信息2班</option><option value=121413>14信息3班</option><option value=071451>14野动1班</option><option value=071452>14野动2班</option><option value=101462>14艺术空间班</option><option value=101461>14艺术民间班</option><option value=031451>14应化1班</option><option value=031452>14应化2班</option><option value=031453>14应化3班</option><option value=011421>14应用生物1班</option><option value=011422>14应用生物2班</option><option value=151411>14英语1班</option><option value=151412>14英语2班</option><option value=151413>14英语3班</option><option value=141421>14园林1班</option><option value=141422>14园林2班</option><option value=141423>14园林3班</option><option value=141471>14园艺1班</option><option value=141472>14园艺2班</option><option value=141473>14园艺3班</option><option value=141461>14园艺教育1班</option><option value=011431>14植保1实验班</option><option value=011432>14植保2实验班</option><option value=011433>14植保3实验班</option><option value=011434>14植保4英才班</option><option value=071471>14植科1班</option><option value=071472>14植科2班</option><option value=111431>14制药工程1班</option><option value=111432>14制药工程2班</option><option value=111433>14制药工程3班</option><option value=071441>14中药1班</option><option value=071442>14中药2班</option><option value=071443>14中药3一本班</option><option value=071461>14中资1班</option><option value=071462>14中资2班</option><option value=011441>14种子1班</option><option value=011442>14种子2班</option><option value=041451>14自动化1班</option><option value=041452>14自动化2班</option><option value=021561>15保险1班</option><option value=021562>15保险2班</option><option value=021541>15财管1班</option><option value=021542>15财管2班</option><option value=021543>15财管3班</option><option value=021544>15财管4班</option><option value=051561>15草业1班</option><option value=051562>15草业2班</option><option value=101551>15传播1班</option><option value=101552>15传播2班</option><option value=121531>15电子1班</option><option value=121532>15电子2班</option><option value=051571>15动科1班</option><option value=051572>15动科2班</option><option value=051573>15动科3班</option><option value=051574>15动科4畜禽教育班</option><option value=051575>15动科5一本班</option><option value=2015050301>15动科6英才班</option><option value=071521>15动药1班</option><option value=071522>15动药2班</option><option value=051581>15动医1实验班</option><option value=051582>15动医2实验班</option><option value=051583>15动医3实验班</option><option value=051584>15动医4实验班</option><option value=051585>15动医5英才班</option><option value=141531>15风景1班</option><option value=141532>15风景2班</option><option value=2015110201>15风景3班</option><option value=021551>15工管1班</option><option value=021552>15工管2班</option><option value=021553>15工管3班</option><option value=101571>15广告1班</option><option value=031521>15环工1班</option><option value=031522>15环工2班</option><option value=031511>15环科1班</option><option value=031512>15环科2班</option><option value=041521>15机制1班</option><option value=041522>15机制2班</option><option value=041523>15机制3班</option><option value=2015100201>15计算机（3+2）3班</option><option value=121521>15计算机1班</option><option value=121522>15计算机2班</option><option value=101531>15家政1班</option><option value=101532>15家政2班</option><option value=041531>15交通1班</option><option value=041532>15交通2班</option><option value=081521>15粮食1班</option><option value=081522>15粮食2班</option><option value=081523>15粮食3班</option><option value=071511>15旅游1班</option><option value=071512>15旅游2班</option><option value=041571>15能源1班</option><option value=041511>15农机1班</option><option value=041512>15农机2班</option><option value=041541>15农建1班</option><option value=041542>15农建2班</option><option value=021511>15农经1班</option><option value=021512>15农经2班</option><option value=011511>15农学1班</option><option value=011512>15农学2班</option><option value=031541>15农资1班</option><option value=031542>15农资2班</option><option value=141541>15设施1班</option><option value=141542>15设施2班</option><option value=101521>15社会1班</option><option value=101522>15社会2班</option><option value=111521>15生物工程1班</option><option value=111522>15生物工程2班</option><option value=111523>15生物工程3班</option><option value=111541>15生物合作1班</option><option value=111542>15生物合作2班</option><option value=111543>15生物合作3班</option><option value=111511>15生物技术1班</option><option value=111512>15生物技术2班</option><option value=081511>15食科1实验班</option><option value=081512>15食科2实验班</option><option value=081513>15食科3实验班</option><option value=081514>15食科4实验班</option><option value=081515>15食科5英才班</option><option value=081531>15食品安全1班</option><option value=081532>15食品安全2班</option><option value=081533>15食品安全3班</option><option value=021531>15市销1班</option><option value=021532>15市销2班</option><option value=021533>15市销3班</option><option value=031531>15水保1班</option><option value=031532>15水保2班</option><option value=051591>15水产1班</option><option value=051592>15水产2班</option><option value=021521>15土管1班</option><option value=021522>15土管2班</option><option value=121551>15物联网1班</option><option value=121552>15物联网2班</option><option value=101541>15心理1班</option><option value=101542>15心理2班</option><option value=121541>15信管1班</option><option value=121542>15信管2班</option><option value=121511>15信息1班</option><option value=121512>15信息2班</option><option value=071551>15野动1班</option><option value=071552>15野动2班</option><option value=101562>15艺术空间班</option><option value=101561>15艺术民间班</option><option value=031551>15应化1班</option><option value=031552>15应化2班</option><option value=031553>15应化3班</option><option value=011521>15应用生物1班</option><option value=011522>15应用生物2班</option><option value=151511>15英语1班</option><option value=151512>15英语2班</option><option value=151513>15英语3班</option><option value=141521>15园林1班</option><option value=141522>15园林2班</option><option value=141523>15园林3班</option><option value=2015110501>15园艺（3+2）4班</option><option value=141571>15园艺1班</option><option value=141572>15园艺2班</option><option value=141573>15园艺3班</option><option value=141561>15园艺教育1班</option><option value=011531>15植保1实验班</option><option value=011532>15植保2实验班</option><option value=011533>15植保3实验班</option><option value=011534>15植保4英才班</option><option value=071571>15植科1班</option><option value=071572>15植科2班</option><option value=111531>15制药工程1班</option><option value=111532>15制药工程2班</option><option value=111533>15制药工程3班</option><option value=071541>15中药1班</option><option value=071542>15中药2班</option><option value=071543>15中药3一本班</option><option value=071561>15中资1班</option><option value=071562>15中资2班</option><option value=011541>15种子1班</option><option value=011542>15种子2班</option><option value=041551>15自动化1班</option><option value=041552>15自动化2班</option><option value=021661>16保险1班</option><option value=021662>16保险2班</option><option value=021641>16财管1班</option><option value=021642>16财管2班</option><option value=021643>16财管3班</option><option value=021644>16财管4班</option><option value=051661>16草业1班</option><option value=051662>16草业2班</option><option value=101651>16传播1班</option><option value=101652>16传播2班</option><option value=121631>16电子1班</option><option value=121632>16电子2班</option><option value=051671>16动科1班</option><option value=051672>16动科2班</option><option value=051673>16动科3班</option><option value=051674>16动科4畜禽教育班</option><option value=051675>16动科5班</option><option value=051676>16动科6英才班</option><option value=071621>16动药1班</option><option value=071622>16动药2班</option><option value=051681>16动医1实验班</option><option value=051682>16动医2实验班</option><option value=051683>16动医3实验班</option><option value=051684>16动医4实验班</option><option value=051685>16动医5英才班</option><option value=141631>16风景1班</option><option value=141632>16风景2班</option><option value=021651>16工管1班</option><option value=021652>16工管2班</option><option value=021653>16工管3班</option><option value=101671>16广告1班</option><option value=031621>16环工1班</option><option value=031622>16环工2班</option><option value=031611>16环科1班</option><option value=031612>16环科2班</option><option value=041621>16机制1班</option><option value=041622>16机制2班</option><option value=041623>16机制3班</option><option value=121621>16计算机1班</option><option value=121622>16计算机2班</option><option value=101631>16家政1班</option><option value=101632>16家政2班</option><option value=041631>16交通1班</option><option value=041632>16交通2班</option><option value=081621>16粮食1班</option><option value=081622>16粮食2班</option><option value=081623>16粮食3班</option><option value=071611>16旅游1班</option><option value=071612>16旅游2班</option><option value=041671>16能源1班</option><option value=041611>16农机1班</option><option value=041612>16农机2班</option><option value=041641>16农建1班</option><option value=041642>16农建2班</option><option value=021611>16农经1班</option><option value=021612>16农经2班</option><option value=021613>16农经3班</option><option value=011611>16农学1班</option><option value=011612>16农学2班</option><option value=011613>16农学3班</option><option value=031641>16农资1班</option><option value=031642>16农资2班</option><option value=141641>16设施1班</option><option value=141642>16设施2班</option><option value=101621>16社会1班</option><option value=101622>16社会2班</option><option value=111621>16生物工程1班</option><option value=111622>16生物工程2班</option><option value=111623>16生物工程3班</option><option value=111641>16生物合作1班</option><option value=111642>16生物合作2班</option><option value=111643>16生物合作3班</option><option value=111611>16生物技术1班</option><option value=111612>16生物技术2班</option><option value=081611>16食科1实验班</option><option value=081612>16食科2实验班</option><option value=081613>16食科3实验班</option><option value=081614>16食科4实验班</option><option value=081615>16食科5英才班</option><option value=081631>16食品安全1班</option><option value=081632>16食品安全2班</option><option value=081633>16食品安全3班</option><option value=021631>16市销1班</option><option value=021632>16市销2班</option><option value=021633>16市销3班</option><option value=031631>16水保1班</option><option value=031632>16水保2班</option><option value=051691>16水产1班</option><option value=051692>16水产2班</option><option value=021621>16土管1班</option><option value=021622>16土管2班</option><option value=121651>16物联网1班</option><option value=121652>16物联网2班</option><option value=101641>16心理1班</option><option value=101642>16心理2班</option><option value=121641>16信管1班</option><option value=121642>16信管2班</option><option value=121611>16信息1班</option><option value=121612>16信息2班</option><option value=071651>16野动1班</option><option value=071652>16野动2班</option><option value=101662>16艺术空间班</option><option value=101661>16艺术民间班</option><option value=031651>16应化1班</option><option value=031652>16应化2班</option><option value=031653>16应化3班</option><option value=011621>16应用生物1班</option><option value=011622>16应用生物2班</option><option value=151611>16英语1班</option><option value=151612>16英语2班</option><option value=151613>16英语3班</option><option value=141621>16园林1班</option><option value=141622>16园林2班</option><option value=141671>16园艺1班</option><option value=141672>16园艺2班</option><option value=141673>16园艺3班</option><option value=011631>16植保1实验班</option><option value=011632>16植保2实验班</option><option value=011633>16植保3实验班</option><option value=011634>16植保4实验班</option><option value=011635>16植保5英才班</option><option value=071671>16植科1班</option><option value=071672>16植科2班</option><option value=111631>16制药工程1班</option><option value=111632>16制药工程2班</option><option value=111633>16制药工程3班</option><option value=071641>16中药1班</option><option value=071642>16中药2班</option><option value=071643>16中药3班</option><option value=071661>16中资1班</option><option value=071662>16中资2班</option><option value=011641>16种子1班</option><option value=011642>16种子2班</option><option value=041651>16自动化1班</option><option value=041652>16自动化2班</option><option value=021741>17财管1班</option><option value=021742>17财管2班</option><option value=021743>17财管3班</option><option value=021744>17财管4班</option><option value=051761>17草业1班</option><option value=051762>17草业2班</option><option value=101751>17传播1班</option><option value=101752>17传播2班</option><option value=121731>17电子1班</option><option value=121732>17电子2班</option><option value=051771>17动科1班</option><option value=051772>17动科2班</option><option value=051773>17动科3班</option><option value=051774>17动科4一本班</option><option value=051775>17动科5英才班</option><option value=071721>17动药1班</option><option value=071722>17动药2班</option><option value=051781>17动医1实验班</option><option value=051782>17动医2实验班</option><option value=051783>17动医3实验班</option><option value=051784>17动医4实验班</option><option value=051785>17动医5英才班</option><option value=141731>17风景1班</option><option value=141732>17风景2班</option><option value=021751>17工管1班</option><option value=021752>17工管2班</option><option value=021753>17工管3班</option><option value=101781>17工艺美术1班</option><option value=101771>17广告1班</option><option value=031721>17环工1班</option><option value=031722>17环工2班</option><option value=031711>17环科1班</option><option value=031712>17环科2班</option><option value=041721>17机制1班</option><option value=041722>17机制2班</option><option value=041723>17机制3班</option><option value=121721>17计算机1班</option><option value=121722>17计算机2班</option><option value=101731>17家政1班</option><option value=101732>17家政2班</option><option value=041731>17交通1班</option><option value=041732>17交通2班</option><option value=021771>17金融1班</option><option value=021772>17金融2班</option><option value=081721>17粮食1班</option><option value=081722>17粮食2班</option><option value=071711>17旅游1班</option><option value=071712>17旅游2班</option><option value=041771>17能源1班</option><option value=041772>17能源2班</option><option value=041711>17农机1班</option><option value=041712>17农机2班</option><option value=041741>17农建1班</option><option value=041742>17农建2班</option><option value=021711>17农经1班</option><option value=021712>17农经2班</option><option value=011711>17农学1班</option><option value=011712>17农学2班</option><option value=011713>17农学3班</option><option value=2017030402>17农资1班</option><option value=2017030401>17农资2班</option><option value=141741>17设施1班</option><option value=141742>17设施2班</option><option value=101721>17社会1班</option><option value=101722>17社会2班</option><option value=111721>17生物工程1班</option><option value=111722>17生物工程2班</option><option value=111741>17生物合作1班</option><option value=111742>17生物合作2班</option><option value=111743>17生物合作3班</option><option value=111711>17生物技术1班</option><option value=111712>17生物技术2班</option><option value=081711>17食科1实验班</option><option value=081712>17食科2实验班</option><option value=081713>17食科3实验班</option><option value=081714>17食科4实验班</option><option value=081715>17食科5实验班</option><option value=081716>17食科6英才班</option><option value=081731>17食品安全1班</option><option value=081732>17食品安全2班</option><option value=081733>17食品安全3班</option><option value=021731>17市销1班</option><option value=021732>17市销2班</option><option value=031731>17水保1班</option><option value=031732>17水保2班</option><option value=051791>17水产1班</option><option value=051792>17水产2班</option><option value=021721>17土管1班</option><option value=021722>17土管2班</option><option value=021723>17土管3班</option><option value=121751>17物联网1班</option><option value=121752>17物联网2班</option><option value=101741>17心理1班</option><option value=101742>17心理2班</option><option value=121741>17信管1班</option><option value=121742>17信管2班</option><option value=121711>17信息1班</option><option value=121712>17信息2班</option><option value=071751>17野动1班</option><option value=071752>17野动2班</option><option value=101761>17艺术1班</option><option value=031751>17应化1班</option><option value=031752>17应化2班</option><option value=031753>17应化3班</option><option value=011721>17应用生物1班</option><option value=011722>17应用生物2班</option><option value=151711>17英语1班</option><option value=151712>17英语2班</option><option value=151713>17英语3班</option><option value=141721>17园林1班</option><option value=141722>17园林2班</option><option value=141771>17园艺1班</option><option value=141772>17园艺2班</option><option value=141773>17园艺3班</option><option value=141774>17园艺4班</option><option value=141761>17园艺教育1班</option><option value=011731>17植保1实验班</option><option value=011732>17植保2实验班</option><option value=011733>17植保3实验班</option><option value=011734>17植保4实验班</option><option value=011735>17植保5英才班</option><option value=071771>17植科1班</option><option value=071772>17植科2班</option><option value=111731>17制药工程1班</option><option value=111732>17制药工程2班</option><option value=071741>17中药1班</option><option value=071742>17中药2班</option><option value=071743>17中药3一本班</option><option value=071761>17中资1班</option><option value=071762>17中资2班</option><option value=011741>17种子1班</option><option value=011742>17种子2班</option><option value=041751>17自动化1班</option><option value=041752>17自动化2班</option></select></td></tr></table>
+								
+								</td>
+							</tr>
+							<tr>
+								<td align="left" id="span_area1">
+									<input type="radio" checked name="type" value="1" onclick="chkRad('type1')" id="gs1">&nbsp;<label for="gs1">格式一</label>
+									<input type="radio" name="type" value="2" onclick="chkRad('type2')" id="gs2">&nbsp;<label for="gs2">格式二</label> 
+									<span id="span_area" style="display:none;color:#000">
+										<input type="checkbox" name="chkrxkc" value="1" id="rxkc">&nbsp;<label for="rxkc">不含公共任选课程</label>
+									</span>
+									<label >验证码&nbsp;<input type="text" name="txt_yzm" id="txt_yzm" maxlength="4" style="width:40px">
+									<img id="imgCode" src="http://202.198.0.69/jwweb/sys/ValidateCode.aspx" onclick="changeValidateCode()" alt="单击可更换图片！" style="CURSOR: pointer;width:70px;height:24px"></label>
+								</td>
+								<td width="30%" align="right">
+									<input name="btnSearch" type="button" value="检索" class="button" onclick="ChkValue()">
+									<input type="button" name="btn_dy" id="print" value="打印" class="but20" onclick='doPrint()'>
+									<!--%if(schoolcode == "10533"){%fg>
+									<input type="button" name="button" id="Export"  value="导出" class="but20" onclick="doExport()" >
+									<g%g}g%g-->
+								</td>
+							</tr>
+							<tr>
+								
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" align="center" height="100%">
+						<iframe name="vfrmRpt" src="" style="DISPLAY:none" width="0" height="0" frameborder="0">
+						</iframe><iframe name="frmRpt" src="http://202.198.0.69/jwweb/ZNPK/KBFB_ClassSel_rpt.aspx" width="99%" height="98%" frameborder="1">
+						</iframe>
+					</td>
+				</tr>
+			</table>
+			<script language="javascript">
+			if("10193"=="10255")
+			{
+				document.getElementById("span_area1").style.display='none';
+			}
+			
+			</script>
+		</form>
+	</body>
+</HTML>

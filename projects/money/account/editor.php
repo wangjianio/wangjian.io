@@ -3,79 +3,88 @@ namespace wangjian\wangjianio\projects\money;
 
 require_once dirname(__DIR__) . '/includes/EditAccount.php';
 
+echo '<pre>';
+print_r($_POST);
+
+exit;
+
 $a_type = $_GET['a_type'];
 
-$col_name_1 = $account_info->col_name[$a_type];
-$col_name_2 = $account_info->col_name['credit_2'];
+if ($a_type == 'asset' || $a_type == 'credit' || $a_type == 'debit') {
 
-/**
- * 修改 account_type 表的 description 列。
- */
-$username = 'money_table_account_type';
-$database->connect($username);
-$description = $_POST['a_type_description'];
+    $col_name_1 = $account_info->col_name[$a_type];
+    $col_name_2 = $account_info->col_name['credit_2'];
 
-$sql = "UPDATE account_type SET description = ? WHERE a_type = ?";
+    /**
+    * 修改 account_type 表的 description 列。
+    */
+    $username = 'money_table_account_type';
+    $database->connect($username);
+    $description = $_POST['a_type_description'];
 
-if ($stmt = $database->mysqli->prepare($sql)) {
-
-        $stmt->bind_param("ss", $description, $a_type);
-
-        $stmt->execute();
-        $stmt->close();
-}
-
-$database->mysqli->close();
-
-/**
- * 修改 account 表的各账户数据。
- */
-$arr = $_POST[$a_type];
-
-foreach ($arr as &$value) {
-    $post_info[] = $value;
-}
-unset($value);
-
-$count = count($post_info);
-$username = 'money_table_account_update';
-$database->connect($username);
-
-for ($i = 0; $i < $count; $i++) {
-
-    if (is_int((int)$post_info[$i]['a_id'])) {
-        $sql_a_id = $post_info[$i]['a_id'];
-    }
-
-    $sql_a_name = $post_info[$i]['a_name'];
-
-    if (is_float((float)$post_info[$i][$col_name_1])) {
-        $sql_col_name_1 = $post_info[$i][$col_name_1];
-    }
-
-    if ($a_type == 'credit') {
-        if (is_float((float)$post_info[$i][$col_name_2])) {
-            $sql_col_name_2 = $post_info[$i][$col_name_2];
-        }
-        $sql = "UPDATE account SET a_name = ?, $col_name_1 = ?, $col_name_2 = ? WHERE a_id = ?";
-    } else {
-        $sql = "UPDATE account SET a_name = ?, $col_name_1 = ? WHERE a_id = ?";
-    }
+    $sql = "UPDATE account_type SET description = ? WHERE a_type = ?";
 
     if ($stmt = $database->mysqli->prepare($sql)) {
 
-        if ($a_type == 'credit') {
-            $stmt->bind_param("sddi", $sql_a_name, $sql_col_name_1, $sql_col_name_2, $sql_a_id);
-        } else {
-            $stmt->bind_param("sdi", $sql_a_name, $sql_col_name_1, $sql_a_id);
-        }
+            $stmt->bind_param("ss", $description, $a_type);
 
-        $stmt->execute();
-        $stmt->close();
+            $stmt->execute();
+            $stmt->close();
     }
 
+    $database->mysqli->close();
+
+    /**
+    * 修改 account 表的各账户数据。
+    */
+    $arr = $_POST[$a_type];
+
+    foreach ($arr as &$value) {
+        $post_info[] = $value;
+    }
+    unset($value);
+
+    $count = count($post_info);
+    $username = 'money_table_account_update';
+    $database->connect($username);
+
+    for ($i = 0; $i < $count; $i++) {
+
+        if (is_int((int)$post_info[$i]['a_id'])) {
+            $sql_a_id = $post_info[$i]['a_id'];
+        }
+
+        $sql_a_name = $post_info[$i]['a_name'];
+
+        if (is_float((float)$post_info[$i][$col_name_1])) {
+            $sql_col_name_1 = $post_info[$i][$col_name_1];
+        }
+
+        if ($a_type == 'credit') {
+            if (is_float((float)$post_info[$i][$col_name_2])) {
+                $sql_col_name_2 = $post_info[$i][$col_name_2];
+            }
+            $sql = "UPDATE account SET a_name = ?, $col_name_1 = ?, $col_name_2 = ? WHERE a_id = ?";
+        } else {
+            $sql = "UPDATE account SET a_name = ?, $col_name_1 = ? WHERE a_id = ?";
+        }
+
+        if ($stmt = $database->mysqli->prepare($sql)) {
+
+            if ($a_type == 'credit') {
+                $stmt->bind_param("sddi", $sql_a_name, $sql_col_name_1, $sql_col_name_2, $sql_a_id);
+            } else {
+                $stmt->bind_param("sdi", $sql_a_name, $sql_col_name_1, $sql_a_id);
+            }
+
+            $stmt->execute();
+            $stmt->close();
+        }
+
+    }
+
+    $database->mysqli->close();
+
+} else {
+    header('Location: /projects/money/account/');
 }
-
-$database->mysqli->close();
-
-header('Location: /projects/money/account/');
