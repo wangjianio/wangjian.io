@@ -9,9 +9,11 @@ function appendAddForm(a_type) {
     var money_1 = '<input class="form-control" name="new[money1][]" type="number" placeholder="输入金额" step="0.01">';
     var money_2 = '<input class="form-control" name="new[money2][]" type="number" placeholder="输入金额" step="0.01">';
 
-    var asset = formGroup + col6 + accountName + div + col6 + money_1 + div + div;
-    var credit = formGroup + col4 + accountName + div + col4 + money_1 + div + col4 + money_2 + div + div;
-    var debit = formGroup + col6 + accountName + div + col6 + money_1 + div + div;
+    var del = '<span class="glyphicon glyphicon-remove pull-right text-danger remove-new" onclick="removeNew(this)"></span>';
+
+    var asset = formGroup + col6 + accountName + div + col6 + money_1 + div + del + div;
+    var credit = formGroup + col4 + accountName + div + col4 + money_1 + div + col4 + money_2 + div + del + div;
+    var debit = formGroup + col6 + accountName + div + col6 + money_1 + div + del + div;
 
     switch (a_type) {
         case 'asset':
@@ -23,15 +25,20 @@ function appendAddForm(a_type) {
         case 'debit':
             var txt = debit;
             break;
-    
+
         default:
             break;
     }
-    
+
     $('form').append(txt);
     $('input[type=text]').last().focus();
 }
 
-function delAccount(a_type, a_id) {
-    $('input[name="' + a_type + '[' + a_id + '][a_name]"]').parent().parent().css('display', 'none');
+$('.remove-old').click(function (e) {
+    $(e.target).parent().hide();
+    $(e.target).parent().children('.input-custom-delete').val('1');
+});
+
+function removeNew(obj) {
+    $(obj).parent().remove();   
 }

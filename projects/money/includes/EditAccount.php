@@ -38,8 +38,12 @@ FORM1;
             <div class="form-group">
               <input class="form-control" 
                       name="{$a_type}[{$account_info[$i]['a_id']}][a_id]"
-                      type="hidden" 
+                      type="hidden"
                       value="{$account_info[$i]['a_id']}">
+              <input class="form-control input-custom-delete" 
+                      name="{$a_type}[{$account_info[$i]['a_id']}][delete]"
+                      type="hidden"
+                      value="0">
 HIDDEN;
 
 
@@ -70,9 +74,7 @@ HIDDEN;
                            placeholder="输入金额"
                            step="0.01">
                   </div>
-                  <a class="pull-right text-danger btn-custom-del" href="javascript:void(0);" onclick="delAccount('$a_type', '{$account_info[$i]['a_id']}')">
-                    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </a>
+                  <span class="glyphicon glyphicon-remove pull-right text-danger remove-old"></span>
                 </div>
 NAME_MONEY;
             } else {
@@ -92,9 +94,7 @@ NAME_MONEY;
                             placeholder="输入金额"
                             step="0.01">
                   </div>
-                  <a class="pull-right text-danger btn-custom-del" href="javascript:void(0);" onclick="delAccount('$a_type', '{$account_info[$i]['a_id']}')">
-                    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
-                  </a>
+                  <span class="glyphicon glyphicon-remove pull-right text-danger remove-old"></span>
                 </div>
 NAME_MONEY;
             }
