@@ -21,10 +21,10 @@ FORM_START;
         <div class="form-group">
           <label class="col-sm-2 control-label" for="aTypeDescription">类别名称</label>
           <div class="col-sm-10">
-            <input class="form-control" 
-                    id="aTypeDescription" 
-                    name="a_type_description" 
-                    type="text" 
+            <input class="form-control"
+                    id="aTypeDescription"
+                    name="a_type_description"
+                    type="text"
                     value="{$this->getDescriptionByAccountType($a_type)}"
                     placeholder="输入类别名称">
           </div>
@@ -36,11 +36,11 @@ FORM1;
         for ($i = 0; $i < $count; $i++) {
             echo <<<HIDDEN
             <div class="form-group">
-              <input class="form-control" 
+              <input class="form-control"
                       name="{$a_type}[{$account_info[$i]['a_id']}][a_id]"
                       type="hidden"
                       value="{$account_info[$i]['a_id']}">
-              <input class="form-control input-custom-delete" 
+              <input class="form-control input-custom-delete"
                       name="{$a_type}[{$account_info[$i]['a_id']}][delete]"
                       type="hidden"
                       value="0">
@@ -50,26 +50,26 @@ HIDDEN;
             if ($a_type == 'credit') {
                 echo <<<NAME_MONEY
                   <div class="col-xs-4">
-                    <input class="form-control" 
+                    <input class="form-control"
                            name="{$a_type}[{$account_info[$i]['a_id']}][a_name]"
-                           type="text" 
+                           type="text"
                            value="{$account_info[$i]['a_name']}"
                            placeholder="输入名称">
                   </div>
 
                   <div class="col-xs-4">
-                    <input class="form-control" 
+                    <input class="form-control"
                            name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_1]"
-                           type="number" 
+                           type="number"
                            value="{$account_info[$i][$col_name_1]}"
                            placeholder="输入金额"
                            step="0.01">
                   </div>
 
                   <div class="col-xs-4">
-                    <input class="form-control" 
+                    <input class="form-control"
                            name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_2]"
-                           type="number" 
+                           type="number"
                            value="{$account_info[$i][$col_name_2]}"
                            placeholder="输入金额"
                            step="0.01">
@@ -80,19 +80,19 @@ NAME_MONEY;
             } else {
                 echo <<<NAME_MONEY
                   <div class="col-xs-6">
-                    <input class="form-control" 
-                            name="{$a_type}[{$account_info[$i]['a_id']}][a_name]"
-                            type="text" 
-                            value="{$account_info[$i]['a_name']}"
-                            placeholder="输入名称">
+                    <input class="form-control"
+                           name="{$a_type}[{$account_info[$i]['a_id']}][a_name]"
+                           type="text"
+                           value="{$account_info[$i]['a_name']}"
+                           placeholder="输入名称">
                   </div>
                   <div class="col-xs-6">
-                    <input class="form-control" 
-                            name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_1]"
-                            type="number" 
-                            value="{$account_info[$i][$col_name_1]}"
-                            placeholder="输入金额"
-                            step="0.01">
+                    <input class="form-control"
+                           name="{$a_type}[{$account_info[$i]['a_id']}][$col_name_1]"
+                           type="number"
+                           value="{$account_info[$i][$col_name_1]}"
+                           placeholder="输入金额"
+                           step="0.01">
                   </div>
                   <span class="glyphicon glyphicon-remove pull-right text-danger remove-old"></span>
                 </div>

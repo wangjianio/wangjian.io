@@ -35,10 +35,19 @@ function appendAddForm(a_type) {
 }
 
 $('.remove-old').click(function (e) {
-    $(e.target).parent().hide();
-    $(e.target).parent().children('.input-custom-delete').val('1');
+    if (confirm('确认删除？')) {
+        $(e.target).parent().hide();
+        $(e.target).parent().children('.input-custom-delete').val('1');
+    }
 });
 
 function removeNew(obj) {
     $(obj).parent().remove();   
 }
+
+function checkInput() {
+    if ($(':input').val()) {
+        alert('a')
+    }
+}
+

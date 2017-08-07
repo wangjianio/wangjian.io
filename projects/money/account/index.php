@@ -44,7 +44,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <!-- 按钮 -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-          <button type="button" class="btn btn-primary" id="submitButton" onclick="submitForm('editAccountForm')">提交</button>
+          <button type="button" class="btn btn-primary" onclick="checkInput()">提交</button>
         </div>
       </div>
     </div>

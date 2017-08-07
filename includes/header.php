@@ -9,12 +9,12 @@
 
     <title><?php echo $title; ?></title>
 
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <?php echo $extra_css; ?>
-    <script src="/scripts/jquery-3.2.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/clipboard/dist/clipboard.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
     <?php echo $extra_js; ?>
 
     <!--[if lt IE 9]>

@@ -24,6 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
           <li><a href="http://glyphicons.com" target="_blank">GLYPHICONS</a></li>
           <li><a href="https://www.javascript.com" target="_blank">JavaScript</a></li>
           <li><a href="https://jquery.com" target="_blank">jQuery</a></li>
+          <li><a href="https://www.npmjs.com" target="_blank">npm</a></li>
           <li><a href="http://parsedown.org" target="_blank">Parsedown</a></li>
           <li><a href="http://php.net" target="_blank">PHP</a></li>
           <li><a href="https://www.w3.org" target="_blank">W3C</a></li>
