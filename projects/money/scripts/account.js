@@ -1,3 +1,5 @@
+var i = 0;
+
 function appendAddForm(a_type) {
 
     var formGroup = '<div class="form-group">'
@@ -5,15 +7,17 @@ function appendAddForm(a_type) {
     var col6 = '<div class="col-xs-6">';
     var div = '</div>';
 
-    var accountName = '<input class="form-control" name="new[accountName][]" type="text" placeholder="输入新账户名称">';
-    var money_1 = '<input class="form-control" name="new[money1][]" type="number" placeholder="输入金额" step="0.01">';
-    var money_2 = '<input class="form-control" name="new[money2][]" type="number" placeholder="输入金额" step="0.01">';
+    var accountName = '<input class="form-control" name="new[' + i + '][account_name]" type="text" placeholder="输入新账户名称">';
+    var money_1 = '<input class="form-control" name="new[' + i + '][money_1]" type="number" placeholder="输入金额" step="0.01">';
+    var money_2 = '<input class="form-control" name="new[' + i + '][money_2]" type="number" placeholder="输入金额" step="0.01">';
 
     var del = '<span class="glyphicon glyphicon-remove pull-right text-danger remove-new" onclick="removeNew(this)"></span>';
 
     var asset = formGroup + col6 + accountName + div + col6 + money_1 + div + del + div;
     var credit = formGroup + col4 + accountName + div + col4 + money_1 + div + col4 + money_2 + div + del + div;
     var debit = formGroup + col6 + accountName + div + col6 + money_1 + div + del + div;
+
+    i++;
 
     switch (a_type) {
         case 'asset':
@@ -46,8 +50,6 @@ function removeNew(obj) {
 }
 
 function checkInput() {
-    if ($(':input').val()) {
-        alert('a')
-    }
+    submitForm('editAccountForm');
 }
 

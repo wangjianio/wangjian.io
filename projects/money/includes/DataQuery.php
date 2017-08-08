@@ -76,11 +76,12 @@ class DataQuery extends Database
         // 检查后给出返回值
         if (is_array($result) && isset($result)) {
             return $result;
-        } elseif (!isset($result)) {
-            exit('Error.' . __FUNCTION__ . __LINE__);
-        } else {
-            exit('Error.' . __FUNCTION__ . __LINE__);
         }
+        //  elseif (!isset($result)) {
+        //     exit('Error.' . __FUNCTION__ . __LINE__);
+        // } else {
+        //     exit('Error.' . __FUNCTION__ . __LINE__);
+        // }
     }
 }
 

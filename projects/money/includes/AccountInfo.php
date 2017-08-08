@@ -112,7 +112,7 @@ A;
         $col_name_1 = $this->col_name[$a_type];
         $col_name_2 = $this->col_name['credit_2'];
 
-        $info = $this->query('money_view_select', "SELECT * FROM account_$a_type WHERE valid = '1'");
+        $info = $this->query('money_view_select', "SELECT * FROM account_$a_type");
         $count = count($info);
 
         echo "<tbody>";

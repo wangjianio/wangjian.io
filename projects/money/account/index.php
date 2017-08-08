@@ -8,7 +8,7 @@ $nav_type = 'money';
 $subnav_type = 'account';
 
 $extra_js = '<script src="../scripts/money.js"></script>';
-$extra_css = '<link rel="stylesheet" href="edit.css">';
+$extra_css = '<link rel="stylesheet" href="../styles/account.css">';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
@@ -17,11 +17,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <div class="row">
       <div class="col-xs-12">
 
-        <!-- 借记账户 -->
+        <!-- 三类账户 -->
         <?php $account_info->printAccountInfo('debit'); ?>
-        <!-- 借贷账户 -->
         <?php $account_info->printAccountInfo('credit'); ?>
-        <!-- 资产账户 -->
         <?php $account_info->printAccountInfo('asset'); ?>
 
       </div><!-- .col -->
@@ -43,15 +41,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
         <!-- 按钮 -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-          <button type="button" class="btn btn-primary" onclick="checkInput()">提交</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="checkInput()">保存</button>
         </div>
       </div>
     </div>
   </div>
 
 <script>
-  // 载入编辑表单代码
+  // 载入表单代码
   $(document).ready(function () {
     $("#debitEditBtn").click(function () {
       $('#modalBody').load('edit.php?a_type=debit');
