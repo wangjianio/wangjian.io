@@ -7,8 +7,8 @@ $title = '交易记录';
 $nav_type = 'money';
 $subnav_type = 'transaction';
 
-$extra_css = '<link rel="stylesheet" href="../styles/transaction.css">';
-$extra_js = '<script src="../scripts/transaction.js"></script>';
+$extra_css = '<link rel="stylesheet" href="../styles/money.css">';
+$extra_css .= '<link rel="stylesheet" href="../styles/transaction.css">';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
