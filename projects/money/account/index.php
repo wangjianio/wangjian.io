@@ -8,7 +8,7 @@ $nav_type = 'money';
 $subnav_type = 'account';
 
 $extra_js = '<script src="../scripts/money.js"></script>';
-$extra_css = '<link rel="stylesheet" href="../styles/account.css">';
+$extra_css = '<link rel="stylesheet" href="../styles/money.css">';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>

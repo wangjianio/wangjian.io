@@ -74,7 +74,7 @@ A;
 
         echo "<thead>";
         echo "<tr>";
-        echo "<th>账户名称</th>";
+        echo '<th width="40%">账户名称</th>';
         echo "<th>$table_head_1</th>";
 
         if ($a_type == 'credit') {
@@ -95,12 +95,12 @@ A;
 
         echo "<tfoot>";
         echo "<tr>";
-        echo '<th>合计</th>';
-        echo "<td>$sum</td>";
+        echo '<th class="text-right">合计</th>';
+        echo "<td class=\"text-right\">$sum</td>";
 
         if ($a_type == 'credit') {
             $sum_2 = $this->sqlFunc($database_table, $col_name_2, 'SUM');
-            echo "<td>$sum_2</td>";
+            echo "<td class=\"text-right\">$sum_2</td>";
         }
 
         echo "</tr>";
@@ -119,10 +119,10 @@ A;
         for ($i = 0; $i < $count; $i++) {
             echo '<tr>';
             echo "<td>{$info[$i]['a_name']}</td>";
-            echo "<td>{$info[$i][$col_name_1]}</td>";
+            echo "<td class=\"text-right\">{$info[$i][$col_name_1]}</td>";
 
             if ($a_type == 'credit') {
-                echo "<td>{$info[$i][$col_name_2]}</td>";
+                echo "<td class=\"text-right\" width=\"30%\">{$info[$i][$col_name_2]}</td>";
             }
 
             echo '</tr>';
