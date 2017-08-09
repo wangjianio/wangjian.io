@@ -36,7 +36,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
           <h4 class="modal-title">添加记录：</h4>
         </div>
         <!-- 主体 -->
-        <div class="modal-body" id="modalBody" style="padding-right: 24px; padding-left: 24px; margin:16px">
+        <div class="modal-body" id="modal_body" style="padding-right: 24px; padding-left: 24px; margin:16px">
           <!-- 根据点击的按钮用 js 动态载入表单 -->
         </div>
         <!-- 按钮 -->
@@ -52,17 +52,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   // 载入表单代码
   $(document).ready(function () {
     $("#debitEditBtn").click(function () {
-      $('#modalBody').load('edit.php?a_type=debit');
+      $('#modal_body').load('edit?debit');
       $('#editAccountFormModal').modal('show')
     })
 
     $("#creditEditBtn").click(function () {
-      $('#modalBody').load('edit.php?a_type=credit');
+      $('#modal_body').load('edit?credit');
       $('#editAccountFormModal').modal('show')
     })
 
     $("#assetEditBtn").click(function () {
-      $('#modalBody').load('edit.php?a_type=asset');
+      $('#modal_body').load('edit?asset');
       $('#editAccountFormModal').modal('show')
     })
   })

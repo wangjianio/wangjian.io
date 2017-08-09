@@ -3,7 +3,9 @@ namespace wangjian\wangjianio\projects\money;
 
 require_once dirname(__DIR__) . '/includes/EditAccount.php';
 
-$a_type = $_GET['a_type'];
+if (count($_GET) != 1) { exit; }
+
+$a_type = key($_GET);
 
 if ($a_type == 'asset' || $a_type == 'credit' || $a_type == 'debit') {
     

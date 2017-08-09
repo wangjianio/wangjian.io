@@ -21,4 +21,3 @@ function getNowFormatDate() {
     //+ seperator2 + date.getSeconds();
     return currentdate;
 }
-

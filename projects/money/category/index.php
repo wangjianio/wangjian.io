@@ -8,7 +8,8 @@ $title = '类别管理';
 $nav_type = 'money';
 $subnav_type = 'category';
 
-$extra_css = '<link rel="stylesheet" href="../styles/category.css">';
+$extra_css = '<link rel="stylesheet" href="../styles/money.css">';
+$extra_css .= '<link rel="stylesheet" href="../styles/category.css">';
 $extra_js = '<script src="../scripts/money.js"></script>';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';

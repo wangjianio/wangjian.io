@@ -27,7 +27,7 @@ class CategoryData extends Database
 
         $current_url = $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
         $back_url = preg_replace("/-[^-]+$/", '', $current_url);
-        $back_img = '<a href="' . $back_url . '"><img class="svg" src="/icons/back.svg"></a>';
+        $back_img = '<a href="' . $back_url . '"><img class="svg category-back" src="/icons/back.svg"></a>';
 
         if (empty($cate_1)) {
             $cate_head = '类别';

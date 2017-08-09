@@ -1,6 +1,8 @@
-<script>
-var str="<strong>利用AI开发网络病毒</strong>";
-var patt1=/(?<=<strong>).*(?=<\/strong>)/g;
-document.write(str.match(patt1));
+<?php
+//print_r($_GET);
 
-</script>
+//echo count($_GET);
+
+if (count($_GET) != 1) exit;
+
+    echo key($_GET);

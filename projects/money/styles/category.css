@@ -2,9 +2,11 @@ h1 a, h1 a:hover{
   color: rgb(51, 51, 51);
 }
 
-.svg {
+.svg.category-back {
   height: 22px;
-  float: left;
+  position: absolute;
+    left: 22px;
+    top: 8px;
 }
 
 .table {
@@ -12,17 +14,7 @@ h1 a, h1 a:hover{
 }
 
 .cate-name {
-  border-right: none;
   cursor: pointer;
-}
-
-.edit {
-  border-left: none;
-  border-right: none;
-}
-
-.delete {
-  border-left: none;
 }
 
 .blank {
