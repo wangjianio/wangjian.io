@@ -57,6 +57,9 @@ if (SHOW) {
       <div class="row">
         <div class="col-md-8">
 
+          <div class="page-header">
+            <h2>书签管理</h2>
+          </div>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -74,28 +77,32 @@ if (SHOW) {
             <?php $index->showFileName('../bookmark/images'); ?>
           </table>
 
-          <hr>
 
+          <div class="page-header">
+            <h2>彩虹卡说明设置</h2>
+          </div>
           <form name="edit_tip" method="post" action="edit_tip.php">
             <fieldset>
-              <legend>彩虹卡说明设置：</legend>
+
               <p><label>是否显示：<input name="show" type="radio" value="true" <?php echo $checked1; ?>>是 <input name="show" type="radio" value="false" <?php echo $checked0; ?>>否</label></p>
               <p><label>提示文字：<br><textarea name="tip" rows="5" placeholder="请输入提示文字，回车换行......"><?php echo TIP; ?></textarea></label></p>
               <input name="submit" type="submit">
             </fieldset>
           </form>
 
-          <hr>
 
+          <div class="page-header">
+            <h2>标题设置</h2>
+          </div>
           <form name="edit_title" method="post" action="edit_title.php" onsubmit="return inputCheck(this)">
             <fieldset>
-              <legend>设置标题：</legend>
               <p><label>请输入页面标题（必填）：<input name="title" type="text" value="<?php echo TITLE; ?>"></label></p>
               <label><input name="submit" type="submit"></label>
             </fieldset>
           </form>
-        </div>
 
+
+        </div>
         <div class="col-md-4">
 
           <div class="panel panel-info">
@@ -108,7 +115,7 @@ if (SHOW) {
               <li class="list-group-item list-group-item-danger">新的书签网址为 https://wangjian.io/projects/niu79/bookmark/ 请尽快到微信后台更改。</li>
               <li class="list-group-item">对给您带来的不便表示歉意。如有疑问可联系微信 17604700916。</li>
             </ul>
-            <div class="panel-footer text-right">2017年9月10日</div>
+            <div class="panel-footer text-right">2017年8月10日</div>
           </div>
 
         </div>
