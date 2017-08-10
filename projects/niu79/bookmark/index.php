@@ -21,38 +21,43 @@ if (!$_GET) {
 $img_src = "images/$date.jpg";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head>
-  <title><?php echo TITLE; ?></title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../styles/user.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+  <head>
+    <title><?php echo TITLE; ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<body>
-  <div class="content">
+    <style>
+      p {
+        white-space: pre;
+        line-height: 1.5;
+      }
 
-    <div class="card">
-      <img src="<?php echo $img_src; ?>">
-    </div>
+      .tip {
+        max-width: 640px;
+      }
+    </style>
+  </head>
 
+  <body>
+    <div class="container">
+      <img class="img-responsive center-block" alt="bookmark" src="<?php echo $img_src; ?>">
 <?php
-/**
- * 显示内容。
- */
 if (SHOW) {
 ?>
-    <div class="tip">
-      <p class="tip-title">彩虹卡说明：</p>
-      <p class="tip-content"><?php echo TIP; ?></p>
-    </div>
+      <div class="center-block tip">
+        <p class="text-muted">彩虹卡说明：</p>
+        <p class="text-muted"><?php echo TIP; ?></p>
+      </div>
 <?php
 }
 ?>
+    </div>
 
-  </div>
-
-</body>
+  </body>
 
 </html>

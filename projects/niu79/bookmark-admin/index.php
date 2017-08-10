@@ -16,8 +16,7 @@ if (SHOW) {
 
 ?>
 <!DOCTYPE html>
-
-<html>
+<html lang="zh-CN">
 
   <head>
     <meta charset="utf-8">
@@ -57,9 +56,7 @@ if (SHOW) {
       <div class="row">
         <div class="col-md-8">
 
-          <div class="page-header">
-            <h2>书签管理</h2>
-          </div>
+            <h2>书签管理</h2><hr>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -82,23 +79,32 @@ if (SHOW) {
             <h2>彩虹卡说明设置</h2>
           </div>
           <form name="edit_tip" method="post" action="edit_tip.php">
-            <fieldset>
-
-              <p><label>是否显示：<input name="show" type="radio" value="true" <?php echo $checked1; ?>>是 <input name="show" type="radio" value="false" <?php echo $checked0; ?>>否</label></p>
-              <p><label>提示文字：<br><textarea name="tip" rows="5" placeholder="请输入提示文字，回车换行......"><?php echo TIP; ?></textarea></label></p>
-              <input name="submit" type="submit">
-            </fieldset>
+            <div class="form-group">
+              <label>是否显示：</label>
+              <label class="radio-inline">
+                <input name="show" type="radio" value="true" <?php echo $checked1; ?>>是
+              </label>
+              <label class="radio-inline">
+                <input name="show" type="radio" value="false" <?php echo $checked0; ?>>否
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="tip">提示文字：</label>
+              <textarea class="form-control" id="tip" name="tip" rows="3" placeholder="请输入提示文字，回车换行..."><?php echo TIP; ?></textarea>
+            </div>
+            <button class="btn btn-default" type="submit">保存</button>
           </form>
 
 
           <div class="page-header">
             <h2>标题设置</h2>
           </div>
-          <form name="edit_title" method="post" action="edit_title.php" onsubmit="return inputCheck(this)">
-            <fieldset>
-              <p><label>请输入页面标题（必填）：<input name="title" type="text" value="<?php echo TITLE; ?>"></label></p>
-              <label><input name="submit" type="submit"></label>
-            </fieldset>
+          <form class="form-inline" name="edit_title" method="post" action="edit_title.php" onsubmit="return inputCheck(this)">
+            <div class="form-group">
+              <label for="title">请输入页面标题（必填）：</label>
+              <input class="form-control" id="title" name="title" type="text" value="<?php echo TITLE; ?>">
+            </div>
+            <button class="btn btn-default" type="submit">保存</button>
           </form>
 
 
