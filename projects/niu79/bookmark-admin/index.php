@@ -39,6 +39,8 @@ if (SHOW) {
 
   <p>你好啊，哈哈哈～<a href="logout.php">注销</a></p>
 
+  <p><font color="red">您好，原来的网站速度太慢，现在已经搬到新服务器上了，仅保留了 8 月 10 号一天的图片</font></p>
+
   <hr>
 
   <table>

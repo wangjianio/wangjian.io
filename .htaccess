@@ -1,3 +1,5 @@
 RewriteEngine On
 
 RewriteRule ^blog/posts/(\d+)$ blog/posts/posts.php?id=$1
+
+RewriteRule niu79/(.*) projects/niu79/$1
