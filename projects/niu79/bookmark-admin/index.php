@@ -1,23 +1,14 @@
 <?php
-namespace lopedever\niu79\bookmark;
+namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 include '../includes/config.php';
-include '../includes/database.php';
 include '../includes/functions.php';
 include '../includes/log.php';
 
 $session->checkSession();
 
-/**
- * 从数据库中获取标题的值及是否显示卡片的值，以默认选中。
- */
-if (!$query = $mysqli->query("SELECT * FROM rainbow_card WHERE id = 0")) {
-    echo "ERROR: (" . $mysqli->errno . ") " . $mysqli->error;
-} else {
-    $info = mysqli_fetch_array($query);
-}
 
-if ($info['is_show']) {
+if (SHOW) {
   $checked1 = 'checked';
 } else {
   $checked0 = 'checked';
@@ -31,7 +22,7 @@ if ($info['is_show']) {
 <head>
   <meta charset="utf-8">
   <title>管理主页</title>
-  <link href="css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/admin.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     function inputCheck(loginForm) {
@@ -70,9 +61,9 @@ if ($info['is_show']) {
   <form name="edit_tip" method="post" action="edit_tip.php">
     <fieldset>
       <legend>彩虹卡说明设置：</legend>
-      <p><label>是否显示：<input name="is_show" type="radio" value="1" <?php echo $checked1; ?>>是 <input name="is_show" type="radio" value="0" <?php echo $checked0; ?>>否</label></p>
-      <p><label>提示文字：<br><textarea name="content" rows="5" placeholder="请输入提示文字，回车换行......"><?php echo $info['content']; ?></textarea></label></p>
-      <label><input name="submit" type="submit"></label>
+      <p><label>是否显示：<input name="show" type="radio" value="true" <?php echo $checked1; ?>>是 <input name="show" type="radio" value="false" <?php echo $checked0; ?>>否</label></p>
+      <p><label>提示文字：<br><textarea name="tip" rows="5" placeholder="请输入提示文字，回车换行......"><?php echo TIP; ?></textarea></label></p>
+      <input name="submit" type="submit">
     </fieldset>
   </form>
 
@@ -81,7 +72,7 @@ if ($info['is_show']) {
   <form name="edit_title" method="post" action="edit_title.php" onsubmit="return inputCheck(this)">
     <fieldset>
       <legend>设置标题：</legend>
-      <p><label>请输入页面标题（必填）：<input name="title" type="text" value="<?php echo $info['title']; ?>"></label></p>
+      <p><label>请输入页面标题（必填）：<input name="title" type="text" value="<?php echo TITLE; ?>"></label></p>
       <label><input name="submit" type="submit"></label>
     </fieldset>
   </form>      

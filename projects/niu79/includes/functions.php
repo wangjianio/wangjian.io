@@ -1,5 +1,5 @@
 <?php
-namespace lopedever\niu79\bookmark;
+namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 class Index
 {

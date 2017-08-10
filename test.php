@@ -1,8 +1,4 @@
 <?php
-//print_r($_GET);
+$string = file_get_contents('/Users/wangjian/Documents/wangjian.io/projects/niu79/includes/config.php');
 
-//echo count($_GET);
-
-if (count($_GET) != 1) exit;
-
-    echo key($_GET);
+echo $string;

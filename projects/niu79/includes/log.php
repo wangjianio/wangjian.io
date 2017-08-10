@@ -1,5 +1,5 @@
 <?php
-namespace lopedever\niu79\bookmark;
+namespace wangjian\wangjianio\projects\niu79\bookmark;
 /*
 // bool error_log ( string $message [, int $message_type = 0 [, string $destination [, string $extra_headers ]]] )
 // error_log($message, $message_type, $destination);

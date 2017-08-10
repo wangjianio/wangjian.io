@@ -1,8 +1,7 @@
 <?php
-namespace lopedever\niu79\bookmark;
+namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 include '../includes/config.php';
-include '../includes/database.php';
 include '../includes/functions.php';
 include '../includes/log.php';
 
@@ -17,7 +16,7 @@ session_destroy();
 <head>
     <meta charset="utf-8">
     <title>注销</title>
-    <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/admin.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 

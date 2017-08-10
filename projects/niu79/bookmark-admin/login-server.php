@@ -1,8 +1,7 @@
 <?php
-namespace lopedever\niu79\bookmark;
+namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 include '../includes/config.php';
-include '../includes/database.php';
 include '../includes/functions.php';
 include '../includes/log.php';
 
@@ -19,10 +18,7 @@ if (isset($_SESSION['session'])) {
 $username = htmlspecialchars($_POST['username']);
 $password = htmlspecialchars($_POST['password']);
 
-$admin_username = 'niujiao';
-$admin_password = 'xiaobo';
-
-if ($username == $admin_username & $password == $admin_password) {
+if ($username === USERNAME & $password === PASSWORD) {
     $_SESSION['username'] = $username;
     //$log->logLogin();
     echo '登录成功！3 秒后进入 <a href="index.php">管理中心</a><br>';
