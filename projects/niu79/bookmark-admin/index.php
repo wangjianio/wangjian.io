@@ -40,6 +40,9 @@ if (SHOW) {
   <p>你好啊，哈哈哈～<a href="logout.php">注销</a></p>
 
   <p><font color="red">您好，原来的网站速度太慢，现在已经搬到新服务器上了，仅保留了 8 月 10 号一天的图片</font></p>
+  <p><font color="red">新的后台网址为 <font color="green">http://wangjian.io/projects/niu79/bookmark-admin/</font> 请保存记好</font></p>
+  <p><font color="red">新的书签网址为 <font color="green">http://wangjian.io/projects/niu79/bookmark/</font> 请尽快到微信后台更改</font></p>
+  <p>对给您带来的不便表示歉意。如有疑问可联系微信 17604700916</p>
 
   <hr>
 
