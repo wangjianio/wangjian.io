@@ -21,7 +21,7 @@ session_destroy();
 </head>
 
 <body>
-    <p>注销成功！点击此处 <a href="login.html">登录</a></p>
+    <p>注销成功！点击此处 <a href="login">登录</a></p>
 </body>
 
 </html>

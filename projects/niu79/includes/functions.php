@@ -9,7 +9,7 @@ class Index
             while (false !== ($file_name = readdir($handle))) {
                 if ($file_name != "." && $file_name != "..") {
                     $file_src = "../bookmark/images/$file_name";
-                    echo "    <tr>\n      <td id='file-name'>$file_name</td>\n      <td><a href='$file_src' target='_blank'>查看</a></td>\n    <td><a href='delete.php?file_name=$file_name'>删除</a></td>\n      </tr>\n";
+                    echo "<tr><td id='file-name'>$file_name</td><td><a href='$file_src' target='_blank'>查看</a></td><td><a href='delete.php?file_name=$file_name'>删除</a></td></tr>\n";
                     //<img src='$file_src'>
                 }
             }
@@ -24,8 +24,8 @@ class Session
     {
         session_start();
         if (!isset($_SESSION['username'])) {
-            header("location:login.html");
-            exit();
+            header("location:login");
+            exit;
         }
     }
 }
