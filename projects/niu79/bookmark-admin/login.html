@@ -69,7 +69,7 @@
                 $('.alert-info').removeClass('hidden');
               },
               success: function (json) {
-                if (json.success) {
+                if (json.login_result) {
                   $('.alert-info').addClass('hidden');
                   $('.alert-danger').addClass('hidden');
                   $('.alert-success').removeClass('hidden');

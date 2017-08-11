@@ -9,8 +9,11 @@ $session->checkSession();
 
 
 if (SHOW) {
+  $active1 = 'active';
   $checked1 = 'checked';
+  $collapse = 'in';
 } else {
+  $active0 = 'active';
   $checked0 = 'checked';
 }
 
@@ -25,18 +28,31 @@ if (SHOW) {
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script>
-      function inputCheck(loginForm) {
-        if (edit_title.title.value == "") {
-          alert("请输入标题!");
-          loginForm.title.focus();
-          return (false);
-        }
-      }
-    </script>
     <style>
       body {
         padding-top: 70px;
+      }
+
+      #logout {
+        cursor: pointer;
+      }
+
+      .flex-baseline {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .flex-center {
+        display: flex;
+        align-items: center;
+      }
+
+      .flex-none {
+        flex: none;
+      }
+
+      .flex-1 {
+        flex: 1;
       }
 
     </style>
@@ -47,7 +63,7 @@ if (SHOW) {
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <a class="navbar-brand" href>管理界面</a>
-          <a class="navbar-brand navbar-right pull-right" href="logout">注销</a>
+          <a class="navbar-brand navbar-right pull-right" id="logout">注销</a>
         </div>
       </nav>
     </header>
@@ -56,7 +72,8 @@ if (SHOW) {
       <div class="row">
         <div class="col-md-8">
 
-            <h2>书签管理</h2><hr>
+          <h2>书签管理</h2>
+          <hr>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -74,41 +91,38 @@ if (SHOW) {
             <?php $index->showFileName('../bookmark/images'); ?>
           </table>
 
-
           <div class="page-header">
-            <h2>彩虹卡说明设置</h2>
+            <h2>设置</h2>
           </div>
-          <form name="edit_tip" method="post" action="edit_tip.php">
-            <div class="form-group">
-              <label>是否显示：</label>
-              <label class="radio-inline">
-                <input name="show" type="radio" value="true" <?php echo $checked1; ?>>是
-              </label>
-              <label class="radio-inline">
-                <input name="show" type="radio" value="false" <?php echo $checked0; ?>>否
-              </label>
-            </div>
-            <div class="form-group">
-              <label for="tip">提示文字：</label>
-              <textarea class="form-control" id="tip" name="tip" rows="3" placeholder="请输入提示文字，回车换行..."><?php echo TIP; ?></textarea>
-            </div>
-            <button class="btn btn-default" type="submit">保存</button>
-          </form>
 
-
-          <div class="page-header">
-            <h2>标题设置</h2>
+          <div class="form-group flex-baseline">
+            <label class="control-label" for="title">页面标题：</label>
+            <input class="form-control flex-1" id="title" name="title" type="text" placeholder="必填" autocomplete="off" value="<?php echo TITLE; ?>">
           </div>
-          <form class="form-inline" name="edit_title" method="post" action="edit_title.php" onsubmit="return inputCheck(this)">
-            <div class="form-group">
-              <label for="title">请输入页面标题（必填）：</label>
-              <input class="form-control" id="title" name="title" type="text" value="<?php echo TITLE; ?>">
-            </div>
-            <button class="btn btn-default" type="submit">保存</button>
-          </form>
 
+          <div class="form-group flex-center">
+            <label class="control-label" for="tip" style="margin: 0">提示文字：</label>
+            <div class="flex-1">
+
+              <div class="btn-group btn-group-justified" data-toggle="buttons">
+                <label class="btn btn-default <?php echo $active1; ?>">
+                  <input name="show" type="radio" value="true" autocomplete="off" <?php echo $checked1; ?>> 显示
+                </label>
+                <label class="btn btn-default <?php echo $active0; ?>">
+                  <input name="show" type="radio" value="false" autocomplete="off" <?php echo $checked0; ?>> 隐藏
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group collapse <?php echo $collapse; ?>">
+            <label class="control-label sr-only">提示文字：</label>
+            <textarea class="form-control" id="tip" name="tip" rows="3" placeholder="请输入提示文字，回车换行..."><?php echo TIP; ?></textarea>
+          </div>
 
         </div>
+
         <div class="col-md-4">
 
           <div class="panel panel-info">
@@ -126,9 +140,131 @@ if (SHOW) {
 
         </div>
 
+
       </div>
     </div>
 
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- js 动态显示内容 -->
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script>
+    $(document).ready(function () {
+
+      $('input[name=show]').change(function () {
+        var show = $(this).val();
+
+        $.ajax({
+          type: "post",
+          url: "server?action=setting",
+          dataType: "json",
+          data: { "show": show },
+          success: function (json) {
+            if (json.show_result) {
+              if (show == 'true') {
+                $('.collapse').collapse('show')
+              } else {
+                $('.collapse').collapse('hide')
+              }
+              $('.modal').modal('show');
+              $('.modal-body').text('修改成功');
+              setTimeout("$('.modal').modal('hide')", 1000);
+            } else {
+              $('.modal').modal('show');
+              $('.modal-body').text('修改失败');
+            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            // alert(XMLHttpRequest.status);
+            // alert(XMLHttpRequest.readyState);
+            // alert(textStatus);
+            $('.modal').modal('show');
+            $('.modal-body').text('ERROR');
+          }
+        });
+      });
+
+
+      var old_title = $('input[name=title]').val();
+      $('input[name=title]').blur(function () {
+        var title = $(this).val();
+
+        if (title !== old_title) {
+          $.ajax({
+            type: "post",
+            url: "server?action=setting",
+            dataType: "json",
+            data: { "title": title },
+            success: function (json) {
+              if (json.title_result) {
+                old_title = title;
+                $('.modal').modal('show');
+                $('.modal-body').text('修改成功');
+                setTimeout("$('.modal').modal('hide')", 1000);
+              } else {
+                $('.modal').modal('show');
+                $('.modal-body').text('修改失败');
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              // alert(XMLHttpRequest.status);
+              // alert(XMLHttpRequest.readyState);
+              // alert(textStatus);
+              $('.modal').modal('show');
+              $('.modal-body').text('ERROR');
+            }
+          });
+        }
+      });
+
+
+      var old_tip = $('textarea').val();
+      $('textarea').blur(function () {
+        var tip = $(this).val();
+
+        if (tip !== old_tip) {
+          $.ajax({
+            type: "post",
+            url: "server?action=setting",
+            dataType: "json",
+            data: { "tip": tip },
+            success: function (json) {
+              if (json.tip_result) {
+                old_tip = tip;
+                $('.modal').modal('show');
+                $('.modal-body').text('修改成功');
+                setTimeout("$('.modal').modal('hide')", 1000);
+              } else {
+                $('.modal').modal('show');
+                $('.modal-body').text('修改失败');
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              // alert(XMLHttpRequest.status);
+              // alert(XMLHttpRequest.readyState);
+              // alert(textStatus);
+              $('.modal').modal('show');
+              $('.modal-body').text('ERROR');
+            }
+          });
+        }
+      });
+
+
+      $('#logout').click(function () {
+        $('.modal').modal('show');
+        $('.modal-body').text('注销成功');
+        setTimeout('window.location.href = "server?action=logout"', 1000);
+      });
+
+
+    });
+  </script>
 
 </html>
