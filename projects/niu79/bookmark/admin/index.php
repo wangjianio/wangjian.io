@@ -84,11 +84,11 @@ if (SHOW) {
             </thead>
             <tfoot>
               <tr>
-                <td id="preview" colspan="2"><a href="../bookmark" target="_blank">查看今日书签</a></td>
+                <td id="preview" colspan="2"><a href="../" target="_blank">查看今日书签</a></td>
                 <td><a href="upload.php">新增</a></td>
               </tr>
             </tfoot>
-            <?php $index->showFileName('../bookmark/images'); ?>
+            <?php $index->showFileName('../images'); ?>
           </table>
 
           <div class="page-header">
@@ -131,7 +131,7 @@ if (SHOW) {
             </div>
             <ul class="list-group">
               <li class="list-group-item">您好，原来的网站速度太慢，现在已经搬到新服务器上了，仅保留了8月10号一天的图片。</li>
-              <li class="list-group-item">新的后台网址为 https://wangjian.io/projects/niu79/bookmark-admin/ 请保存记好。</li>
+              <li class="list-group-item">新的后台网址为 https://wangjian.io/projects/niu79/bookmark/admin/ 请保存记好。</li>
               <li class="list-group-item list-group-item-danger">新的书签网址为 https://wangjian.io/projects/niu79/bookmark/ 请尽快到微信后台更改。</li>
               <li class="list-group-item">对给您带来的不便表示歉意。如有疑问可联系微信 17604700916。</li>
             </ul>

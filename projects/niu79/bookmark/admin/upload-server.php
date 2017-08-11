@@ -7,7 +7,7 @@ include '../includes/log.php';
 
 $session->checkSession();
 
-$uploaddir = "../bookmark/images/";
+$uploaddir = "../images/";
 $is_all_ok = -1;
 ?>
 <!DOCTYPE html>

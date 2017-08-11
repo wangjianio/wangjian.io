@@ -89,7 +89,7 @@ if ($_GET['action'] === 'delete') {
     $session->checkSession();
 
     $file_name = $_GET['file_name'];
-    $file = "../bookmark/images/$file_name";
+    $file = "../images/$file_name";
 
     if (!$file_name || !file_exists($file) || !unlink($file)) {
         exit('删除失败');

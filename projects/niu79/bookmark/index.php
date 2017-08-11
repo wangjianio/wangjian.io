@@ -1,9 +1,9 @@
 <?php
 namespace wangjian\wangjianio\projects\niu79\bookmark;
 
-require_once '../includes/config.php';
-require_once '../includes/functions.php';
-require_once '../includes/log.php';
+require_once 'includes/config.php';
+require_once 'includes/functions.php';
+require_once 'includes/log.php';
 
 /**
  * 如果没有 Get 参数则日期默认为当前日期；
