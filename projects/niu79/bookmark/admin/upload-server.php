@@ -1,9 +1,9 @@
 <?php
 namespace wangjian\wangjianio\projects\niu79\bookmark;
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
 include '../includes/config.php';
 include '../includes/functions.php';
-include '../includes/log.php';
 
 $session->checkSession();
 

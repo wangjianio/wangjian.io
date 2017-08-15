@@ -3,7 +3,6 @@ namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 include '../includes/config.php';
 include '../includes/functions.php';
-include '../includes/log.php';
 
 $session->checkSession();
 ?>

@@ -3,12 +3,14 @@ namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 include '../includes/config.php';
 include '../includes/functions.php';
-include '../includes/log.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
 
 $session->checkSession();
 
+$log->logPV('/projects/niu79/bookmark/', 'visit', 'admin');
+$log->logUV('/projects/niu79/bookmark/', 'visit', 'admin');
 
-if (SHOW) {
+if (TIP_DISPLAY === 'show') {
   $active1 = 'active';
   $checked1 = 'checked';
   $collapse = 'in';
@@ -106,10 +108,10 @@ if (SHOW) {
 
               <div class="btn-group btn-group-justified" data-toggle="buttons">
                 <label class="btn btn-default <?php echo $active1; ?>">
-                  <input name="show" type="radio" value="true" autocomplete="off" <?php echo $checked1; ?>> 显示
+                  <input name="display" type="radio" value="show" autocomplete="off" <?php echo $checked1; ?>> 显示
                 </label>
                 <label class="btn btn-default <?php echo $active0; ?>">
-                  <input name="show" type="radio" value="false" autocomplete="off" <?php echo $checked0; ?>> 隐藏
+                  <input name="display" type="radio" value="hide" autocomplete="off" <?php echo $checked0; ?>> 隐藏
                 </label>
               </div>
 
@@ -118,7 +120,7 @@ if (SHOW) {
 
           <div class="form-group collapse <?php echo $collapse; ?>">
             <label class="control-label sr-only">提示文字：</label>
-            <textarea class="form-control" id="tip" name="tip" rows="3" placeholder="请输入提示文字，回车换行..."><?php echo TIP; ?></textarea>
+            <textarea class="form-control" id="tip" name="tip" rows="3" placeholder="请输入提示文字，回车换行..."><?php echo TIP_CONTENT; ?></textarea>
           </div>
 
         </div>
@@ -157,17 +159,17 @@ if (SHOW) {
   <script>
     $(document).ready(function () {
 
-      $('input[name=show]').change(function () {
-        var show = $(this).val();
+      $('input[name=display]').change(function () {
+        var display = $(this).val();
 
         $.ajax({
           type: "post",
           url: "server?action=setting",
           dataType: "json",
-          data: { "show": show },
+          data: { "display": display },
           success: function (json) {
-            if (json.show_result) {
-              if (show == 'true') {
+            if (json.display_result) {
+              if (display == 'show') {
                 $('.collapse').collapse('show')
               } else {
                 $('.collapse').collapse('hide')

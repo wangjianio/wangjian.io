@@ -3,7 +3,11 @@ namespace wangjian\wangjianio\projects\niu79\bookmark;
 
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
-require_once 'includes/log.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
+
+
+$log->logPV('/projects/niu79/bookmark/', 'visit', 'index');
+$log->logUV('/projects/niu79/bookmark/', 'visit', 'index');
 
 /**
  * 如果没有 Get 参数则日期默认为当前日期；
@@ -47,11 +51,11 @@ $img_src = "images/$date.jpg";
     <div class="container">
       <img class="img-responsive center-block" alt="bookmark" src="<?php echo $img_src; ?>">
 <?php
-if (SHOW) {
+if (TIP_DISPLAY === 'show') {
 ?>
       <div class="center-block tip">
         <p class="text-muted">彩虹卡说明：</p>
-        <p class="text-muted"><?php echo TIP; ?></p>
+        <p class="text-muted"><?php echo TIP_CONTENT; ?></p>
       </div>
 <?php
 }
