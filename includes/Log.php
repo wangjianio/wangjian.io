@@ -11,7 +11,7 @@ class Log
 
         $hostname = '127.0.0.1';
         $username = 'log_root';
-        $password = ')iz&\N!NoCpt]mE;';
+        $password = 'i_z03N-NoCaVpt"mE';
         $database = 'log';
 
         $this->mysqli = new \mysqli($hostname, $username, $password, $database);
