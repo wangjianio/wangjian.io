@@ -19,7 +19,12 @@ class IndexTransData extends Database
     public function printTableFoot()
     {
         $username = 'money_root';
+
+        echo 'aa';
+
         $this->connect($username);
+
+        echo 'bb';
         
         $sql = "SELECT SUM(t_money) FROM transaction WHERE to_days(t_datetime) = to_days(now()) AND t_type = 'in'";
         if ($stmt = $this->mysqli->prepare($sql)) {

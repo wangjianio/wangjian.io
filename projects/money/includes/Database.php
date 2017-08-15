@@ -15,6 +15,8 @@ class Database
      */
     public function connect($username)
     {
+        echo 'cc';
+
         $hostname = '127.0.0.1';
         $database = 'money';
 
