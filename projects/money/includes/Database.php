@@ -21,7 +21,7 @@ class Database
         switch ($username) {
             // 拥有 Money 数据库的全部权限，主要用于调试
             case 'money_root':
-                $password = 'MY42n8JrSuWRxWhe';
+                $password = 'Z_WG-7vNPQ"I06JU';
                 break;
             // 只有视图的 SELECT 权限
             case 'money_view_select':
