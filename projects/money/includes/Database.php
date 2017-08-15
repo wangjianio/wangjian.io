@@ -45,15 +45,14 @@ class Database
                 break;
         }
 
-        echo $hostname, $username, $password, $database;
-
         $this->mysqli = new \mysqli($hostname, $username, $password, $database);
 
         // 如果连接错误输出错误信息，否则将编码设置为 UTF-8
+        echo 'aaaa';
         if ($this->mysqli->connect_errno) {
+            echo 'bbbb';
             exit("Failed to connect to MySQL: $this->mysqli->connect_error");
-        } else if (!$this->mysqli->set_charset("utf8")) {
-            exit("Error loading character set utf8: $this->mysqli->error");
+            echo 'cccc';
         }
     }
 }
