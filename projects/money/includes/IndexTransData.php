@@ -20,8 +20,6 @@ class IndexTransData extends Database
     {
         $username = 'money_root';
 
-        echo 'aa';
-
         $this->connect($username);
 
         echo 'bb';
