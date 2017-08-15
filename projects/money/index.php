@@ -55,7 +55,7 @@ $day = date('d');
                 </button>
 
                 <!-- 当日的交易记录 -->
-                <?php $index_trans_data->printTable(); ?>
+                <?php echo '11'; $index_trans_data->printTable(); ?>
 
             </div><!-- .col -->
 
