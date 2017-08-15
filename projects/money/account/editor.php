@@ -20,7 +20,7 @@ if ($a_type == 'asset' || $a_type == 'credit' || $a_type == 'debit') {
     * 修改 account_type 表的 description 列。
     */
     if (isset($description)) {
-        $username = 'money_table_account_type';
+        $username = 'money_root';
         $database->connect($username);
 
         $sql = "UPDATE account_type SET description = ? WHERE a_type = ?";
@@ -49,7 +49,7 @@ if ($a_type == 'asset' || $a_type == 'credit' || $a_type == 'debit') {
 
         $count = count($post_info);
 
-        $username = 'money_table_account_update';
+        $username = 'money_root';
         $database->connect($username);
         
         for ($i = 0; $i < $count; $i++) {

@@ -10,7 +10,7 @@ class EditAccount extends AccountInfo
         $col_name_1 = $this->col_name[$a_type];
         $col_name_2 = $this->col_name['credit_2'];
 
-        $account_info = $this->query('money_view_select', "SELECT * FROM account_$a_type");
+        $account_info = $this->query('money_root', "SELECT * FROM account_$a_type");
         $count = count($account_info);
 
         echo <<<FORM_START

@@ -39,7 +39,7 @@ class AccountInfo extends DataQuery
     public function getDescriptionByAccountType($a_type)
     {
         if ($a_type == 'asset' || $a_type == 'credit' || $a_type == 'debit') {
-            $description = $this->query('money_table_account_type', "SELECT description FROM account_type WHERE a_type = '$a_type'");
+            $description = $this->query('money_root', "SELECT description FROM account_type WHERE a_type = '$a_type'");
             return $description[0][0];
         } else {
             exit('Error.' . __FUNCTION__ . __LINE__);
@@ -112,7 +112,7 @@ A;
         $col_name_1 = $this->col_name[$a_type];
         $col_name_2 = $this->col_name['credit_2'];
 
-        $info = $this->query('money_view_select', "SELECT * FROM account_$a_type");
+        $info = $this->query('money_root', "SELECT * FROM account_$a_type");
         $count = count($info);
 
         echo "<tbody>";

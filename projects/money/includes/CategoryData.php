@@ -22,7 +22,7 @@ class CategoryData extends Database
 
         $table = "category_$t_type";
 
-        $username = 'money_table_category_select';
+        $username = 'money_root';
         $this->connect($username);
 
         $current_url = $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
