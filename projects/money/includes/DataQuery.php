@@ -42,7 +42,7 @@ class DataQuery extends Database
      */
     public function sqlFunc($table, $col_name, $func)
     {
-        $this->connect('money_view_select');
+        $this->connect('money_root');
 
         $sql = "SELECT $func($col_name) FROM $table";
         $result = $this->execSql($sql);
