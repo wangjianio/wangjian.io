@@ -45,9 +45,6 @@ class Database
                 break;
         }
 
-        ini_set('display_errors', true);
-        error_reporting(E_ALL);
-
         $this->mysqli = new \mysqli($hostname, $username, $password, $database);
 
         // 如果连接错误输出错误信息，否则将编码设置为 UTF-8
