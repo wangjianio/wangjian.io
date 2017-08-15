@@ -16,7 +16,6 @@ class Database
     public function connect($username)
     {
         $hostname = '127.0.0.1';
-        $hostname = 'localhost';
         $database = 'money';
 
         switch ($username) {
@@ -45,6 +44,8 @@ class Database
                 exit('Error.' . __FUNCTION__ . __LINE__);
                 break;
         }
+
+        echo $hostname, $username, $password, $database;
 
         $this->mysqli = new \mysqli($hostname, $username, $password, $database);
 
