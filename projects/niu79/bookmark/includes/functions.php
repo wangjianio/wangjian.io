@@ -13,8 +13,8 @@ class Index
                 echo <<<TBODY
                 <tr>
                     <td>$file_name</td>
-                    <td><a href="$file_path" target="_blank">查看</a></td>
-                    <td><a href="server?action=delete&file_name=$file_name">删除</a></td>
+                    <td class="action"><a href="$file_path" target="_blank">查看</a></td>
+                    <td class="action"><a href="server?action=delete&file_name=$file_name">删除</a></td>
                 </tr>
 TBODY;
             }
