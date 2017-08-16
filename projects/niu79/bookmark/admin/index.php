@@ -35,7 +35,7 @@ if (TIP_DISPLAY === 'show') {
         padding-top: 70px;
       }
 
-      #logout {
+      #logout, #upload {
         cursor: pointer;
       }
 
@@ -57,6 +57,10 @@ if (TIP_DISPLAY === 'show') {
         flex: 1;
       }
 
+      .action {
+        width: 4em;
+      }
+
     </style>
   </head>
 
@@ -76,22 +80,109 @@ if (TIP_DISPLAY === 'show') {
 
           <h2>书签管理</h2>
           <hr>
-          <table class="table table-bordered">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th>文件名称</th>
-                <th>文件预览</th>
-                <th>操作</th>
+                <th class="action">查看</th>
+                <th class="action">操作</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <td id="preview" colspan="2"><a href="../" target="_blank">查看今日书签</a></td>
-                <td><a href="upload.php">新增</a></td>
+                <td></td>
+                <td colspan="2"><a href="../" target="_blank">查看今日书签</a></td>
               </tr>
             </tfoot>
-            <?php $index->showFileName('../images'); ?>
+            <tbody>
+              <?php $index->showFileName('../images'); ?>
+            </tbody>
           </table>
+
+           <!-- Collapse -->
+          <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    未使用
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  。
+                </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>文件名称</th>
+                          <th class="action">操作</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <td colspan="2"><a href="../" target="_blank">查看今日书签</a></td>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <?php $index->showFileName('../images'); ?>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                    aria-controls="collapseTwo">
+                    已过期
+                  </a>
+                </h4>
+              </div>
+              <div class="panel-collapse collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                  sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                  helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                  vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
+                  haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+
+          </div> -->
+
+
+          <form name="upload_form" method="post" enctype="multipart/form-data">            
+            <input name="MAX_FILE_SIZE" type="hidden" value="2000000">
+
+            <div class="form-group">
+              <label for="file_input">上传新文件</label>
+              <div class="input-group">
+                <div class="form-control" tabindex="-1">
+                  <div id="file_prompt">未选择文件</div>
+                </div>
+                <span class="input-group-btn">
+                  <button class="btn btn-default hidden" id="btn_reset" type="button"><span class="glyphicon glyphicon-trash"></span> 清除</button>
+                  <button class="btn btn-default hidden" id="btn_submit" type="button"><span class="glyphicon glyphicon-upload"></span> 上传</button>
+                  <button class="btn btn-primary" id="btn_choose" type="button"><span class="glyphicon glyphicon-folder-open"></span> 选择</button>
+                </span>
+              </div>
+              <input class="hidden" id="file_input" name="file[]" type="file" multiple accept="image/jpeg,image/png">
+              <p class="help-block">支持多选，请将单个文件大小限制在 2M 以内（支持 jpg/jpeg/png 格式）</p>
+            </div>
+          </form>
+
+          <div class="alert alert-success hidden" role="alert"></div>          
+          <div class="alert alert-danger hidden" role="alert"></div>          
+          <div class="alert alert-info hidden" role="alert"></div>      
+
+
+
 
           <div class="page-header">
             <h2>设置</h2>
@@ -142,23 +233,24 @@ if (TIP_DISPLAY === 'show') {
 
         </div>
 
-
       </div>
     </div>
 
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+    <div class="modal fade bs-example-modal-sm" id="prompt_modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-          <div class="modal-body">
+          <div class="modal-body" id="prompt_text">
             <!-- js 动态显示内容 -->
           </div>
         </div>
       </div>
     </div>
   </body>
+
   <script>
     $(document).ready(function () {
 
+      // Tip display
       $('input[name=display]').change(function () {
         var display = $(this).val();
 
@@ -174,25 +266,25 @@ if (TIP_DISPLAY === 'show') {
               } else {
                 $('.collapse').collapse('hide')
               }
-              $('.modal').modal('show');
-              $('.modal-body').text('修改成功');
+              $('#prompt_modal').modal('show');
+              $('#prompt_text').text('修改成功');
               setTimeout("$('.modal').modal('hide')", 1000);
             } else {
               $('.modal').modal('show');
-              $('.modal-body').text('修改失败');
+              $('#prompt_text').text('修改失败');
             }
           },
           error: function (XMLHttpRequest, textStatus, errorThrown) {
             // alert(XMLHttpRequest.status);
             // alert(XMLHttpRequest.readyState);
             // alert(textStatus);
-            $('.modal').modal('show');
-            $('.modal-body').text('ERROR');
+            $('#prompt_modal').modal('show');
+            $('#prompt_text').text('ERROR');
           }
         });
       });
 
-
+      // Title
       var old_title = $('input[name=title]').val();
       $('input[name=title]').blur(function () {
         var title = $(this).val();
@@ -206,26 +298,26 @@ if (TIP_DISPLAY === 'show') {
             success: function (json) {
               if (json.title_result) {
                 old_title = title;
-                $('.modal').modal('show');
-                $('.modal-body').text('修改成功');
-                setTimeout("$('.modal').modal('hide')", 1000);
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改成功');
+                setTimeout("$('#prompt_modal').modal('hide')", 1000);
               } else {
-                $('.modal').modal('show');
-                $('.modal-body').text('修改失败');
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改失败');
               }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               // alert(XMLHttpRequest.status);
               // alert(XMLHttpRequest.readyState);
               // alert(textStatus);
-              $('.modal').modal('show');
-              $('.modal-body').text('ERROR');
+              $('#prompt_modal').modal('show');
+              $('#prompt_text').text('ERROR');
             }
           });
         }
       });
 
-
+      // Tip content
       var old_tip = $('textarea').val();
       $('textarea').blur(function () {
         var tip = $(this).val();
@@ -239,34 +331,129 @@ if (TIP_DISPLAY === 'show') {
             success: function (json) {
               if (json.tip_result) {
                 old_tip = tip;
-                $('.modal').modal('show');
-                $('.modal-body').text('修改成功');
-                setTimeout("$('.modal').modal('hide')", 1000);
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改成功');
+                setTimeout("$('#prompt_modal').modal('hide')", 1000);
               } else {
-                $('.modal').modal('show');
-                $('.modal-body').text('修改失败');
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改失败');
               }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               // alert(XMLHttpRequest.status);
               // alert(XMLHttpRequest.readyState);
               // alert(textStatus);
-              $('.modal').modal('show');
-              $('.modal-body').text('ERROR');
+              $('#prompt_modal').modal('show');
+              $('#prompt_text').text('ERROR');
             }
           });
         }
       });
 
-
+      // Logout
       $('#logout').click(function () {
-        $('.modal').modal('show');
-        $('.modal-body').text('注销成功');
+        $('#prompt_modal').modal('show');
+        $('#prompt_text').text('注销成功');
         setTimeout('window.location.href = "server?action=logout"', 1000);
       });
+      
+      // 弹出选择框
+      $('#btn_choose').click(function () {
+        $('#file_input').click();
+      });
 
+      // 选择文件后
+      $('#file_input').change(function () {
+        var file_num = $(this).get(0).files.length;
+        var first_file_name = $(this).get(0).files[0].name;
+      
+        // 显示额外按钮
+        $('#btn_reset').removeClass('hidden');
+        $('#btn_submit').removeClass('hidden');
+        
+        // 隐藏所有 alert
+        $('.alert').addClass('hidden');
+        
+        // 使 sumbit 按钮可用
+        $('#btn_submit').removeAttr('disabled');        
+
+        // 更改提示文字
+        if (file_num === 1) {
+          $('#file_prompt').text(first_file_name);
+        } else {
+          $('#file_prompt').text('已选择 ' + file_num + ' 个文件');
+        }
+
+        // 根据情况禁用 submit
+        if (!checkFileSize()) {
+          $('#btn_submit').attr('disabled', 'disabled');
+        }
+      });
+
+      // Reset
+      $('#btn_reset').click(function () {
+        $('form[name=upload_form]')[0].reset();
+        $('#file_prompt').text('未选择文件');
+
+        $('#btn_reset').addClass('hidden');
+        $('#btn_submit').addClass('hidden');
+        $('.alert').addClass('hidden');
+      });
+
+      // Submit
+      $('#btn_submit').click(function () {
+        var form_data = new FormData(document.forms.namedItem('upload_form'));
+        $.ajax({
+          url: "server?action=upload",
+          type: "POST",
+          data: form_data,
+          dataType: "json",          
+          processData: false,
+          contentType: false,
+          beforeSend: function () {
+            var i = checkFileSize();
+            if (i) {
+              $("form[name='upload_form']").find('.btn').attr('disabled', 'disabled');          
+              showAlert('info', '正在上传...');
+            } else {
+              return i;
+            }
+          },
+          success: function (json) {
+            if (json.result) {
+              showAlert('success', '所有文件上传成功');
+              setTimeout('window.location.reload()', 1000);
+            } else {
+              showAlert('danger', json.error);
+            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            // alert(XMLHttpRequest.status);
+            // alert(XMLHttpRequest.readyState);
+            // alert(textStatus);
+            showAlert('danger', 'error');
+          }
+        });
+      });
 
     });
+    
+    function showAlert(type, msg) {
+      $('.alert').addClass('hidden');
+      $('.alert-' + type).html(msg);
+      $('.alert-' + type).removeClass('hidden');
+    }
+
+    function checkFileSize() {
+      var i = true;
+      $.each($('#file_input').get(0).files, function (index, item) {
+        if (item.size > 2097152) {
+          i = false;
+          showAlert('danger', '文件过大，请将单个文件大小限制在 2M 以内。');      
+        }
+      });
+      return i;
+    }
   </script>
 
 </html>
