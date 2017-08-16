@@ -6,8 +6,8 @@ require_once 'includes/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
 
 
-$log->logPV('/projects/niu79/bookmark/', 'visit', 'index');
 $log->logUV('/projects/niu79/bookmark/', 'visit', 'index');
+$log->logPV('/projects/niu79/bookmark/', 'visit', 'index');
 
 /**
  * 如果没有 Get 参数则日期默认为当前日期；
