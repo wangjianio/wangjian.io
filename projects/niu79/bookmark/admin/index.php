@@ -25,7 +25,7 @@ if (TIP_DISPLAY === 'show') {
 
   <head>
     <meta charset="utf-8">
-    <title>管理主页</title>
+    <title>管理界面</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -57,10 +57,25 @@ if (TIP_DISPLAY === 'show') {
         flex: 1;
       }
 
-      .action {
-        width: 4em;
+      li {
+        overflow-wrap: break-word;
       }
 
+      .action {
+        width: 4em;
+        text-align: right;
+        font-weight: normal;
+      }
+
+      .glyphicon-eye-close, .glyphicon-eye-open {
+        position: absolute;
+        top: 9px;
+        right: 25px;
+      }
+      
+      .glyphicon-eye-close:hover, .glyphicon-eye-open:hover {
+        text-decoration: none;
+      }
     </style>
   </head>
 
@@ -80,20 +95,14 @@ if (TIP_DISPLAY === 'show') {
 
           <h2>书签管理</h2>
           <hr>
+
           <table class="table table-condensed">
             <thead>
               <tr>
                 <th>文件名称</th>
-                <th class="action">查看</th>
-                <th class="action">操作</th>
+                <th class="action" colspan="2"><a href="../" target="_blank">查看今日书签</a></th>
               </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <td></td>
-                <td colspan="2"><a href="../" target="_blank">查看今日书签</a></td>
-              </tr>
-            </tfoot>
             <tbody>
               <?php $index->showFileName('../images'); ?>
             </tbody>
@@ -188,6 +197,26 @@ if (TIP_DISPLAY === 'show') {
             <h2>设置</h2>
           </div>
 
+          <div class="row form-inline">
+            <div class="form-group col-sm-6">
+              <div class="flex-baseline">
+                <label for="username">用户名：</label>
+                <input class="form-control flex-1" id="username" name="username" type="text" placeholder="必填" autocomplete="off" value="<?php echo USERNAME; ?>">
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6">
+              <div class="flex-baseline">
+                <label for="password">密码：</label>
+                <input class="form-control  flex-1" id="password" name="password" type="password" placeholder="必填" autocomplete="off" value="<?php echo PASSWORD; ?>">
+                <a class="glyphicon glyphicon-eye-open text-muted" onselectstart="return false" role="button" data-placement="top" data-toggle="popover" data-trigger="hover"></a>
+              </div>
+            </div>
+          </div>
+
+
+          <hr>
+
           <div class="form-group flex-baseline">
             <label class="control-label" for="title">页面标题：</label>
             <input class="form-control flex-1" id="title" name="title" type="text" placeholder="必填" autocomplete="off" value="<?php echo TITLE; ?>">
@@ -223,12 +252,17 @@ if (TIP_DISPLAY === 'show') {
               <h3 class="panel-title">最近消息：</h3>
             </div>
             <ul class="list-group">
+              <li class="list-group-item">现在可以更改用户名和密码了，还是建议修改一下的。</li>
+              <li class="list-group-item">可能会有 bug，不过只有 IE 没有测试过，遇到问题就用 Chrome、Firefox 或者国产浏览器的极速模式吧。</li>
+            </ul>
+            <div class="panel-footer text-right small">2017年8月16日</div>
+            <ul class="list-group text-muted">
               <li class="list-group-item">您好，原来的网站速度太慢，现在已经搬到新服务器上了，仅保留了8月10号一天的图片。</li>
               <li class="list-group-item">新的后台网址为 https://wangjian.io/projects/niu79/bookmark/admin/ 请保存记好。</li>
-              <li class="list-group-item list-group-item-danger">新的书签网址为 https://wangjian.io/projects/niu79/bookmark/ 请尽快到微信后台更改。</li>
+              <li class="list-group-item">新的书签网址为 https://wangjian.io/projects/niu79/bookmark/ 请尽快到微信后台更改。</li>
               <li class="list-group-item">对给您带来的不便表示歉意。如有疑问可联系微信 17604700916。</li>
             </ul>
-            <div class="panel-footer text-right">2017年8月10日</div>
+            <div class="panel-footer text-right small">2017年8月10日</div>
           </div>
 
         </div>
@@ -249,6 +283,74 @@ if (TIP_DISPLAY === 'show') {
 
   <script>
     $(document).ready(function () {
+
+      // Username
+      var old_username = $('input[name=username]').val();
+      $('input[name=username]').blur(function () {
+        var username = $(this).val();
+
+        if (username !== old_username) {
+          $.ajax({
+            type: "post",
+            url: "server?action=setting",
+            dataType: "json",
+            data: { "username": username },
+            success: function (json) {
+              if (json.username_result) {
+                old_username = username;
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改成功');
+                setTimeout('window.location.reload()', 1000);                                
+              } else {
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改失败');
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              // alert(XMLHttpRequest.status);
+              // alert(XMLHttpRequest.readyState);
+              // alert(textStatus);
+              $('#prompt_modal').modal('show');
+              $('#prompt_text').text('ERROR');
+            }
+          });
+        }
+      });
+
+      // Password
+      var old_password = $('input[name=password]').val();
+      $('input[name=password]').blur(function () {
+        var password = $(this).val();
+
+        if (password !== old_password) {
+          $.ajax({
+            type: "post",
+            url: "server?action=setting",
+            dataType: "json",
+            data: { "password": password },
+            beforeSend: function () {
+            },
+            success: function (json) {
+              if (json.password_result) {
+                old_password = password;
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改成功');
+                setTimeout('window.location.reload()', 1000);                
+              } else {
+                $('#prompt_modal').modal('show');
+                $('#prompt_text').text('修改失败');
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              // alert(XMLHttpRequest.status);
+              // alert(XMLHttpRequest.readyState);
+              // alert(textStatus);
+              $('#prompt_modal').modal('show');
+              $('#prompt_text').text('ERROR');
+            }
+          });
+        }
+      });
 
       // Tip display
       $('input[name=display]').change(function () {
@@ -454,6 +556,17 @@ if (TIP_DISPLAY === 'show') {
       });
       return i;
     }
+
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+
+    $('[data-toggle="popover"]').hover(function () {
+      var str = $('input[type="password"]').val();
+      $(this).attr('data-content', str);
+    }, function () {
+      
+    });
   </script>
 
 </html>

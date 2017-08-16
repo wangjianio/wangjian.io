@@ -45,9 +45,49 @@ if ($_GET['action'] === 'logout') {
 if ($_GET['action'] === 'setting') {
     $session->checkSession();
 
+    $new_username = $_POST['username'];
+    $new_password = $_POST['password'];
+
     $new_display = $_POST['display'];
     $new_title = $_POST['title'];
     $new_tip = $_POST['tip'];
+
+
+    // Username
+    if ($new_username) {
+        
+        $string = file_get_contents('../includes/config.php');
+        
+        $pattern = "/define\('USERNAME', '.*?'\);/";
+        $replacement = "define('USERNAME', '$new_username');";
+        $string = preg_replace($pattern, $replacement, $string);
+        
+        if (file_put_contents('../includes/config.php', $string)) {
+            $log->logPV('/projects/niu79/bookmark/', 'setting', 'username', 'success');
+            $arr['username_result'] = true;
+        } else {
+            $log->logPV('/projects/niu79/bookmark/', 'setting', 'username', 'fail');
+            $arr['username_result'] = false;
+        }
+    }
+
+    // Password
+    if ($new_password) {
+        
+        $string = file_get_contents('../includes/config.php');
+        
+        $pattern = "/define\('PASSWORD', '.*?'\);/";
+        $replacement = "define('PASSWORD', '$new_password');";
+        $string = preg_replace($pattern, $replacement, $string);
+        
+        if (file_put_contents('../includes/config.php', $string)) {
+            $log->logPV('/projects/niu79/bookmark/', 'setting', 'password', 'success');
+            $arr['password_result'] = true;
+        } else {
+            $log->logPV('/projects/niu79/bookmark/', 'setting', 'password', 'fail');
+            $arr['password_result'] = false;
+        }
+    }
 
     // Display
     if ($new_display === 'show' || $new_display === 'hide') {
