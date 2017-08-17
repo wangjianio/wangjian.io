@@ -1,9 +1,9 @@
 <?php
 namespace wangjian\wangjianio\projects\niu79\bookmark;
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
 include '../includes/config.php';
 include '../includes/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
 
 $session->checkSession();
 
@@ -190,7 +190,21 @@ if (TIP_DISPLAY === 'show') {
           <div class="alert alert-danger hidden" role="alert"></div>          
           <div class="alert alert-info hidden" role="alert"></div>      
 
-
+          <div class="page-header">
+            <h2>简单统计</h2>
+          </div>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th class="text-right">PV</th>
+                <th class="text-right">UV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $index->printStatisticTableBody(); ?>
+            </tbody>
+          </table>
 
 
           <div class="page-header">
@@ -264,6 +278,10 @@ if (TIP_DISPLAY === 'show') {
             </ul>
             <div class="panel-footer text-right small">2017年8月10日</div>
           </div>
+
+          <?php if($_SERVER['REMOTE_ADDR'] === '::1') {
+            echo '<a class="btn btn-primary btn-block" href="https://wangjian.io/projects/niu79/bookmark/admin/" target="_blank">线上版</a>';
+          } ?>
 
         </div>
 

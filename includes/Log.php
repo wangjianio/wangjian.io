@@ -82,6 +82,32 @@ class Log
 
         $this->mysqli->close();
     }
+
+    public function getLogNiu79($type, $date)
+    {
+        $this->connect();
+
+        $project = '/projects/niu79/bookmark/';
+        $activity = 'visit';
+        $note = 'index';
+        
+        $sql = "SELECT COUNT(id) FROM $this->table_name WHERE type = ? AND to_days(datetime) = to_days(?) AND project = ? AND activity = ? AND note = ?";
+        
+        if ($stmt = $this->mysqli->prepare($sql)) {
+            $stmt->bind_param("sssss", $type, $date, $project, $activity, $note);
+            $stmt->execute();
+            $stmt->bind_result($count);
+            $stmt->fetch();
+        
+            return $count;
+        
+            $stmt->close();
+        } else {
+            return $this->mysqli->errno;
+        }
+
+        $this->mysqli->close();
+    }
 }
 
 $log = new Log;

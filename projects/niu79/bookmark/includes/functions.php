@@ -1,7 +1,9 @@
 <?php
 namespace wangjian\wangjianio\projects\niu79\bookmark;
 
-class Index
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
+
+class Index extends \wangjian\wangjianio\log\Log
 {
     public function showFileName($dir)
     {
@@ -20,6 +22,23 @@ TBODY;
             }
         }
         unset($file_name);
+    }
+
+    public function printStatisticTableBody()
+    {
+        for ($i = 0; $i < 7 ; $i++) {
+            $date = strtotime("-$i day");
+            $date = date('Y-m-d', $date);
+            $pv = $this->getLogNiu79('PV', $date);
+            $uv = $this->getLogNiu79('UV', $date);
+            echo <<< TR
+            <tr>
+                <td>$date</td>
+                <td class="text-right">$pv</td>
+                <td class="text-right">$uv</td>
+            </tr>
+TR;
+        }
     }
 }
 
