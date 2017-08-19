@@ -4,8 +4,7 @@
       <div class="container">
 
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-            aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -15,10 +14,22 @@
 
         <div id="navbar" class="navbar-collapse collapse">
 
-<?php $nav_selector->printRightNav($nav_type); ?>
+        <?php $nav_selector->printRightNav($nav_type); ?>
 
-<?php $nav_selector->printLeftNav($nav_type, $subnav_type); ?>
+        <?php $nav_selector->printLeftNav($nav_type, $subnav_type); ?>
 
         </div>
       </div>
     </nav>
+
+<script>
+  function dynamicNavbar() {
+    var url = window.location.pathname;
+    var pattern = /^\/projects\/money\//i;
+    var result = pattern.test(url);
+    return result;
+  }
+  if (dynamicNavbar()) {
+    $('.navbar-brand').addClass('hidden-sm');
+  }
+</script>

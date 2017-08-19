@@ -2,25 +2,24 @@
 $title = '吉林省 CET 准考证号查询';
 $nav_type = 'cet';
 $id = htmlspecialchars($_GET['id']);
+
 $extra_css = '<link rel="stylesheet" href="styles/index.css">';
-$extra_js = '<script src="scripts/index.js"></script>';
+$extra_js  = '<script src="/node_modules/clipboard/dist/clipboard.min.js"></script>';
+$extra_js .= '<script src="scripts/index.js"></script>';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="page-header">
-        <h1><?php echo $title; ?></h1>
-      </div>
-    </div>
+
+  <div class="page-header">
+    <h1><?php echo $title; ?></h1>
   </div>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-8">
-      <form method="get" onSubmit="return checkInput(this)">
+    <div class="col-xs-12 col-md-8">
+      <form onSubmit="return checkInput(this)">
         <div class="input-group input-group-lg">
-          <input name="id" type="text" class="form-control" placeholder="输入身份证号" value="<?php echo $id; ?>">
+          <input class="form-control" name="id" type="text" placeholder="输入身份证号" value="<?php echo $id; ?>">
           <span class="input-group-btn">
             <button class="btn btn-primary" type="submit">查询</button>
           </span>
@@ -29,7 +28,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       <div class="alert alert-danger" id="alert0" role="alert">请输入身份证号！</div>
       <div class="alert alert-danger" id="alert1" role="alert">身份证格式有误，请核对后重试。</div>
       <div class="alert alert-warning" id="alert2" role="alert">没有查找到信息，请确认身份证号。</div>
-    </div>
+
 
 <?php
 switch (strlen($id)) {
@@ -51,7 +50,6 @@ switch (strlen($id)) {
                 echo "<script>autoAlert('alert2')</script>";
             } else {
                 echo <<<RESULT_TABLE
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-7">
                   <table class="table table-hover table-bordered">
                     <tr>
                       <td>考生姓名：</td>
@@ -66,7 +64,6 @@ switch (strlen($id)) {
                       <td id="cetNo">$cet_no[1]<button class="btn btn-default btn-xs btn-custom-copy pull-right" data-clipboard-target="#cetNo">复制</button></td>
                     </tr>
                   </table>
-                </div>
 RESULT_TABLE;
             }
         }
@@ -76,12 +73,11 @@ RESULT_TABLE;
         echo "<script>autoAlert('alert1')</script>";
         break;
 }
+?>
 
-echo <<<AAA
-
-</div>
+    </div><!-- row -->
+  </div><!-- container -->
 <script src="scripts/copy.js"></script>
-</div><!-- .container -->
-AAA;
 
+<?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';
