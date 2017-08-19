@@ -10,8 +10,6 @@ $type = $c[0];
 $cate_1 = $c[1];
 $cate_2 = $c[2];
 $cate_3 = $c[3];
-$cate_4 = $c[4];
-$cate_5 = $c[5];
 
 if (!isset($_GET['c'])) {
     $common->redirectTo('/projects/money/category/index.php?c=支出');
@@ -49,20 +47,10 @@ if (!isset($_GET['c'])) {
         if ($stmt = $database->mysqli->prepare($sql)) {
             $stmt->bind_param("ss", $cate_1, $cate_2);
         }
-    } else if (empty($cate_4)) {
+    } else {
         $sql = "DELETE FROM $table WHERE {$t_type}_1 = ? AND {$t_type}_2 = ? AND {$t_type}_3 = ?";
         if ($stmt = $database->mysqli->prepare($sql)) {
             $stmt->bind_param("sss", $cate_1, $cate_2, $cate_3);
-        }
-    } else if (empty($cate_5)){
-        $sql = "DELETE FROM $table WHERE {$t_type}_1 = ? AND {$t_type}_2 = ? AND {$t_type}_3 = ? AND {$t_type}_4 = ?";
-        if ($stmt = $database->mysqli->prepare($sql)) {
-            $stmt->bind_param("ssss", $cate_1, $cate_2, $cate_3, $cate_4);
-        }
-    } else {
-        $sql = "DELETE FROM $table WHERE {$t_type}_1 = ? AND {$t_type}_2 = ? AND {$t_type}_3 = ? AND {$t_type}_4 = ? AND {$t_type}_5 = ?";
-        if ($stmt = $database->mysqli->prepare($sql)) {
-            $stmt->bind_param("sssss", $cate_1, $cate_2, $cate_3, $cate_4, $cate_5);
         }
     }
 

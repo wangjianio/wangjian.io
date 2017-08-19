@@ -1,38 +1,64 @@
 <?php
 namespace wangjian\wangjianio\projects\money;
 
-require_once dirname(__DIR__) . '/includes/Common.php';
-require_once dirname(__DIR__) . '/includes/CategoryData.php';
-
 $title = '类别管理';
 $nav_type = 'money';
 $subnav_type = 'category';
 
-$extra_css = '<link rel="stylesheet" href="../styles/money.css">';
-$extra_css .= '<link rel="stylesheet" href="../styles/category.css">';
-$extra_js = '<script src="../scripts/money.js"></script>';
+$extra_css  = '<link rel="stylesheet" href="/node_modules/bootstrap-treeview/src/css/bootstrap-treeview.css">';
+$extra_js   = '<script src="/node_modules/bootstrap-treeview/src/js/bootstrap-treeview.js"></script>';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
+?>
+    <div class="container">
 
-echo '<div class="container">';
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="page-header">
+            <h1>支出</h1>
+          </div>
+          <div id="tree_out"></div>
+        </div><!-- col -->
 
-$c = preg_split("/-+/", $_GET['c']);
+        <div class="col-sm-6">
+          <div class="page-header">
+            <h1>收入</h1>
+          </div>
+          <div id="tree_in"></div>
+        </div><!-- col -->
+      </div><!-- row -->
 
-$type = $c[0];
-$cate_1 = $c[1];
-$cate_2 = $c[2];
-$cate_3 = $c[3];
-$cate_4 = $c[4];
-$cate_5 = $c[5];
+    </div><!-- .container -->
 
-if (!isset($_GET['c'])) {
-    $common->redirectTo('/projects/money/category/index?c=支出');
-} elseif ($type != '支出' && $type != '收入') {
-    $common->redirectTo('/projects/money/category/index?c=支出');
-} else {
-    $category_data->printData($type, $cate_1, $cate_2, $cate_3, $cate_4, $cate_5);
-}
+    <script>
+        $(document).ready(function () {
+          $.ajax({
+            type: "GET",
+            url: "json?type=out",
+            dataType: "json",
+            success: function (response) {
+              $('#tree_out').treeview({
+                data: response,
+                expandIcon: 'glyphicon glyphicon-chevron-right',
+                collapseIcon: 'glyphicon glyphicon-chevron-down',
+              });
+            },
+          });
 
-echo '</div><!-- .container -->';
-echo '<script src="../scripts/category.js"></script>';
+          $.ajax({
+            type: "GET",
+            url: "json?type=in",
+            dataType: "json",
+            success: function (response) {
+              $('#tree_in').treeview({
+                data: response,
+                expandIcon: 'glyphicon glyphicon-chevron-right',
+                collapseIcon: 'glyphicon glyphicon-chevron-down',
+              });
+            },
+          });
+        });
+    </script>
+
+<?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

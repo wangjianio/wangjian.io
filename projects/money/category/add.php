@@ -18,8 +18,6 @@ $type = $c[0];
 $cate_1 = $c[1];
 $cate_2 = $c[2];
 $cate_3 = $c[3];
-$cate_4 = $c[4];
-$cate_5 = $c[5];
 
 
 if (!isset($_GET['c'])) {
@@ -58,23 +56,11 @@ if (!isset($_GET['c'])) {
         if ($stmt = $database->mysqli->prepare($sql)) {
             $stmt->bind_param("ss", $cate_1, $cate_2);
         }
-    } elseif (empty($cate_3)) {
+    } else {
         $cate_3 = $_POST['new_cate'];
         $sql = "INSERT INTO $table ({$t_type}_1, {$t_type}_2, {$t_type}_3) VALUES (?, ?, ?)";
         if ($stmt = $database->mysqli->prepare($sql)) {
             $stmt->bind_param("sss", $cate_1, $cate_2, $cate_3);
-        }
-    } elseif (empty($cate_4)) {
-        $cate_4 = $_POST['new_cate'];
-        $sql = "INSERT INTO $table ({$t_type}_1, {$t_type}_2, {$t_type}_3, {$t_type}_4) VALUES (?, ?, ?, ?)";
-        if ($stmt = $database->mysqli->prepare($sql)) {
-            $stmt->bind_param("ssss", $cate_1, $cate_2, $cate_3, $cate_4);
-        }
-    } elseif (empty($cate_5)) {
-        $cate_5 = $_POST['new_cate'];
-        $sql = "INSERT INTO $table ({$t_type}_1, {$t_type}_2, {$t_type}_3, {$t_type}_4, {$t_type}_5) VALUES (?, ?, ?, ?, ?)";
-        if ($stmt = $database->mysqli->prepare($sql)) {
-            $stmt->bind_param("sssss", $cate_1, $cate_2, $cate_3, $cate_4, $cate_5);
         }
     }
 

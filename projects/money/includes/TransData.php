@@ -7,11 +7,16 @@ class TransData extends Database
 {
     public function printTable()
     {
+        $username = 'money_root';
+        $this->connect($username);
+
         echo '<table class="table table-hover table-condensed">';
         $this->printTableHead();
         //$this->printTableFoot();
         $this->printTableBody();
         echo '</table>';
+
+        $this->mysqli->close();        
     }
 
     public function printTableHead()
@@ -48,9 +53,6 @@ TFOOT;
     {
         echo '<tbody>';
 
-        $username = 'money_root';
-        $this->connect($username);
-
         switch ($_GET['type']) {
             case '收入':
                 $sql = "SELECT * FROM transaction WHERE t_type = 'in' ORDER BY t_datetime DESC";
@@ -66,17 +68,13 @@ TFOOT;
 
         if ($stmt = $this->mysqli->prepare($sql)) {
             $stmt->execute();
-            $stmt->bind_result($t_id, $t_type, $a_name, $t_datetime, $t_money, $t_location, $t_agent, $in_1, $in_2, $in_3, $in_4, $in_5, $out_1, $out_2, $out_3, $out_4, $out_5, $t_remark);
+            $stmt->bind_result($t_id, $t_type, $a_name, $t_datetime, $t_money, $t_location, $t_agent, $cate_1, $cate_2, $cate_3, $t_remark);
             while ($stmt->fetch()) {
                 switch ($t_type) {
                     case 'in':
                         $type = '收入';
 
-                        if (!empty($in_5)) {
-                            $category = $in_5;
-                        } elseif (!empty($in_4)) {
-                            $category = $in_4;
-                        } elseif (!empty($in_3)) {
+                        if (!empty($in_3)) {
                             $category = $in_3;
                         } elseif (!empty($in_2)) {
                             $category = $in_2;
@@ -88,11 +86,7 @@ TFOOT;
                     case 'out':
                         $type = '支出';
 
-                        if (!empty($out_5)) {
-                            $category = $out_5;
-                        } elseif (!empty($out_4)) {
-                            $category = $out_4;
-                        } elseif (!empty($out_3)) {
+                        if (!empty($out_3)) {
                             $category = $out_3;
                         } elseif (!empty($out_2)) {
                             $category = $out_2;
@@ -138,8 +132,6 @@ TR;
             $stmt->close();
         }
 
-        $this->mysqli->close();
-
         echo "</tbody>";
     }
 
@@ -148,5 +140,3 @@ TR;
         # code...
     }
 }
-
-$trans_data = new TransData;

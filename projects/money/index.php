@@ -1,7 +1,7 @@
 <?php
 namespace wangjian\wangjianio\projects\money;
 
-require_once __DIR__ . '/includes/IndexTransData.php';
+require_once __DIR__ . '/includes/IndexTransactionData.php';
 require_once __DIR__ . '/includes/AddTransForm.php';
 
 $title = 'Money - 个人财务管理';
@@ -41,8 +41,8 @@ $day = date('d');
                     </div>
 
                     <!-- 添加记录按钮，在 md lg 屏幕显示加号 -->
-                    <a class="pull-right visible-md-inline visible-lg-inline btn-custom-add" href data-toggle="modal" data-target="#addTransFormModal"
-                        style="position: absolute; right: 15px; top: 20px">
+                    <a class="pull-right visible-md-inline visible-lg-inline btn-custom-add" data-toggle="modal" data-target="#addTransFormModal"
+                        style="position: absolute; right: 15px; top: 20px; cursor: pointer;">
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 80px"></span>
                     </a>
 
@@ -55,7 +55,10 @@ $day = date('d');
                 </button>
 
                 <!-- 当日的交易记录 -->
-                <?php $index_trans_data->printTable(); ?>
+                <?php 
+                $trans_data = new IndexTransactionData;
+                $trans_data->printTable(); 
+                ?>
 
             </div><!-- .col -->
 
@@ -90,7 +93,7 @@ $day = date('d');
                 <!-- 标题 -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">添加记录：</h4>
+                    <h4 class="modal-title">添加记录：</h4>
                 </div>
                 <!-- 主体 -->
                 <div class="modal-body" style="padding-right: 24px; padding-left: 24px">
@@ -143,7 +146,7 @@ $day = date('d');
                 
                 <!-- 按钮 -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button type="button" class="btn btn-primary" onclick="submitForm('add_transaction_form')">提交</button>
                 </div>
             </div>
@@ -157,8 +160,12 @@ $day = date('d');
                 $('#dynamic_form').load('transaction/add?out', function () {
                     $('.selectpicker').selectpicker('refresh');
                 });
+            });
+
+            $('form[name="category"]').change(function () {
+                $('.preselect').attr('disabled', 'disabled');
             })
-        })
+        });
 
         // 动态加载表单选项
         function changeFormControl(obj) {
@@ -167,10 +174,7 @@ $day = date('d');
             });
         }
 
-        // 在关闭 modal 时取消添加按钮的焦点
-        $('#addTransFormModal').on('hidden.bs.modal', function (e) {
-            window.setTimeout("$('.btn-custom-add').blur()", 0);
-        })
+
     </script>
 
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

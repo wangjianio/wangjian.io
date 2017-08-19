@@ -7,7 +7,12 @@ if (count($_GET) != 1) { exit; }
 
 $a_type = key($_GET);
 
+$username = 'money_root';
+$add_trans_form->connect($username);
+
 $add_trans_form->printDynamicFormControl($a_type);
+
+$add_trans_form->mysqli->close();
 
 ?>
 
@@ -20,5 +25,10 @@ $add_trans_form->printDynamicFormControl($a_type);
             value: getNowFormatDate(),
             step: 1
         });
+        
+        $('select.category').change(function () {
+            $('.preselect').attr('disabled', 'disabled');
+        })
     })
+
 </script>

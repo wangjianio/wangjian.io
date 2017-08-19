@@ -4,6 +4,7 @@ namespace wangjian\wangjianio\projects\money;
 require_once dirname(__DIR__) . '/includes/Common.php';
 require_once dirname(__DIR__) . '/includes/Database.php';
 
+
 $t_type = $_POST['t_type'];
 $a_name = $_POST['a_name'];
 $t_datetime = $_POST['t_datetime'];
