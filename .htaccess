@@ -5,3 +5,5 @@ RewriteEngine On
 # RewriteRule ^(.*)$ https://wangjian.io/$1 [R,L]
 
 RewriteRule ^blog/posts/(\d+)$ blog/posts/posts.php?id=$1
+RewriteRule ^projects/money/category/out$ projects/money/category/index.php?type=out
+RewriteRule ^projects/money/category/in$ projects/money/category/index.php?type=in

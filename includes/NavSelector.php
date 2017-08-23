@@ -136,9 +136,9 @@ UL;
             echo <<<UL
           <ul class="nav navbar-nav">
             <li$money_index><a href="/projects/money/index">Money</a></li>
-            <li$money_account><a href="/projects/money/account">账户详情</a></li>
-            <li$money_transaction><a href="/projects/money/transaction">交易记录</a></li>
-            <li$money_category><a href="/projects/money/category/index?c=支出">类别管理</a></li>
+            <li$money_account><a href="/projects/money/account/">账户详情</a></li>
+            <li$money_transaction><a href="/projects/money/transaction/">交易记录</a></li>
+            <li$money_category><a href="/projects/money/category/">类别管理</a></li>
           </ul>
 UL;
         }
