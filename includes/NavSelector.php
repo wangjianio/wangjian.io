@@ -70,11 +70,11 @@ class NavSelector
             <li class="dropdown$projects">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目<span class="caret"></span></a>
               <ul class="dropdown-menu">
+              <li$old><a href="/projects/old_pronunciation/">OLD 英语发音</a></li>
               <li$cet><a href="/projects/cet_jilin/">吉林英语四六级准考证号查询</a></li>
               <li role="separator" class="divider"></li>
               <li class="dropdown-header">Beta</li>
                 <li$file><a href="/projects/file_management_system/">文件管理系统</a></li>
-                <li$old><a href="/projects/old_pronunciation/">OLD 英语发音</a></li>
                 <li$tl12306><a href="/projects/12306/">12306 信息处理</a></li>
                 <li$money><a href="/projects/money/">Money - 个人财务管理</a></li>
               </ul>
