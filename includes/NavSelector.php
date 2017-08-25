@@ -22,9 +22,9 @@ class NavSelector
                 $projects = ' active';
                 $file = ' class="active"';
                 break;
-            case 'old':
+            case 'od':
                 $projects = ' active';
-                $old = ' class="active"';
+                $od = ' class="active"';
                 break;
             case 'tl12306':
                 $projects = ' active';
@@ -70,7 +70,7 @@ class NavSelector
             <li class="dropdown$projects">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目<span class="caret"></span></a>
               <ul class="dropdown-menu">
-              <li$old><a href="/projects/old_pronunciation/">OLD 英语发音</a></li>
+              <li$od><a href="/projects/od_pronunciation/">Oxford Dictionaries 英语发音</a></li>
               <li$cet><a href="/projects/cet_jilin/">吉林英语四六级准考证号查询</a></li>
               <li role="separator" class="divider"></li>
               <li class="dropdown-header">Beta</li>
