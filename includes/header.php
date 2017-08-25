@@ -1,4 +1,8 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
+$log->logUV($_SERVER['REQUEST_URI'], 'visit');
+$log->logPV($_SERVER['REQUEST_URI'], 'visit');
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
