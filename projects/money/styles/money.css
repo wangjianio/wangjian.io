@@ -24,3 +24,20 @@ td {
   height: 0;
   cursor: pointer;
 }
+
+
+/* category */
+h1 a, h1 a:hover { 
+  color: #333; 
+}
+
+/* sticky */
+@media all and (min-width: 768px) {
+  .sticky {
+    /* safari */
+    position: -webkit-sticky;
+    /* chrome firefox */
+    position: sticky;
+      top: 20px;
+  }
+}
