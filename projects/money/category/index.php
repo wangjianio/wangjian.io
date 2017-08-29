@@ -8,8 +8,7 @@ $nav_type = 'money';
 $subnav_type = 'category';
 
 $extra_css  = '<link rel="stylesheet" href="/node_modules/bootstrap-treeview/src/css/bootstrap-treeview.css">';
-$extra_css .= '<link rel="stylesheet" href="sticky.css">';
-$extra_css .= '<style>h1 a, h1 a:hover { color: #333; }</style>';
+$extra_css .= '<link rel="stylesheet" href="../styles/money.css">';
 $extra_js   = '<script src="/node_modules/bootstrap-treeview/src/js/bootstrap-treeview.js"></script>';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
@@ -51,19 +50,21 @@ PAGE_HEADER;
       </div>
 
       <div class="row">
-        <div class="col-sm-7" id="left_col">
+        <div class="col-sm-7">
           <div id="tree"></div>
         </div><!-- col -->
 
-        <div class="col-sm-5 sticky" id="right_col">
+        <div class="col-sm-5 sticky">
           <div class="panel panel-default">
-            <div class="panel-body">
+            <div class="panel-body" id="default_panel">
               <div class="form-group">
-                <label class="h4" for="new_cate_input" style="margin-bottom: 15px">新增根类别：</label>
-                <input class="form-control" id="new_cate_input" type="text" placeholder="请输入类别名" autocomplete="off">
+                <label class="h4" for="new_root_cate_input" style="margin-bottom: 15px">新增根类别：</label>
+                <input class="form-control" id="new_root_cate_input" type="text" placeholder="请输入类别名" autocomplete="off">
               </div>
               <hr>
-              <button class="btn btn-success btn-block" id="submit_btn" type="button">提交</button>
+              <button class="btn btn-success btn-block" id="default_submit_btn" type="button">提交</button>
+            </div>
+            <div class="panel-body" id="selected_panel" style="display: none">
             </div>
           </div>
         </div>
@@ -85,25 +86,44 @@ PAGE_HEADER;
                 expandIcon: 'glyphicon glyphicon-chevron-right',
                 collapseIcon: 'glyphicon glyphicon-chevron-down',
                 onNodeSelected: function (event, data) {
+                  // 全局变量
                   cate_id = data.id;
                   cate_name = data.text;
-                  $('.panel-body').load('form?id=' + data.id);
+                  $('#default_panel').hide();
+                  $('#selected_panel').show();
+                  $('#selected_panel').load('form?id=' + data.id);
+                },
+                onNodeUnselected: function (event, data) {
+                  $('#selected_panel').hide();  
+                  $('#default_panel').show();                                  
                 },
               });
-              placeFooter();
             },
           });
+          
+          var timeoutID;
 
-          $('#submit_btn').click(function () {
-            var new_cate = $('#new_cate_input').val();
+          $('#default_submit_btn').on('click', function () {
+            var new_cate = $('#new_root_cate_input').val();
             $.ajax({
               type: "post",
               url: "server?action=add",
               dataType: "json",
               data: {
                 'type': '<?php echo $type; ?>',
-                'new_cate': new_cate,
+                'new_root_cate': new_cate,
                 'parent_id': '0'
+              },
+              beforeSend: function () {
+                if (!new_cate) {
+                  clearTimeout(timeoutID);
+                  $('#new_root_cate_input').parent().addClass('has-error');
+                  $('#new_root_cate_input').focus();
+                  timeoutID = setTimeout(function() {
+                    $('#new_root_cate_input').parent().removeClass('has-error');
+                  }, 1000);
+                  return false;
+                }
               },
               success: function (response) {
                 if (response.result === 'success') {
@@ -118,7 +138,7 @@ PAGE_HEADER;
                 alert(textStatus);
               }
             });
-          })
+          });
 
       }); // ready
 
