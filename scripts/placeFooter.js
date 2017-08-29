@@ -1,13 +1,13 @@
 function placeFooter() {
-    var footerHeight = $("footer").outerHeight();
+  var footerHeight = $("footer").outerHeight();
 
-    if ($(document).height() + footerHeight != $(window).height()) {
-        $("footer").removeClass("navbar-fixed-bottom");
-    }
+  if ($(document).height() + footerHeight != $(window).height()) {
+    $("footer").removeClass("navbar-fixed-bottom");
+  }
 
-    if ($(document).height() == $(window).height()) {
-        $("footer").addClass("navbar-fixed-bottom");
-    }
+  if ($(document).height() == $(window).height()) {
+    $("footer").addClass("navbar-fixed-bottom");
+  }
 }
 
 placeFooter();
@@ -19,13 +19,13 @@ $(window).on('resize', placeFooter)
 // var mutationObserverSupport = !!MutationObserver;
 
 var mo = new MutationObserver(function () {
-   placeFooter(); 
+  placeFooter();
 });
 
 var option = {
-    'childList': true, 
-    'subtree': true,
-    // 'attributeFilter': ['height'],
+  'childList': true,
+  'subtree': true,
+  // 'attributeFilter': ['height'],
 };
 
 mo.observe(document.body, option);
