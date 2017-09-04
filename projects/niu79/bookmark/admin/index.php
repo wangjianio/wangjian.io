@@ -279,7 +279,7 @@ if (TIP_DISPLAY === 'show') {
             <div class="panel-footer text-right small">2017年8月10日</div>
           </div>
 
-          <?php if($_SERVER['REMOTE_ADDR'] === '::1') {
+          <?php if ($_SERVER['REMOTE_ADDR'] === '::1') {
             echo '<a class="btn btn-primary btn-block" href="https://wangjian.io/projects/niu79/bookmark/admin/" target="_blank">线上版</a>';
           } ?>
 
