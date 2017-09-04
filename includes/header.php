@@ -13,7 +13,7 @@ $log->logPV($_SERVER['REQUEST_URI'], 'visit');
 
         <title><?php echo $title; ?></title>
 
-        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/styles/footer.css">
         <?php echo $extra_css; ?>
         <script src="/node_modules/jquery/dist/jquery.min.js"></script>

@@ -68,7 +68,7 @@ class NavSelector
             <li$blog><a href="/blog/">博客</a></li>
 
             <li class="dropdown$projects">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目<span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onselectstart="return false">项目<span class="caret"></span></a>
               <ul class="dropdown-menu">
               <li$od><a href="/projects/od_pronunciation/">Oxford Dictionaries 英语发音</a></li>
               <li$cet><a href="/projects/cet_jilin/">吉林英语四六级准考证号查询</a></li>
@@ -81,7 +81,7 @@ class NavSelector
             </li>
 
             <li class="dropdown$tools">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工具<span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onselectstart="return false">工具<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li$ip><a href="/tools/ip/">IP</a></li>
                 <li$md5><a href="/tools/md5/">MD5</a></li>
@@ -128,6 +128,9 @@ UL;
                 case 'category':
                     $money_category = ' class="active"';
                     break;
+                case 'login':
+                    return;
+                    // no break;
                 
                 default:
                     # code...
@@ -135,10 +138,11 @@ UL;
             }
             echo <<<UL
           <ul class="nav navbar-nav">
-            <li$money_index><a href="/projects/money/index">Money</a></li>
+            <li$money_index><a href="/projects/money/index">主页</a></li>
             <li$money_account><a href="/projects/money/account/">账户详情</a></li>
             <li$money_transaction><a href="/projects/money/transaction/">交易记录</a></li>
             <li$money_category><a href="/projects/money/category/">类别管理</a></li>
+            <li$money_login><a href="/projects/money/logout">注销</a></li>
           </ul>
 UL;
         }
