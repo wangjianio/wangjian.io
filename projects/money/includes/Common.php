@@ -7,6 +7,13 @@ class Common
     {
         echo '<meta http-equiv="refresh" content="0; url=' . $url . '">';
     }
+
+    public function checkSession()
+    {
+        session_start();
+        if (empty($_SESSION['u_id'])) {
+            header('location: /projects/money/login');
+        }
+    }
 }
 
-$common = new Common;

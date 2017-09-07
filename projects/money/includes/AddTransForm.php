@@ -1,9 +1,9 @@
 <?php
 namespace wangjian\wangjianio\projects\money;
 
-require_once __DIR__ . '/DataQuery.php';
+require_once __DIR__ . '/Database.php';
 
-class AddTransForm extends DataQuery
+class AddTransForm extends Database
 {
     /**
      * 根据数据库输出表单中交易类型选项。
@@ -223,5 +223,3 @@ FORM_CATEGORY;
     }
 
 }
-
-$add_trans_form = new AddTransForm;

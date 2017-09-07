@@ -1,8 +1,3 @@
-// 表单提交
-function submitForm(formID) {
-    document.getElementById(formID).submit();
-}
-
 function getNowFormatDate() {
     // yyyy-MM-dd HH:MM:SS
     var date = new Date();

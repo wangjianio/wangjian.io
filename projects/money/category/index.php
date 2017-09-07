@@ -2,6 +2,24 @@
 namespace wangjian\wangjianio\projects\money;
 
 require_once dirname(__DIR__) . '/includes/Common.php';
+$common = new Common;
+$common->checkSession();
+
+$type = $_GET['type'];
+
+switch ($type) {
+    case 'out':
+        $t_type_id = 1;
+        break;
+    case 'in':
+        $t_type_id = 2;
+        break;
+    
+    default:
+        header('location: /projects/money/category/out');
+        exit;
+        // no break;
+}
 
 $title = '类别管理';
 $nav_type = 'money';
@@ -13,17 +31,6 @@ $extra_js   = '<script src="/node_modules/bootstrap-treeview/src/js/bootstrap-tr
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
-$common = new Common;
-
-$type = $_GET['type'];
-
-if (!isset($type)) {
-    $common->redirectTo('/projects/money/category/out');
-    exit;
-} elseif ($type !== 'out' && $type !== 'in') {
-    $common->redirectTo('/projects/money/category/out');
-    exit;
-}
 ?>
     <div class="container">
 
@@ -58,11 +65,11 @@ PAGE_HEADER;
           <div class="panel panel-default">
             <div class="panel-body" id="default_panel">
               <div class="form-group">
-                <label class="h4" for="new_root_cate_input" style="margin-bottom: 15px">新增根类别：</label>
-                <input class="form-control" id="new_root_cate_input" type="text" placeholder="请输入类别名" autocomplete="off">
+                <label class="h4" for="input-new-root-cate" style="margin-bottom: 15px">新增根类别：</label>
+                <input class="form-control" id="input-new-root-cate" type="text" placeholder="请输入类别名" autocomplete="off">
               </div>
               <hr>
-              <button class="btn btn-success btn-block" id="default_submit_btn" type="button">提交</button>
+              <button class="btn btn-success btn-block" id="btn-submit-default" type="button">提交</button>
             </div>
             <div class="panel-body" id="selected_panel" style="display: none">
             </div>
@@ -78,7 +85,7 @@ PAGE_HEADER;
         $(function () {
           $.ajax({
             type: "GET",
-            url: "tree_view_json?type=<?php echo $type; ?>",
+            url: "json?type=<?php echo $type; ?>",
             dataType: "json",
             success: function (response) {
               $('#tree').treeview({
@@ -87,11 +94,11 @@ PAGE_HEADER;
                 collapseIcon: 'glyphicon glyphicon-chevron-down',
                 onNodeSelected: function (event, data) {
                   // 全局变量
-                  cate_id = data.id;
-                  cate_name = data.text;
+                  c_id = data.c_id;
+                  c_name = data.text;
                   $('#default_panel').hide();
                   $('#selected_panel').show();
-                  $('#selected_panel').load('form?id=' + data.id);
+                  $('#selected_panel').load('edit?c_id=' + data.c_id);
                 },
                 onNodeUnselected: function (event, data) {
                   $('#selected_panel').hide();  
@@ -103,24 +110,23 @@ PAGE_HEADER;
           
           var timeoutID;
 
-          $('#default_submit_btn').on('click', function () {
-            var new_cate = $('#new_root_cate_input').val();
+          $('#btn-submit-default').on('click', function () {
+            var new_cate = $('#input-new-root-cate').val();
             $.ajax({
               type: "post",
               url: "server?action=add",
               dataType: "json",
               data: {
-                'type': '<?php echo $type; ?>',
+                't_type_id': '<?php echo $t_type_id; ?>',
                 'new_root_cate': new_cate,
-                'parent_id': '0'
               },
               beforeSend: function () {
                 if (!new_cate) {
                   clearTimeout(timeoutID);
-                  $('#new_root_cate_input').parent().addClass('has-error');
-                  $('#new_root_cate_input').focus();
+                  $('#input-new-root-cate').parent().addClass('has-error');
+                  $('#input-new-root-cate').focus();
                   timeoutID = setTimeout(function() {
-                    $('#new_root_cate_input').parent().removeClass('has-error');
+                    $('#input-new-root-cate').parent().removeClass('has-error');
                   }, 1000);
                   return false;
                 }

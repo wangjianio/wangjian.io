@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule ^category/\b(out|in)\b$ category/index.php?type=$1
+RewriteRule ^logout$ server?action=logout

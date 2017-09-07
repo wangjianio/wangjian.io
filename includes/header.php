@@ -1,4 +1,5 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
+<?php 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/Log.php';
 $log->logUV($_SERVER['REQUEST_URI'], 'visit');
 $log->logPV($_SERVER['REQUEST_URI'], 'visit');
@@ -16,6 +17,7 @@ $log->logPV($_SERVER['REQUEST_URI'], 'visit');
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/styles/footer.css">
         <?php echo $extra_css; ?>
+
         <script src="/node_modules/jquery/dist/jquery.min.js"></script>
         <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <?php echo $extra_js; ?>

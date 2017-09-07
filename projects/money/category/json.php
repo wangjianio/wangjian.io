@@ -1,29 +1,49 @@
 <?php
 namespace wangjian\wangjianio\projects\money;
 
+require_once dirname(__DIR__) . '/includes/Common.php';
 require_once dirname(__DIR__) . '/includes/Database.php';
 
-$database = new Database;
-
+// 确定 t_type_id，或者跳转
 $type = $_GET['type'];
-if ($type !== 'out' && $type !== 'in') { exit; }
 
+switch ($type) {
+    case 'out':
+    $t_type_id = 1;
+    break;
+    case 'in':
+    $t_type_id = 2;
+    break;
+    
+    default:
+    header('location: index');
+    break;
+}
+
+// 检查 Session
+$common = new Common;
+$common->checkSession();
+
+$u_id = $_SESSION['u_id'];
+
+// 连接数据库
+$database = new Database;
 $username = 'money_root';
 $database->connect($username);
-
 $mysqli = $database->mysqli;
 
-$sql = "SELECT id, category, parent_id FROM category WHERE type = '$type' ORDER BY parent_id";
+$sql = "SELECT c_id, c_name, parent_id FROM category WHERE t_type_id = ? AND u_id = ? ORDER BY parent_id";
 
 if ($stmt = $mysqli->prepare($sql)) {
 
+    $stmt->bind_param("ii", $t_type_id, $u_id);
     $stmt->execute();
-    $stmt->bind_result($id, $category, $parent_id);
+    $stmt->bind_result($c_id, $c_name, $parent_id);
 
     while ($stmt->fetch()) {
 
-        $tmp['id'] = $id;
-        $tmp['text'] = $category;
+        $tmp['c_id'] = $c_id;
+        $tmp['text'] = $c_name;
         $tmp['parent_id'] = $parent_id;
 
         $data[] = $tmp;
@@ -32,10 +52,10 @@ if ($stmt = $mysqli->prepare($sql)) {
     // https://www.phpflow.com/php/treeview-using-bootstrap-treeview-php-mysql/
     // Build array of item references:
 	foreach($data as $key => &$item) {
-        $itemsByReference[$item['id']] = &$item;
+        $itemsByReference[$item['c_id']] = &$item;
         // Children array:
-        $itemsByReference[$item['id']]['nodes'] = array();
-        // $itemsByReference[$item['id']]['tags'] = ['edit'];
+        $itemsByReference[$item['c_id']]['nodes'] = array();
+        // $itemsByReference[$item['c_id']]['tags'] = ['edit'];
 	}
 
 	// Set items as children of the relevant parent item.

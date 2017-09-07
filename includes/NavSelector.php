@@ -129,6 +129,11 @@ UL;
                     $money_category = ' class="active"';
                     break;
                 case 'login':
+                echo <<<UL
+              <ul class="nav navbar-nav">
+                <li><a onselectstart="return false" style="cursor: default">Money - 个人财务管理系统</a></li>
+              </ul>
+UL;
                     return;
                     // no break;
                 
@@ -142,7 +147,7 @@ UL;
             <li$money_account><a href="/projects/money/account/">账户详情</a></li>
             <li$money_transaction><a href="/projects/money/transaction/">交易记录</a></li>
             <li$money_category><a href="/projects/money/category/">类别管理</a></li>
-            <li$money_login><a href="/projects/money/logout">注销</a></li>
+            <li$money_login onclick="return confirm('确定注销？')"><a href="/projects/money/logout">注销</a></li>
           </ul>
 UL;
         }
