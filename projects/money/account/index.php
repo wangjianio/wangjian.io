@@ -39,8 +39,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th width="40%">账户名称</th>
-              <th>余额</th>
+              <th class="text-center" width="40%">账户名称</th>
+              <th class="text-center">余额</th>
             </tr>
           </thead>
           <tfoot>
@@ -61,9 +61,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th width="40%">账户名称</th>
-              <th width="30%">欠款</th>
-              <th>额度</th>
+              <th class="text-center" width="40%">账户名称</th>
+              <th class="text-center" width="30%">欠款</th>
+              <th class="text-center">额度</th>
             </tr>
           </thead>
           <tfoot>
@@ -85,8 +85,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th width="40%">账户名称</th>
-              <th>价值</th>
+              <th class="text-center" width="40%">账户名称</th>
+              <th class="text-center">价值</th>
             </tr>
           </thead>
           <tfoot>

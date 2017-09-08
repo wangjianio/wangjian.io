@@ -43,6 +43,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
               </div>
 
               <div class="text-right">
+                <span>试用账号密码：demo</span>
                 <span>忘记密码</span>
                 <span>注册</span>
               </div>
