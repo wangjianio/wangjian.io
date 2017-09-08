@@ -26,6 +26,8 @@ class Log
     
     public function logUV($project, $activity, $note = null, $result = null)
     {
+        $project = urlencode($project);
+
         if (!$_COOKIE[$project . '_' . $activity]) {
             $name = $project . '_' . $activity;
             $value = true;
@@ -43,7 +45,7 @@ class Log
             $a = $ip_address = $_SERVER['REMOTE_ADDR'];
             $b = $user_agent = substr($_SERVER['HTTP_USER_AGENT'], 0, 255);
             $c = $type = 'UV';
-            $d = $project;
+            $d = urldecode($project);
             $e = $activity;
             $f = $note;
             $g = $result;
