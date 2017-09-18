@@ -17,6 +17,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       <p>如遇到错误、问题，请联系我。</p>
 
       <h2>效果预览</h2>
+      <img src="images/1.png" alt="预览图 1" width="45%">
+      <img src="images/2.png" alt="预览图 2" width="45%">
       <p>如遇到错误、问题，请联系我。</p>
 
       <h2>更新日志</h2>
