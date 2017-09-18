@@ -34,6 +34,10 @@ class NavSelector
                 $projects = ' active';
                 $money = ' class="active"';
                 break;
+            case 'workflow':
+                $projects = ' active';
+                $workflow = ' class="active"';
+                break;
 
             // Tools
             case 'ip':
@@ -72,6 +76,7 @@ class NavSelector
               <ul class="dropdown-menu">
               <li$od><a href="/projects/od_pronunciation/">Oxford Dictionaries 英语发音</a></li>
               <li$cet><a href="/projects/cet_jilin/">吉林英语四六级准考证号查询</a></li>
+              <li$workflow><a href="/projects/workflow/">Workflow</a></li>
               <li role="separator" class="divider"></li>
               <li class="dropdown-header">Beta</li>
                 <li$file><a href="/projects/file_management_system/">文件管理系统</a></li>
@@ -148,6 +153,23 @@ UL;
             <li$money_transaction><a href="/projects/money/transaction/">交易记录</a></li>
             <li$money_category><a href="/projects/money/category/">类别管理</a></li>
             <li$money_login onclick="return confirm('确定注销？')"><a href="/projects/money/logout">注销</a></li>
+          </ul>
+UL;
+        }
+
+        if ($nav_type == 'workflow') {
+            switch ($subnav_type) {
+                case '12306':
+                    $workflow_sms12306 = ' class="active"';
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+            echo <<<UL
+          <ul class="nav navbar-nav">
+            <li$workflow_sms12306><a href="/projects/workflow/12306">12306 短信保存到日历</a></li>
           </ul>
 UL;
         }
