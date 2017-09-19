@@ -26,7 +26,7 @@
   function dynamicNavbar() {
     var url = window.location.pathname;
     
-    if (url == '/projects/money/login') {
+    if (url == '/projects/money/login' || url == '/projects/money/signup') {
       return false;
     }
     

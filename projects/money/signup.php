@@ -23,18 +23,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <div class="panel-body">
 
               <div class="page-header">
-                <h1>用户登录</h1>
+                <h1>新用户注册</h1>
               </div>
 
               <div class="form-group">
-                <input class="form-control input-lg" id="username" type="text" placeholder="邮箱／用户名" autocomplete="off">
+                <input class="form-control input-lg" id="email" type="text" placeholder="请输入邮箱" autocomplete="off">
+                <input class="form-control input-lg" id="phone" type="text" placeholder="请输入手机号" autocomplete="off" style="display: none">
               </div>
 
               <div class="form-group">
-                <input class="form-control input-lg" id="password" type="password" placeholder="密码" autocomplete="off">
+                <input class="form-control input-lg" id="password" type="password" placeholder="请设置密码" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <input class="form-control input-lg" id="password-repeat" type="password" placeholder="再输入一次密码" autocomplete="off">
               </div>
 
-              <button class="btn btn-primary btn-block btn-lg" id="btn-login" type="button">登录</button>
+              <button class="btn btn-success btn-block btn-lg" id="btn-signup" type="button">注册</button>
               
               <hr>
 
@@ -42,12 +46,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 <p id="alert-text"></p>
               </div>
 
-              <div class="pull-left">
-                <span>试用账号密码：demo</span>
+              <div class="pull-left" onselectstart="return false">
+                <span id="signup-with-phone" style="display: none"><a style="cursor: pointer">使用手机号注册</a></span>
+                <span id="signup-with-email" style="display: none"><a style="cursor: pointer">使用邮箱注册</a></span>
               </div>
               <div class="pull-right">
-                <span>忘记密码</span>
-                <span><a href="signup">注册</a></span>
+                <span><a href="login">登录</a></span>
               </div>
 
             </div><!-- panel-body -->
@@ -63,6 +67,20 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
           if (e.which == 13) {
             $('#btn-login').click();
           }
+        });
+
+        $('#signup-with-phone').on('click', function () {
+            $('#email').hide();
+            $('#phone').show();
+            $(this).hide();
+            $(this).siblings().show();
+        });
+
+        $('#signup-with-email').on('click', function () {
+            $('#phone').hide();
+            $('#email').show();
+            $(this).hide();
+            $(this).siblings().show();
         });
 
         $('#btn-login').on('click', function () {
