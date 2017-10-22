@@ -4,4 +4,10 @@ RewriteEngine On
 # RewriteCond %{SERVER_PORT} 80
 # RewriteRule ^(.*)$ https://wangjian.io/$1 [R,L]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+
 RewriteRule ^blog/posts/(\d+)$ blog/posts/posts.php?id=$1
+
+RewriteRule ^([^.]+[^/])$ $1.php [NC,L]
+RewriteRule ^([^.]+[^/])$ $1.html [NC,L]
+
