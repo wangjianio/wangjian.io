@@ -78,7 +78,11 @@ $start_datetime = $start_date . ' ' . $start_time;
 $arrive_datetime = $arrive_date . ' ' . $arrive_time;
 
 // echo $day;
-echo $start_datetime, $arrive_datetime;
+$tmp['start_datetime'] = $start_datetime;
+$tmp['arrive_datetime'] = $arrive_datetime;
+
+echo $json = json_encode($tmp);
+// echo $start_datetime, $arrive_datetime;
 
 
 
