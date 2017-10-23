@@ -81,12 +81,12 @@ if ($action === 'query' || $current_month === '10') {
     
     $last_seconds = strtotime($arrive_datetime) - strtotime($start_datetime);
     $last_hour = intval($last_seconds / 3600);
-    $last_min = $last_seconds % 3600 / 60;
-    
+    $last_min = intval($last_seconds % 3600 / 60);
+
     if ($last_hour) {
-        $last_time = "$last_hour 小时 $last_min 分钟";
+        $last_time = "$last_hour小时$last_min分钟";
     } else {
-        $last_time = "$last_min 分钟";
+        $last_time = "$last_min分钟";
     }
     
     
