@@ -1,88 +1,103 @@
 <?php
-/**
- *
- * 车次：G1506
- * train_code = G1506
- * 车次代码：71000G150604
- * train_no = 71000G150604
- *
- * 车站名：北京
- * station_name = 北京北
- * 车站代码：VAP
- * station_telecode = VAP
- * 
- * 出发站：北京北
- * from_station = VAP
- * 到达站：上海
- * to_station = SHH
- * 
- * 出发日期：2017-01-01
- * train_date = 2017-01-01
- */
+$action = $_GET['action'];
+$current_month = date('m');
 
-$train_code = $_GET['train_code'];
-$from_station_name = $_GET['from_station_name'];
-$to_station_name = $_GET['to_station_name'];
-$train_date = $_GET['train_date'];
-
-$from_station = getStationTelecodeByStationName($from_station_name);
-$to_station = getStationTelecodeByStationName($to_station_name);
-
-$train_no = getTrainNo($train_date, $from_station, $to_station, $train_code);
-
-$query = queryByTrainNo($train_no, $from_station, $to_station, $train_date);
-
-// echo '<pre>';
-// print_r($query);
-$data = $query->data->data;
-
-$day = 0;
-$hour_value = 0;
-
-foreach ($data as $key => $value) {
-    // print_r($value);
+if ($action === 'query' || $current_month === '10') {
+    /**
+     *
+     * 车次：G1506
+     * train_code = G1506
+     * 车次代码：71000G150604
+     * train_no = 71000G150604
+     *
+     * 车站名：北京
+     * station_name = 北京北
+     * 车站代码：VAP
+     * station_telecode = VAP
+     * 
+     * 出发站：北京北
+     * from_station = VAP
+     * 到达站：上海
+     * to_station = SHH
+     * 
+     * 出发日期：2017-01-01
+     * train_date = 2017-01-01
+     */
     
-    if ($value->station_name === $from_station_name) {
-        // 行程开始时间
-        $start_time = $value->start_time;
-
-        // 记录第一站发车时间
-        $last_start_time = $value->start_time;
-
-    } else if ($value->isEnabled) {
+    $train_code = $_GET['train_code'];
+    $from_station_name = $_GET['from_station_name'];
+    $to_station_name = $_GET['to_station_name'];
+    $train_date = $_GET['train_date'];
+    
+    $from_station = getStationTelecodeByStationName($from_station_name);
+    $to_station = getStationTelecodeByStationName($to_station_name);
+    $train_no = getTrainNo($train_date, $from_station, $to_station, $train_code);
+    $query = queryByTrainNo($train_no, $from_station, $to_station, $train_date);
+    
+    // echo '<pre>';
+    // print_r($query);
+    $data = $query->data->data;
+    
+    $day = 0;
+    $hour_value = 0;
+    
+    foreach ($data as $key => $value) {
+        // print_r($value);
         
-        if ($value->station_name === $to_station_name) {
+        if ($value->station_name === $from_station_name) {
+            // 行程开始时间
+            $start_time = $value->start_time;
+    
+            // 记录第一站发车时间
+            $last_start_time = $value->start_time;
+    
+        } else if ($value->isEnabled) {
             
-            // 如果车站为下车站使用 arrive_time 判断 day 是否增加
-            if ($value->arrive_time < $last_start_time) {
+            if ($value->station_name === $to_station_name) {
+                
+                // 如果车站为下车站使用 arrive_time 判断 day 是否增加
+                if ($value->arrive_time < $last_start_time) {
+                    $day++;
+                }
+                
+                // 记录到达站下车时间
+                $arrive_time = $value->arrive_time;
+    
+            // 如果车站非下车站使用上一站发车时间判断 day 是否增加
+            } else if ($value->start_time < $last_start_time) {
                 $day++;
             }
             
-            // 记录到达站下车时间
-            $arrive_time = $value->arrive_time;
-
-        // 如果车站非下车站使用上一站发车时间判断 day 是否增加
-        } else if ($value->start_time < $last_start_time) {
-            $day++;
+            // 记录本站发车时间，用于下次比较
+            $last_start_time = $value->start_time;
         }
-        
-        // 记录本站发车时间，用于下次比较
-        $last_start_time = $value->start_time;
     }
+    
+    $start_date = date('Y-m-d', strtotime($train_date));
+    $arrive_date = date('Y-m-d', strtotime("+$day day", strtotime($start_date)));
+    
+    $start_datetime = $start_date . ' ' . $start_time;
+    $arrive_datetime = $arrive_date . ' ' . $arrive_time;
+    
+    $last_seconds = strtotime($arrive_datetime) - strtotime($start_datetime);
+    $last_hour = intval($last_seconds / 3600);
+    $last_min = $last_seconds % 3600 / 60;
+    
+    if ($last_hour) {
+        $last_time = "$last_hour 小时 $last_min 分钟";
+    } else {
+        $last_time = "$last_min 分钟";
+    }
+    
+    
+    // echo $day;
+    $tmp['start_datetime'] = $start_datetime;
+    $tmp['arrive_datetime'] = $arrive_datetime;
+    $tmp['last_time'] = $last_time;
+    
+    echo $json = json_encode($tmp);
+    // echo $start_datetime, $arrive_datetime;
 }
-
-$start_date = date('Y-m-d', strtotime($train_date));
-$arrive_date = date('Y-m-d', strtotime("+$day day", strtotime($start_date)));
-
-$start_datetime = $start_date . ' ' . $start_time;
-$arrive_datetime = $arrive_date . ' ' . $arrive_time;
-
-// echo $day;
-$tmp['start_datetime'] = $start_datetime;
-$tmp['arrive_datetime'] = $arrive_datetime;
-
-echo $json = json_encode($tmp);
-// echo $start_datetime, $arrive_datetime;
 
 
 

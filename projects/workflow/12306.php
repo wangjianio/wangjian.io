@@ -21,6 +21,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       <img src="images/2.png" alt="预览图 2" width="45%">
       <p>如遇到错误、问题，请联系我。</p>
 
+      <h2>注意事项</h2>
+      <p>因现在直接从 12306.cn 查询，所以有效的日期在最近 30 天左右，所以对已经发车的短信没有很好的支持，一般最多到前两天。</p>
+
+      <h2>隐私声明</h2>
+      <p>本 Workflow 仅会向 <a href="https://www.jisuapi.com" target="_blank">api.jisuapi.com</a> 上传短信中的车次信息，用来获取可能的到达站选项。</p>
+      <p>本 Workflow 仅会向本站，即 <a href="https://wangjian.io">wangjian.io</a> 上传短信中的日期、车次、出发站和手动选择的到达站，用来获取出发时间和到达时间。</p>
+      <p>其他信息操作均在本地 Workflow App 内完成，大家可放心使用。</p>
+
       <h2>更新日志</h2>
 
       <h3>v1.4 <small> - 20170515 <a href="https://workflow.is/workflows/d0b54ab4a71f4cb2bb476c4afe2c20e1" target="_blank">GET</a></small></h3>
