@@ -1,7 +1,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-8">
+          <div class="col-xs-12 col-sm-6 col-md-8" id="contact-info">
             <p class="h5">联系方式</p>
             <ul class="list-unstyled">
               <li><a href="mailto:contact@wangjian.io"><img class="svg" alt="mail-icon" src="/icons/mail.svg">contact@wangjian.io</a></li>
