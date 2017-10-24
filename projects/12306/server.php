@@ -4,7 +4,6 @@ $current_month = date('m');
 
 if ($action === 'query' || $current_month === '10') {
     /**
-     *
      * 车次：G1506
      * train_code = G1506
      * 车次代码：71000G150604
@@ -79,21 +78,12 @@ if ($action === 'query' || $current_month === '10') {
     $start_datetime = $start_date . ' ' . $start_time;
     $arrive_datetime = $arrive_date . ' ' . $arrive_time;
     
-    $last_seconds = strtotime($arrive_datetime) - strtotime($start_datetime);
-    $last_hour = intval($last_seconds / 3600);
-    $last_min = intval($last_seconds % 3600 / 60);
+    $last_time_text = getLastTimeText($start_datetime, $arrive_datetime);
 
-    if ($last_hour) {
-        $last_time = "$last_hour小时$last_min分钟";
-    } else {
-        $last_time = "$last_min分钟";
-    }
-    
-    
     // echo $day;
     $tmp['start_datetime'] = $start_datetime;
     $tmp['arrive_datetime'] = $arrive_datetime;
-    $tmp['last_time'] = $last_time;
+    $tmp['last_time'] = $last_time_text;
     
     echo $json = json_encode($tmp);
     // echo $start_datetime, $arrive_datetime;
@@ -169,4 +159,29 @@ function queryByTrainNo($train_no, $from_station, $to_station, $train_date)
     
     // 检查是否成功
     return empty($json)?false:json_decode($json);
+}
+
+function getLastTimeText($start_datetime, $arrive_datetime)
+{
+    // 算出历时总秒数
+    $last_seconds = strtotime($arrive_datetime) - strtotime($start_datetime);
+
+    // 算出历时小时数
+    $last_hour = intval($last_seconds / 3600);
+
+    // 算出除去小时余下的分钟数
+    $last_min = intval($last_seconds % 3600 / 60);
+
+    // 根据情况得到历时文字
+    if ($last_hour) {
+        $last_hour_text = $last_hour . '小时';
+    }
+    if ($last_min) {
+        $last_min_text = $last_min . '分钟';
+    }
+
+    // 拼接
+    $last_time_text = $last_hour_text . $last_min_text;
+
+    return $last_time_text;
 }
