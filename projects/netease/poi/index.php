@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 <head>
-  <title>Hello, world!</title>
+  <title>POI 管家 - v1.0</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
