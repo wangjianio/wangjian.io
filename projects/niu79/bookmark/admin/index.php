@@ -533,7 +533,7 @@ if (TIP_DISPLAY === 'show') {
           beforeSend: function () {
             var i = checkFileSize();
             if (i) {
-              $("form[name='upload_form']").find('.btn').attr('disabled', 'disabled');          
+              $("form[name='upload_form']").find('.btn').attr('disabled', 'disabled');
               showAlert('info', '正在上传...');
             } else {
               return i;
@@ -569,7 +569,7 @@ if (TIP_DISPLAY === 'show') {
       $.each($('#file_input').get(0).files, function (index, item) {
         if (item.size > 2097152) {
           i = false;
-          showAlert('danger', '文件过大，请将单个文件大小限制在 2M 以内。');      
+          showAlert('danger', '文件过大，请将单个文件大小限制在 2M 以内。');
         }
       });
       return i;
