@@ -57,7 +57,7 @@
           </h1>
           <div class="row">
             <div class="col-sm">
-              <button class="btn btn-primary btn-block" id="btn-import" type="button">导入表格</button>
+              <button class="btn btn-primary btn-block" id="btn-import" type="button">选择表格</button>
               <button class="btn btn-block btn-primary" id="btn-restart" style="display: none">继续优化</button>
             </div>
             <div class="col-sm">
@@ -69,11 +69,11 @@
             </div>
           </div>
           <p class="desc">
-            <b>导入说明：</b>
+            <b>使用说明：</b>选择表格后点击「开始优化」，稍等片刻即可下载处理后的文件。
             <br>
-            <b>字段说明：</b>关键词，POI1，POI2，POI3，依次至 POI10；
+            <b>字段说明：</b>每行依次为：关键词，POI1，POI2，POI3 ...
             <br>
-            <b>格式说明：</b>第一次导入请下载模板，导入 csv 格式。
+            <b>格式说明：</b>使用 Excel 另存为 <code>CSV UTF-8 (逗号分隔)</code> 格式。
           </p>
           <table class="table table-sm table-hover table-bordered text-center">
             <thead>
