@@ -4,10 +4,11 @@ class Database
     public function connect()
     {
         $hostname = '127.0.0.1';
+        // $hostname = '172.17.0.2';
         $database = 'poi';
         $username = 'poi_root';
-        $password = 'poi_password';
-        
+        $password = 'wtLs**.D7g#;Vtu!';
+
         $this->mysqli = new mysqli($hostname, $username, $password, $database);
         
         if ($this->mysqli->connect_errno) {
