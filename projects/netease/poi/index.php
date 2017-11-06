@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 <head>
-  <title>POI 管家 - v1.0</title>
+  <title>POI 管家 - v1.1</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +16,7 @@
 
     .card {
       min-height: 480px;
+      margin: 0 16px;
       margin-top: 40px;
     }
 
@@ -23,6 +24,10 @@
       margin: 0 auto;
       min-width: 60%;
       padding-bottom: 64px;
+    }
+
+    #table-rule td, #table-rule th {
+      padding-left: 8px;
     }
 
     h1 {
@@ -111,16 +116,26 @@ unset($file_name);
 ?>
             </tbody>
           </table>
+          <table class="table table-sm table-hover table-bordered" id="table-rule">
+            <thead>
+              <tr>
+                <th width="50%">正则</th>
+                <th>替换</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-rule">
+    
+            </tbody>
+          </table>
         </div>
 
         <form name="form" enctype="multipart/form-data">
           <input name="MAX_FILE_SIZE" type="hidden" value="20000000">
           <input class="d-none" id="input" name="file" type="file" accept="text/csv">
         </form>
-      </div>
-    </div>
-
-  </div>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
 
 
   <!-- Optional JavaScript -->
@@ -129,6 +144,18 @@ unset($file_name);
   <script src="/node_modules/bootstrap-v4/assets/js/vendor/popper.min.js"></script>
   <script src="/node_modules/bootstrap-v4/dist/js/bootstrap.min.js"></script>
   <script>
+    $(function () {
+      $.ajax({
+        url: 'rule',
+        dataType: 'json',
+        success: function (resp) {
+          parseJSON(resp);
+        }
+      })
+    })
+
+
+
     $('#btn-import').on('click', function () {
       $('#input').click();
     })
@@ -184,6 +211,21 @@ unset($file_name);
 
     function prependRow(target, datetime, original_link, file_name, result_link) {
       $(target).prepend('<tr id="tr-new" style="display: none"><td>' + datetime + '</td><td><a href="' + original_link + '" download>' + file_name + '</a></td><td><a href="' + result_link + '" download>下载</a></td></tr>');
+    }
+
+    function parseJSON(json) {
+      for (var key in json) {
+        if (json.hasOwnProperty(key)) {
+          var pattern = json[key][0];
+          var replacement = json[key][1];
+          
+          $('#tbody-rule').append('\
+            <tr>\
+              <td>' + pattern + '</td>\
+              <td>' + replacement + '</td>\
+            </tr>');
+        }
+      }
     }
 
   </script>
