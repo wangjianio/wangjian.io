@@ -190,6 +190,7 @@ unset($file_name);
             $('#btn-restart, #btn-download').show();
             prependRow('tbody', resp.datetime, resp.original_link, resp.file_name, resp.result_link);
             $('#tr-new').fadeIn('slow');
+            alert('优化完成！');
           }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
