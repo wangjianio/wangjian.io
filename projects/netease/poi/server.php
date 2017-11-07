@@ -70,7 +70,9 @@ if ($arr['result']) {
             $stmt->bind_result($pattern, $replacement);
         
             while ($stmt->fetch()) {
+                $key_word = $arr[0];
                 $arr = preg_replace("/$pattern/u", $replacement, $arr);
+                $arr[0] = $key_word;
             }
             $stmt->close();        
         }
