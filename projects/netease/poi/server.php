@@ -71,7 +71,7 @@ if ($arr['result']) {
         
             while ($stmt->fetch()) {
                 $key_word = $arr[0];
-                $arr = preg_replace("/$pattern/u", $replacement, $arr);
+                $arr = preg_replace("/$pattern/ui", $replacement, $arr);
                 $arr[0] = $key_word;
             }
             $stmt->close();        
