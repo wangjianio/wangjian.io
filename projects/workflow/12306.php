@@ -33,6 +33,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
       <h2>更新日志</h2>
 
+      <h3>v2.1<small> - 20171014 <a href="https://workflow.is/workflows/d9a7b5547c224aa6bd64198e330c58ff" target="_blank">GET</a></small></h3>
+      <p>最近 12306 好勤劳，短信一改再改，这回又多了个逗号...</p>
+
       <h3>v2.0<small> - 20171023 <a href="https://workflow.is/workflows/c705dbe4e45c4d42a645487effeb3d39" target="_blank">GET</a></small></h3>
       <p>现在列车时间直接从 12306.cn 查询，时间不再出错；</p>
       <p>新增支持短信中的检票口信息；</p>
