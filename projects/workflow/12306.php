@@ -2,7 +2,7 @@
 $title = '12306 短信保存到日历 - Workflow';
 $nav_type = 'workflow';
 $subnav_type = '12306';
-
+$extra_css = '<style> .screenshot-iphone-x { width: 50%; max-width: 360px }</style>';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
@@ -17,8 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       <p>如遇到错误、问题或有好的建议，请根据页面最下方的 <a href="#contact-info">联系方式</a> 联系我。</p>
 
       <h2>效果预览</h2>
-      <img src="images/1.png" alt="预览图 1" width="45%">
-      <img src="images/2.png" alt="预览图 2" width="45%">
+      <img class="screenshot-iphone-x" src="images/3.jpg" alt="预览图"><img class="screenshot-iphone-x" src="images/4.jpg" alt="预览图">
 
       <h2>注意事项</h2>
       <p>在通知中心运行时目的地列表最多只能显示 16 个，如果可选站点过多且没有想要的结果，请到应用内运行；</p>
@@ -33,7 +32,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
       <h2>更新日志</h2>
 
-      <h3>v2.1<small> - 20171014 <a href="https://workflow.is/workflows/d9a7b5547c224aa6bd64198e330c58ff" target="_blank">GET</a></small></h3>
+      <h3>v2.2<small> - 20171119 <a href="https://workflow.is/workflows/31c9c915152042bbb104702b4d18a60c" target="_blank">GET</a></small></h3>
+      <p>删除了多余的 Quick Look 动作；</p>
+      <p>检票口再次可用；</p>
+      <p>下次更新应该会加个检查更新功能。</p>
+
+      <h3>v2.1<small> - 20171114 <a href="https://workflow.is/workflows/d9a7b5547c224aa6bd64198e330c58ff" target="_blank">GET</a></small></h3>
       <p>最近 12306 好勤劳，短信一改再改，这回又多了个逗号...</p>
 
       <h3>v2.0<small> - 20171023 <a href="https://workflow.is/workflows/c705dbe4e45c4d42a645487effeb3d39" target="_blank">GET</a></small></h3>
