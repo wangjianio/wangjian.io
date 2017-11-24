@@ -12,7 +12,7 @@ function placeFooter() {
 
 placeFooter();
 $(placeFooter);
-$(window).on('resize', placeFooter)
+$(window).on('resize', placeFooter);
 
 // MutationObserver 兼容性测试。因不兼容影响也不大，所以此处只做记录，未做处理。
 // var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
