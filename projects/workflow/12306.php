@@ -32,6 +32,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
       <h2>更新日志</h2>
 
+      <h3>v2.3<small> - 20171124 <a href="https://workflow.is/workflows/9854ff939a9442879d7430d773ebe3c0" target="_blank">GET</a></small></h3>
+      <p>优化了正则表达式，可用性更高；</p>
+      <p>增加了自动检查更新功能：默认开启，也可在 flow 内自行关闭。</p>
+
       <h3>v2.2<small> - 20171119 <a href="https://workflow.is/workflows/31c9c915152042bbb104702b4d18a60c" target="_blank">GET</a></small></h3>
       <p>删除了多余的 Quick Look 动作；</p>
       <p>检票口再次可用；</p>
