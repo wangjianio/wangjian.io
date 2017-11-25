@@ -66,7 +66,7 @@
               <button class="btn btn-block btn-primary" id="btn-restart" style="display: none">继续优化</button>
             </div>
             <div class="col-sm">
-              <button class="btn btn-block btn-primary" id="btn-run" type="button">开始优化</button>
+              <button class="btn btn-block btn-primary" id="btn-run" type="button">开始计算</button>
               <a class="btn btn-block btn-success" id="btn-download" download style="display: none">优化完成，点击下载</a>
             </div>
             <!-- <div class="col-sm">
@@ -74,11 +74,13 @@
             </div> -->
           </div>
           <p class="desc">
-            <b>使用说明：</b>选择表格后点击「开始优化」，稍等片刻即可下载处理后的文件。
-            <br>
             <b>字段说明：</b>只有一列，为源名称。
             <br>
-            <b>格式说明（重要）：</b>使用 Excel 另存为 <code>CSV UTF-8 (逗号分隔)</code> 格式。
+            <b>格式说明：</b>请使用 Excel 另存为 <code>CSV UTF-8 (逗号分隔)</code> 格式后上传。
+            <br>
+            <b>使用说明：</b>选择表格后点击「开始优化」，稍等片刻即可下载处理后的文件。
+            <br>
+            <b>注意事项：</b>请上传 20M 以内的文件处理，如失败，可适当分批处理。
           </p>
         </div>
 
