@@ -1,6 +1,5 @@
 <?php
-$file_list = scandir('posts');
-krsort($file_list);
+$file_list = array_reverse(scandir('posts'));
 
 foreach ($file_list as $file_name) {
     if (preg_match("/\d{6}\.\d+\.\d\.\d\..+/", $file_name)) {
