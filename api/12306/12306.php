@@ -78,9 +78,14 @@ if (true) {
     $last_time_text = getLastTimeText($start_datetime, $arrive_datetime);
 
     // echo $day;
+    $tmp['result'] = true;
     $tmp['start_datetime'] = $start_datetime;
     $tmp['arrive_datetime'] = $arrive_datetime;
     $tmp['last_time'] = $last_time_text;
+
+    if (!$data) {
+        $tmp['result'] = false;
+    }
     
     echo $json = json_encode($tmp);
     // echo $start_datetime, $arrive_datetime;
