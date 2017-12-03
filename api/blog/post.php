@@ -1,23 +1,37 @@
 <?php
-$file_list = array_reverse(scandir('posts'));
-
-foreach ($file_list as $file_name) {
-    if (preg_match("/\d{6}\.\d+\.\d\.\d\..+/", $file_name)) {
-        $post_info = explode('.', $file_name);
-        
-        // $arr['showInIndex'] = $post_info[3];
-        // $arr['valid']       = $post_info[2];
-        // $arr['editDate'] = date('Y-m-d', filemtime("posts/$file_name"));
-        if ($post_info[2] && $post_info[3]) {
-
-            $arr['id']       = $post_info[1];
-            $arr['pubDate']  = date('Y-m-d', strtotime($post_info[0]));
-            $arr['title']    = $post_info[4];
-
-            $json[] = $arr;
+// 没有参数时返回列表
+// 有 id 参数时返回文章
+if (!$_GET) {
+    $file_list = array_reverse(scandir('posts'));
+    
+    foreach ($file_list as $file_name) {
+        if (preg_match("/\d{6}\.\d+\.\d\.\d\..+/", $file_name)) {
+            $post_info = explode('.', $file_name);
+            
+            // $arr['showInIndex'] = $post_info[3];
+            // $arr['valid']       = $post_info[2];
+            // $arr['editDate'] = date('Y-m-d', filemtime("posts/$file_name"));
+            if ($post_info[2] && $post_info[3]) {
+    
+                $arr['id']       = $post_info[1];
+                $arr['pubDate']  = date('Y-m-d', strtotime($post_info[0]));
+                $arr['title']    = $post_info[4];
+    
+                $json[] = $arr;
+            }
+    
         }
-
     }
+    
+    echo json_encode($json);
+} else if ($_GET['id']) {
+    $file_name = getFileNameById($_GET['id'], 1);
+    echo file_get_contents("posts/$file_name");
 }
 
-echo json_encode($json);
+
+function getFileNameById($id, $valid)
+{
+    $file_list = scandir('posts');
+    return implode(preg_grep("/^\d+\.$id\.$valid\..*/", $file_list));
+}
