@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Shanghai');
+
 // 没有参数时返回列表
 // 有 id 参数时返回文章
 if (!$_GET) {
@@ -25,8 +27,16 @@ if (!$_GET) {
     
     echo json_encode($json);
 } else if ($_GET['id']) {
-    $file_name = getFileNameById($_GET['id'], 1);
-    echo file_get_contents("posts/$file_name");
+
+    if ($file_name = getFileNameById($_GET['id'], 1)) {
+
+        $arr['title'] = getTitleByFileName($file_name);
+        $arr['editDate'] = getFileEditDateByFileName($file_name);
+        $arr['content'] = getContentByFileName($file_name);
+    
+        echo json_encode($arr);
+    }
+
 }
 
 
@@ -34,4 +44,20 @@ function getFileNameById($id, $valid)
 {
     $file_list = scandir('posts');
     return implode(preg_grep("/^\d+\.$id\.$valid\..*/", $file_list));
+}
+
+function getTitleByFileName($file_name)
+{
+    preg_match("/^\d+\.\d+\.\d\.\d\.(.*)\.[html|md]/", $file_name, $title);
+    return $title[1];
+}
+
+function getFileEditDateByFileName($file_name)
+{
+    return date('Y-m-d', filemtime("posts/$file_name"));
+}
+
+function getContentByFileName($file_name)
+{
+    return file_get_contents("posts/$file_name");    
 }
