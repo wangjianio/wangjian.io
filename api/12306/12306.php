@@ -176,10 +176,14 @@ function getLastTimeText($start_datetime, $arrive_datetime)
 
     // 根据情况得到历时文字
     if ($last_hour) {
-        $last_hour_text = $last_hour . '小时';
+        if ($last_min) {
+            $last_hour_text = $last_hour . ' 小时 ';
+        } else {
+            $last_hour_text = $last_hour . ' 小时';
+        }
     }
     if ($last_min) {
-        $last_min_text = $last_min . '分钟';
+        $last_min_text = $last_min . ' 分钟';
     }
 
     // 拼接
