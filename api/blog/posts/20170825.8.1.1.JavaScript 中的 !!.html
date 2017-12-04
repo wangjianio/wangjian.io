@@ -1,50 +1,83 @@
-有的时候我们会看到类似这样的代码：
-
-```javascript
-var foo；
+<p>有的时候我们会看到类似这样的代码：</p>
+<pre><code class='language-javascript' lang='javascript'>var foo；
 var bar = !!foo;
-```
-
-嗯？那两个叹号什么鬼，`bar` 的结果又是什么呢？
-
-你可能会说，负负得正，`bar` 就等于 `foo` 喽，其实并不是这么简单。
-
-## 先说结论：
-
-`!!foo` 的作用是将 `foo` 转换为 boolean 类型，类似 `var bar = new Boolean(foo)`。
-
-## 再说过程：
-
-`!foo` 会先将 `foo` 转化为 boolean 类型并取非，`!!foo` 则将得到的布尔值还原。
-
-## 类似的写法还有：
-
-```javascript
-// 强制转换为 Boolean 用 !!
-var bool = !!"c";
+</code></pre>
+<p>嗯？那两个叹号什么鬼，
+  <code>bar</code> 的结果又是什么呢？</p>
+<p>你可能会说，负负得正，
+  <code>bar</code> 就等于
+  <code>foo</code> 喽，其实并不是这么简单。</p>
+<h2>先说结论：</h2>
+<p>
+  <code>!!foo</code> 的作用是将
+  <code>foo</code> 转换为 boolean 类型，类似
+  <code>var bar = new Boolean(foo)</code>。</p>
+<h2>再说过程：</h2>
+<p>
+  <code>!foo</code> 会先将
+  <code>foo</code> 转化为 boolean 类型并取非，
+  <code>!!foo</code> 则将得到的布尔值还原。</p>
+<h2>类似的写法还有：</h2>
+<pre><code class='language-javascript' lang='javascript'>// 强制转换为 Boolean 用 !!
+var bool = !!&quot;c&quot;;
 console.log(typeof bool); // boolean
 
 // 强制转换为 Number 用 + 或 -
-var num = +"1234";
+var num = +&quot;1234&quot;;
 console.log(typeof num); // number
 
-// 强制转换为 String 用 "" +
-var str = "" + 1234;
+// 强制转换为 String 用 &quot;&quot; +
+var str = &quot;&quot; + 1234;
 console.log(typeof str); // string
-```
+</code></pre>
+<h2>顺便复习一下 ECMAScript 的类型转换（ToBoolean）</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Argument Type</th>
+      <th style='text-align:left;'>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Undefined</td>
+      <td style='text-align:left;'>Return
+        <strong>false</strong>.</td>
+    </tr>
+    <tr>
+      <td>Null</td>
+      <td style='text-align:left;'>Return
+        <strong>false</strong>.</td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td style='text-align:left;'>Return argument.</td>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td style='text-align:left;'>If argument is +0, -0, or NaN, return
+        <strong>false</strong>; otherwise return
+        <strong>true</strong>.</td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td style='text-align:left;'>If argument is the empty String (its length is zero), return
+        <strong>false</strong>; otherwise return
+        <strong>true</strong>.</td>
+    </tr>
+    <tr>
+      <td>Symbol</td>
+      <td style='text-align:left;'>Return
+        <strong>true</strong>.</td>
+    </tr>
+    <tr>
+      <td>Object</td>
+      <td style='text-align:left;'>Return
+        <strong>true</strong>.</td>
+    </tr>
+  </tbody>
+</table>
 
-## 顺便复习一下 ECMAScript 的类型转换（ToBoolean）
-
-| Argument Type | Result                                   |
-| ------------- | :--------------------------------------- |
-| Undefined     | Return **false**.                        |
-| Null          | Return **false**.                        |
-| Boolean       | Return argument.                         |
-| Number        | If argument is +0, -0, or NaN, return **false**; otherwise return **true**. |
-| String        | If argument is the empty String (its length is zero), return **false**; otherwise return **true**. |
-| Symbol        | Return **true**.                         |
-| Object        | Return **true**.                         |
-
-[1]: http://www.ecma-international.org/ecma-262/8.0/index.html#sec-toboolean
-
-<script>$(function(){$('table').addClass('table table-bordered');})</script>
+<p>
+  <script>$(function () { $(&#39; table &#39;).addClass(&#39; table table - bordered &#39;);})</script>
+</p>

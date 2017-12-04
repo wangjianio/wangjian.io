@@ -1,57 +1,54 @@
-网页制作中可能会有这样的需求：
+<p>网页制作中可能会有这样的需求：</p>
+<p>在网页内容无法装满整个浏览器窗口时，页脚固定在浏览器底部；</p>
+<p>在网页内容比浏览器窗口高时，页脚在全部内容最下面。</p>
+<h2>使用 Bootstrap 和 jQuery
+  <small>
+    <a href="/example/1" target="_blank">点此查看实例</a>
+  </small>
+</h2>
+<pre><code class='language-html' lang='html'>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
 
-在网页内容无法装满整个浏览器窗口时，页脚固定在浏览器底部；
+  &lt;head&gt;
 
-在网页内容比浏览器窗口高时，页脚在全部内容最下面。
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;bootstrap.min.css&quot;&gt;
+    &lt;script src=&quot;jquery-3.2.1.min.js&quot;&gt;&lt;/script&gt;
 
-## 使用 Bootstrap 和 jQuery <small><a href="/example/1" target="_blank">点此查看实例</a></small>
-
-```html
-<!DOCTYPE html>
-<html>
-
-  <head>
-
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <script src="jquery-3.2.1.min.js"></script>
-
-    <script>
+    &lt;script&gt;
       function placeFooter() {
-        var footerHeight = $("footer").outerHeight();
+        var footerHeight = $(&quot;footer&quot;).outerHeight();
 
         if ($(document).height() + footerHeight != $(window).height()) {
-          $("footer").removeClass("navbar-fixed-bottom");
+          $(&quot;footer&quot;).removeClass(&quot;navbar-fixed-bottom&quot;);
         }
 
         if ($(document).height() == $(window).height()) {
-          $("footer").addClass("navbar-fixed-bottom");
+          $(&quot;footer&quot;).addClass(&quot;navbar-fixed-bottom&quot;);
         }
       }
 
       $(document).ready(placeFooter);
       window.onresize = placeFooter;
-    </script>
+    &lt;/script&gt;
 
-  </head>
+  &lt;/head&gt;
 
-  <body>
-    <div style="width:100%; height:400px; border:10px solid gray">content</div>
-    <footer style="width:100%; height:100px; border:10px solid gray">footer</footer>
-  </body>
+  &lt;body&gt;
+    &lt;div style=&quot;width:100%; height:400px; border:10px solid gray&quot;&gt;content&lt;/div&gt;
+    &lt;footer style=&quot;width:100%; height:100px; border:10px solid gray&quot;&gt;footer&lt;/footer&gt;
+  &lt;/body&gt;
 
-</html>
+&lt;/html&gt;
 
-```
-
-### 说明：
-
-<a href="http://api.jquery.com/outerHeight/" target="_blank">.outerHeight()</a>
-
-![1](/images/blog/6/1.jpg)
-
-
-
-
-
-
-
+</code></pre>
+<h3>说明：</h3>
+<p>
+  <a href="http://api.jquery.com/outerHeight/" target="_blank">.outerHeight()</a>
+</p>
+<p>
+  <img src='/images/blog/6/1.jpg' alt='1' />
+</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
