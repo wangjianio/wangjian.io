@@ -28,9 +28,7 @@ class Blog extends Component {
   }
 
   renderBlogList = data => {
-    const blogList = data.filter(
-      item => item.valid
-    ).map(
+    const blogList = data.map(
       item => <BlogListItem key={item.id} postId={item.id} postTitle={item.title} postPubDate={item.pubDate} />,
     );
 
