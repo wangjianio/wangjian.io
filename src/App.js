@@ -16,14 +16,13 @@ import Time from './routes/tools/Time';
 import UserAgent from './routes/tools/UserAgent';
 import Workflow from './routes/projects/Workflow';
 import Railway12306 from './routes/projects/Railway12306';
+
 import './App.less';
 
+const { Content } = Layout;
 moment.locale('zh-cn');
 
-const { Content } = Layout;
-
 class App extends Component {
-
   render() {
     return (
       <LocaleProvider locale={zhCN}>
