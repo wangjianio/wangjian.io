@@ -28,16 +28,6 @@ class HomeHeader extends Component {
           </Col>
           <Col>
             <Menu
-              className="subMenu"
-              mode="horizontal"
-              theme="dark"
-            >
-              <Menu.Item key="home"><Link to="/">主页</Link></Menu.Item>
-              <Menu.Item key="blog"><Link to="/blog">文章</Link></Menu.Item>
-            </Menu>
-          </Col>
-          <Col>
-            <Menu
               className="menu"
               onClick={this.handleClick}
               selectedKeys={[this.state.current]}

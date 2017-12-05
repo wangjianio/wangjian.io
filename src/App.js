@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Layout, Col, Row } from 'antd';
+import { LocaleProvider, Layout, Col, Row } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import moment from 'moment';
 
 import HomeHeader from './components/Layout/HomeHeader';
@@ -25,29 +26,30 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Layout className="layout" style={{ height: '100vh' }}>
-          <HomeHeader />
-          <Content style={{ padding: '24px 50px', background: '#fff' }}>
-            <Row type="flex" justify="center">
-              <Col xs={24} md={20} lg={18}>
-                <Route path="/" exact component={Home} />
-                <Route path="/blog" exact component={Blog} />
-                <Route path="/blog/post/:id" component={Post} />
-                <Route path="/about" component={About} />
-                <Route path="/tools/ip" component={Ip} />
-                <Route path="/tools/time" component={Time} />
-                <Route path="/tools/ua" component={UserAgent} />
-                <Route path="/tools/md5" component={Md5} />
-                <Route path="/projects/railway12306" component={Railway12306} />
-                <Route path="/projects/workflow" component={Workflow} />
-              </Col>
-            </Row>
-          </Content>
-          <UniFooter />
-        </Layout>
-      </BrowserRouter >
-
+      <LocaleProvider locale={zhCN}>
+        <BrowserRouter>
+          <Layout className="layout" style={{ height: '100vh' }}>
+            <HomeHeader />
+            <Content style={{ padding: '24px 50px', background: '#fff' }}>
+              <Row type="flex" justify="center">
+                <Col xs={24} md={20} lg={18}>
+                  <Route path="/" exact component={Home} />
+                  <Route path="/blog" exact component={Blog} />
+                  <Route path="/blog/post/:id" component={Post} />
+                  <Route path="/about" component={About} />
+                  <Route path="/tools/ip" component={Ip} />
+                  <Route path="/tools/time" component={Time} />
+                  <Route path="/tools/ua" component={UserAgent} />
+                  <Route path="/tools/md5" component={Md5} />
+                  <Route path="/projects/railway12306" component={Railway12306} />
+                  <Route path="/projects/workflow" component={Workflow} />
+                </Col>
+              </Row>
+            </Content>
+            <UniFooter />
+          </Layout>
+        </BrowserRouter >
+      </LocaleProvider>
     );
   }
 }

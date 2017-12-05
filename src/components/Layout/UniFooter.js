@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Icon } from 'antd';
 import './UniFooter.less';
-import FaTwitter from 'react-icons/lib/fa/twitter';
 
 const { Footer } = Layout;
 
@@ -15,7 +14,7 @@ class UniFooter extends Component {
               <p className="heading" id="contact-info">联系方式</p>
               <ul>
                 <li><Icon type="mail" /> <a href="mailto:contact@wangjian.io">contact@wangjian.io</a></li>
-                <li><FaTwitter /> <a href="https://twitter.com/lopedever" target="_blank" rel="noopener noreferrer">@lopedever</a></li>
+                <li><Icon type="twitter" /> <a href="https://twitter.com/lopedever" target="_blank" rel="noopener noreferrer">@lopedever</a></li>
                 <li><Icon type="github" /> <a href="https://github.com/wangjianio" target="_blank" rel="noopener noreferrer">@wangjianio</a></li>
               </ul>
             </Col>
