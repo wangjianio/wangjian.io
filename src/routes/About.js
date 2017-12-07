@@ -7,7 +7,7 @@ class About extends Component {
     return (
       <Row>
         <PageTitle title="关于" />
-        <Col sm={12}>
+        <Col>
           <p>使用 React、Antd 等重构了之前用 PHP 写的网站。</p>
         </Col>
       </Row>

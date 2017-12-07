@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Icon } from 'antd';
-import './UniFooter.less';
+import './Footer.less';
 
-const { Footer } = Layout;
-
-class UniFooter extends Component {
+class Footer extends Component {
   render() {
     return (
-      <Footer className="footer">
+      <Layout.Footer className="footer">
         <Row type="flex" justify="center">
           <Col xs={24} md={20} lg={18}>
             <Col xs={24} sm={12}>
@@ -28,9 +26,9 @@ class UniFooter extends Component {
             </Col>
           </Col>
         </Row>
-      </Footer>
+      </Layout.Footer>
     )
   }
 }
 
-export default UniFooter;
+export default Footer;

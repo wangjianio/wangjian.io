@@ -1,27 +1,26 @@
 @header-height: 48px;
 
-.header {
-  // font-size: 14px;
-  height: 48px;
+header {
+  background: #001529;
+  height: @header-height;
   line-height: @header-height;  
+  @media (min-width: 768px) {
+    padding: 0 40px;
+  }
   .brand {
-    color: rgba(255,255,255,.67);
-    float: left;
+    font-size: 16px;
+    padding: 0 20px;
     a {
-      color: rgba(255,255,255,.67);    
+      color: rgba(255,255,255,0.65);    
       &:hover {
         color: #fff;
       }
     }
   }
   .menu {
-    float: right;
     li {
       min-width: 72px;
       line-height: @header-height;        
-      i {
-        font-size: 12px;
-      }
     }
   }
 }

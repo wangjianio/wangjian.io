@@ -42,7 +42,7 @@ class Ip extends Component {
         <PageTitle title="当前的 IP 地址是" />
         <Col>
           <Card>
-            <pre>{this.state.ip}</pre>
+            <pre style={{ display: 'inline' }}>{this.state.ip}</pre>
           </Card>
         </Col>
       </Row>

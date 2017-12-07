@@ -4,8 +4,8 @@ import { LocaleProvider, Layout, Col, Row } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import moment from 'moment';
 
-import HomeHeader from './components/Layout/HomeHeader';
-import UniFooter from './components/Layout/UniFooter';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 import About from './routes/About';
 import Home from './routes/Home';
 import Blog from './routes/Blog';
@@ -28,7 +28,7 @@ class App extends Component {
       <LocaleProvider locale={zhCN}>
         <BrowserRouter>
           <Layout className="layout" style={{ height: '100vh' }}>
-            <HomeHeader />
+            <Header />
             <Content style={{ padding: '24px 50px', background: '#fff' }}>
               <Row type="flex" justify="center">
                 <Col xs={24} md={20} lg={18}>
@@ -45,7 +45,7 @@ class App extends Component {
                 </Col>
               </Row>
             </Content>
-            <UniFooter />
+            <Footer />
           </Layout>
         </BrowserRouter >
       </LocaleProvider>

@@ -3,7 +3,6 @@ import { Row, Col, Input, Card, message } from 'antd';
 import PageTitle from '../../components/PageTitle';
 import Hashes from 'jshashes';
 import copy from 'copy-to-clipboard';
-import './Md5.less';
 
 class Time extends Component {
   constructor(props) {
@@ -50,7 +49,7 @@ class Time extends Component {
       <Row>
         <PageTitle title="MD5 值生成器" />
         <Col sm={16} md={12}>
-          <Input className="input" size="large" onChange={this.handleInputChange} placeholder="直接输入字符串" />
+          <Input size="large" onChange={this.handleInputChange} placeholder="直接输入字符串" />
           <Card style={{ marginTop: 24 }}>
             <pre style={{ display: 'inline' }}>{this.state.hashedText}</pre>
             <a onClick={this.handleCopyLinkClick} style={{ float: 'right' }}>复制</a>

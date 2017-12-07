@@ -68,7 +68,7 @@ class Time extends Component {
     }, {
       key: 'action',
       title: '操作',
-      width: 45,
+      width: 61,
       render: (text, record, index) => (
         <a onClick={() => this.handleCopyLinkClick(record)}>复制</a>
       )

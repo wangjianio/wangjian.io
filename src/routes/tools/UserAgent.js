@@ -16,7 +16,7 @@ class UserAgent extends Component {
         <PageTitle title="当前浏览器设定的 User Agent" />
         <Col>
           <Card>
-            <p>{this.state.userAgent}</p>
+            {this.state.userAgent}
           </Card>
         </Col>
       </Row>
