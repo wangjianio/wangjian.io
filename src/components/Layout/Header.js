@@ -7,20 +7,31 @@ import './Header.less';
 class Header extends Component {
   render() {
     const { pathname } = this.props.location;
-    const pattern = new RegExp('^/blog', 'i');
-    const selectedKeys = pattern.test(pathname) ? '/blog' : pathname;
+    const regex = new RegExp('^/blog/post/', 'i');
+    const isPost = regex.test(pathname);
+
+    const selectedKeys = isPost ? '/blog' : pathname;
 
     return (
       <header>
         <Row type="flex" justify="space-between">
-          <Col xs={0} md={8}>
-            <div className="brand"><a href="/">Wang Jian IO</a></div>
+          <Col>
+            <Switch>
+              <Menu
+                className="menu"
+                mode="horizontal"
+                theme="dark"
+                selectable={false}
+              >
+                <Menu.Item><a href="/">a</a></Menu.Item>
+                {isPost ? <Menu.Item key="/backToBlog"><NavLink to="/blog">返回文章列表</NavLink></Menu.Item> : null}
+              </Menu>
+            </Switch>
           </Col>
           <Col>
             <Switch>
               <Menu
                 className="menu"
-                onClick={this.handleClick}
                 selectedKeys={[selectedKeys]}
                 mode="horizontal"
                 theme="dark"
