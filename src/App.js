@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+
+
 import { LocaleProvider, Layout, Col, Row } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import moment from 'moment';
@@ -19,36 +25,39 @@ import Railway12306 from './routes/projects/Railway12306';
 
 import './App.less';
 
+const store = createStore(reducer);
 const { Content } = Layout;
 moment.locale('zh-cn');
 
 class App extends Component {
   render() {
     return (
-      <LocaleProvider locale={zhCN}>
-        <BrowserRouter>
-          <Layout className="layout" style={{ height: '100vh' }}>
-            <Header />
-            <Content style={{ padding: '24px 50px', background: '#fff' }}>
-              <Row type="flex" justify="center">
-                <Col xs={24} md={20} lg={18}>
-                  <Route path="/" exact component={Home} />
-                  <Route path="/blog" exact component={Blog} />
-                  <Route path="/blog/post/:id" component={Post} />
-                  <Route path="/about" component={About} />
-                  <Route path="/tools/ip" component={Ip} />
-                  <Route path="/tools/time" component={Time} />
-                  <Route path="/tools/ua" component={UserAgent} />
-                  <Route path="/tools/md5" component={Md5} />
-                  <Route path="/projects/railway12306" component={Railway12306} />
-                  <Route path="/projects/workflow" component={Workflow} />
-                </Col>
-              </Row>
-            </Content>
-            <Footer />
-          </Layout>
-        </BrowserRouter >
-      </LocaleProvider>
+      <Provider store={store}>
+        <LocaleProvider locale={zhCN}>
+          <BrowserRouter>
+            <Layout className="layout" style={{ height: '100vh' }}>
+              <Header />
+              <Content style={{ padding: '24px 50px', background: '#fff' }}>
+                <Row type="flex" justify="center">
+                  <Col xs={24} md={20} lg={18}>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/blog" exact component={Blog} />
+                    <Route path="/blog/post/:id" component={Post} />
+                    <Route path="/about" component={About} />
+                    <Route path="/tools/ip" component={Ip} />
+                    <Route path="/tools/time" component={Time} />
+                    <Route path="/tools/ua" component={UserAgent} />
+                    <Route path="/tools/md5" component={Md5} />
+                    <Route path="/projects/railway12306" component={Railway12306} />
+                    <Route path="/projects/workflow" component={Workflow} />
+                  </Col>
+                </Row>
+              </Content>
+              <Footer />
+            </Layout>
+          </BrowserRouter >
+        </LocaleProvider>
+      </Provider>
     );
   }
 }
