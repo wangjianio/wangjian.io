@@ -3,9 +3,9 @@
  * method: post
  * 只接受 15 或 18 位的 idNumber
  */
-// if (!$_POST['idNumber']) exit;
+if (!$_POST['idNumber']) exit;
 
-$id = $_GET['idNumber'];
+$id = $_POST['idNumber'];
 
 switch (strlen($id)) {
     case 15:
