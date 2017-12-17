@@ -8,8 +8,6 @@ class Ip extends Component {
     this.state = {
       result: '0.0.0.0'
     };
-
-    this.handleFetchSuccess = this.handleFetchSuccess.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +28,7 @@ class Ip extends Component {
     )
   }
 
-  handleFetchSuccess(json) {
+  handleFetchSuccess = json => {
     this.setState({
       ip: json.result
     });

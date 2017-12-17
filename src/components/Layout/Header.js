@@ -5,12 +5,40 @@ import { withRouter } from 'react-router';
 import './Header.less';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    console.log(this.props)
+  }
+
   render() {
     const { pathname } = this.props.location;
-    const regex = new RegExp('^/blog/post/', 'i');
-    const isPost = regex.test(pathname);
 
-    const selectedKeys = isPost ? '/blog' : pathname;
+    const regexPost = new RegExp('^/blog/post/', 'i');
+    const isPost = regexPost.test(pathname);
+
+    const regexMoneySub = new RegExp('^/projects/money/', 'i');
+    const isMoneySub = regexMoneySub.test(pathname);
+
+    let selectedKeys = isPost ? '/blog' : pathname;
+    // const selectedKeys = isMoneySub ? '/projects/money' : pathname;
+
+    const isMoney = selectedKeys === '/projects/money';
+
+    const MenuPost = (
+      <Menu.Item key="/backToBlog">
+        <NavLink to="/blog">返回文章列表</NavLink>
+      </Menu.Item>
+    )
+
+    const MenuMoney = (
+      <div>
+        <Menu.Item key="/backToMoney"><NavLink to="/money">主页</NavLink></Menu.Item>
+      </div>
+    )
+
 
     return (
       <header>
@@ -24,7 +52,8 @@ class Header extends Component {
                 selectable={false}
               >
                 <Menu.Item><a href="/">a</a></Menu.Item>
-                {isPost ? <Menu.Item key="/backToBlog"><NavLink to="/blog">返回文章列表</NavLink></Menu.Item> : null}
+                {/* {isMoney && MenuMoney} */}
+                {isPost && MenuPost}
               </Menu>
             </Switch>
           </Col>
@@ -44,7 +73,6 @@ class Header extends Component {
                   <Menu.Item key="/projects/workflow"><NavLink to="/projects/workflow">Workflow</NavLink></Menu.Item>
                   <Menu.Item key="/projects/railway12306"><NavLink to="/projects/railway12306">12306 信息处理</NavLink></Menu.Item>
                   <Menu.Divider />
-                  <Menu.Item key="/projects/null"><NavLink to="/projects/null">文件管理系统 (Beta)</NavLink></Menu.Item>
                   <Menu.Item key="/projects/money"><NavLink to="/projects/money">Money - 个人财务管理 (Beta)</NavLink></Menu.Item>
                 </Menu.SubMenu>
                 <Menu.SubMenu title={<span>工具<Icon type="down" /></span>}>

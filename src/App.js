@@ -20,6 +20,10 @@ import Ip from './routes/tools/Ip';
 import Md5 from './routes/tools/Md5';
 import Time from './routes/tools/Time';
 import UserAgent from './routes/tools/UserAgent';
+import Money from './routes/projects/Money';
+import MoneyLogin from './routes/projects/MoneyLogin';
+import CetJilin from './routes/projects/CetJilin';
+import OxfordDictionary from './routes/projects/OxfordDictionary';
 import Workflow from './routes/projects/Workflow';
 import Railway12306 from './routes/projects/Railway12306';
 
@@ -48,7 +52,12 @@ class App extends Component {
                     <Route path="/tools/time" component={Time} />
                     <Route path="/tools/ua" component={UserAgent} />
                     <Route path="/tools/md5" component={Md5} />
+                    <Route path="/projects/cet/jilin" component={CetJilin} />
+                    <Route path="/projects/oxford_dictionary" component={OxfordDictionary} />
                     <Route path="/projects/railway12306" component={Railway12306} />
+                    <Route path="/projects/money" exact component={Money} >
+                      <Route path="/projects/money/login" component={MoneyLogin} />
+                    </Route>
                     <Route path="/projects/workflow" component={Workflow} />
                   </Col>
                 </Row>

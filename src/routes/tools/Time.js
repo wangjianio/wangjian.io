@@ -45,7 +45,7 @@ class Time extends Component {
     });
   }
 
-  handleCopyLinkClick(record) {
+  handleCopyLinkClick = (record) => {
     const timeText = record.time;
 
     if (copy(timeText)) {
