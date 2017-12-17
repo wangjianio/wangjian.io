@@ -3,7 +3,15 @@
  * method: post
  * 只接受 15 或 18 位的 idNumber
  */
-if (!$_POST['idNumber']) exit;
+if (!$_POST['idNumber']) {
+    print_r($_POST);
+    print_r($_GET);
+
+
+    exit('empty');
+}
+
+
 
 $id = $_POST['idNumber'];
 
