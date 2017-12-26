@@ -4,6 +4,11 @@ import './Footer.less';
 
 class Footer extends Component {
   render() {
+    if (this.props.type === 'money') return (
+      <Layout.Footer className="money">
+        © 2017 Wang Jian
+      </Layout.Footer>
+    );
     return (
       <Layout.Footer className="footer">
         <Row type="flex" justify="center">

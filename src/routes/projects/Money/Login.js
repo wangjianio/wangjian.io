@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
-import LoginForm from '../../components/Money/LoginForm';
-import './MoneyLogin.less';
+import LoginForm from '../../../components/Money/LoginForm';
+import './Login.less';
 
-class MoneyLogin extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,4 +21,4 @@ class MoneyLogin extends Component {
   }
 }
 
-export default MoneyLogin;
+export default Login;

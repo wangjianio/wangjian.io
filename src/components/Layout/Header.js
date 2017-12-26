@@ -5,9 +5,6 @@ import { withRouter } from 'react-router';
 import './Header.less';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     console.log(this.props)
@@ -19,13 +16,14 @@ class Header extends Component {
     const regexPost = new RegExp('^/blog/post/', 'i');
     const isPost = regexPost.test(pathname);
 
-    const regexMoneySub = new RegExp('^/projects/money/', 'i');
-    const isMoneySub = regexMoneySub.test(pathname);
+    const regexMoney = new RegExp('^/projects/money/', 'i');
+    const isMoney = regexMoney.test(pathname);
 
     let selectedKeys = isPost ? '/blog' : pathname;
+    selectedKeys = isMoney ? '/projects/money' : pathname;
     // const selectedKeys = isMoneySub ? '/projects/money' : pathname;
 
-    const isMoney = selectedKeys === '/projects/money';
+    // const isMoney = selectedKeys === '/projects/money';
 
     const MenuPost = (
       <Menu.Item key="/backToBlog">
@@ -33,11 +31,11 @@ class Header extends Component {
       </Menu.Item>
     )
 
-    const MenuMoney = (
-      <div>
-        <Menu.Item key="/backToMoney"><NavLink to="/money">主页</NavLink></Menu.Item>
-      </div>
-    )
+    // const MenuMoney = (
+    //   <div>
+    //     <Menu.Item key="/backToMoney"><NavLink to="/money">主页</NavLink></Menu.Item>
+    //   </div>
+    // )
 
 
     return (
@@ -52,7 +50,6 @@ class Header extends Component {
                 selectable={false}
               >
                 <Menu.Item><a href="/">a</a></Menu.Item>
-                {/* {isMoney && MenuMoney} */}
                 {isPost && MenuPost}
               </Menu>
             </Switch>
