@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Input, Form, Table, message, Card, List } from 'antd';
+import { Row, Col, Input, Form, Table, message, List } from 'antd';
 import copy from 'copy-to-clipboard';
 import PageTitle from '../../components/PageTitle';
 import './CetJilin.less';
@@ -97,7 +97,7 @@ class OxfordDictionary extends Component {
     }];
 
     const listData = [
-      <span>基于牛津大学出版社的 <a href="https://developer.oxforddictionaries.com" target="_blank">Oxford Dictionaries API</a> 制作，主要用来快速学习单词发音。</span>,
+      <span>基于牛津大学出版社的 <a href="https://developer.oxforddictionaries.com" target="_blank" rel="noopener noreferrer">Oxford Dictionaries API</a> 制作，主要用来快速学习单词发音。</span>,
       <span>目前仅显示英式发音，美式发音会在将来支持。</span>,
       <span>由于 API 速度原因，查询时稍微有点慢，请耐心等待。</span>,
     ]
