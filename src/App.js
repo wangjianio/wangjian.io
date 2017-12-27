@@ -7,8 +7,9 @@ import reducer from './reducers'
 
 
 import { LocaleProvider, Layout, Row } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
 import moment from 'moment';
+import 'moment/locale/zh-cn';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
@@ -57,7 +58,6 @@ class App extends Component {
                 <Route path="/projects/money" exact component={Money} />
                 <Route path="/projects/money/login" component={Money} />
                 <Route path="/projects/money/index" component={Money} />
-                <Route path="/projects/money/add" component={Money} />
                 <Route path="/projects/money/account" component={Money} />
                 <Route path="/projects/money/transaction" component={Money} />
                 <Route path="/projects/money/category" component={Money} />

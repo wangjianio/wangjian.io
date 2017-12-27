@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-// import AccountInfo from '../../../components/Money/Transaction';
+import { Row, Col, Card } from 'antd';
+import CategoryTree from '../../../components/Money/CategoryTree';
 
 class Category extends Component {
   render() {
     return (
-      <div className="money-account">
-        Category
+      <div className="money-category">
+        <Row>
+          <Col span={12}>
+            <Card>
+              <CategoryTree />
+            </Card>
+          </Col>
+        </Row>
       </div>
     )
   }
