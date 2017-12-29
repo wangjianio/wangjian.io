@@ -56,12 +56,7 @@ class App extends Component {
                 <Route path="/projects/railway12306" component={Railway12306} />
                 <Route path="/projects/workflow" component={Workflow} />
                 <Route path="/projects/money" exact component={Money} />
-                <Route path="/projects/money/login" component={Money} />
-                <Route path="/projects/money/index" component={Money} />
-                <Route path="/projects/money/account" component={Money} />
-                <Route path="/projects/money/transaction" component={Money} />
-                <Route path="/projects/money/category" component={Money} />
-                <Route path="/projects/money/setting" component={Money} />
+                <Route path="/projects/money/:sub" component={Money} />
                 {/* </Col> */}
               </Row>
               {/* </Content> */}

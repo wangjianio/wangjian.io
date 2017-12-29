@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { Login, MoneyIndex, Account, Transaction, Category, Setting } from './Money/';
+import { Login, MoneyIndex, Account, Transaction, Category, Statistics, Setting } from './Money/';
 import AddModal from '../../components/Money/AddModal';
 
 class Money extends Component {
@@ -11,6 +11,12 @@ class Money extends Component {
     this.state = {
       addModalVisible: false
     }
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      addModalVisible: false
+    })
   }
 
   render() {
@@ -25,22 +31,22 @@ class Money extends Component {
               <a onClick={() => { this.setState({ addModalVisible: true }) }}><Icon type="plus" />新增交易</a>
             </Menu.Item>
             <Menu.Item key="/projects/money/index">
-              <NavLink to="/projects/money/index"><Icon type="user" />概览</NavLink>
+              <NavLink to="/projects/money/index"><Icon type="home" />概览</NavLink>
             </Menu.Item>
             <Menu.Item key="/projects/money/account">
-              <NavLink to="/projects/money/account"><Icon type="user" />账户管理</NavLink>
+              <NavLink to="/projects/money/account"><Icon type="credit-card" />账户管理</NavLink>
             </Menu.Item>
             <Menu.Item key="/projects/money/transaction">
-              <NavLink to="/projects/money/transaction"><Icon type="user" />交易记录</NavLink>
+              <NavLink to="/projects/money/transaction"><Icon type="profile" />交易记录</NavLink>
             </Menu.Item>
             <Menu.Item key="/projects/money/category">
-              <NavLink to="/projects/money/category"><Icon type="user" />类别管理</NavLink>
+              <NavLink to="/projects/money/category"><Icon type="appstore-o" />类别管理</NavLink>
             </Menu.Item>
             <Menu.Item key="/projects/money/statistics">
-              <NavLink to="/projects/money/statistics"><Icon type="user" />统计</NavLink>
+              <NavLink to="/projects/money/statistics"><Icon type="line-chart" />统计</NavLink>
             </Menu.Item>
             <Menu.Item key="/projects/money/setting">
-              <NavLink to="/projects/money/setting"><Icon type="user" />账户设置</NavLink>
+              <NavLink to="/projects/money/setting"><Icon type="setting" />账号设置</NavLink>
             </Menu.Item>
           </Menu>
         </Layout.Sider>
@@ -52,6 +58,7 @@ class Money extends Component {
             <Route path="/projects/money/account" component={Account} />
             <Route path="/projects/money/transaction" component={Transaction} />
             <Route path="/projects/money/category" component={Category} />
+            <Route path="/projects/money/statistics" component={Statistics} />
             <Route path="/projects/money/setting" component={Setting} />
           </Layout.Content>
         </Layout>

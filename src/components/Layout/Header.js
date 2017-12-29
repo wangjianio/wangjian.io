@@ -6,10 +6,6 @@ import './Header.less';
 
 class Header extends Component {
 
-  componentWillMount() {
-    console.log(this.props)
-  }
-
   render() {
     const { pathname } = this.props.location;
 

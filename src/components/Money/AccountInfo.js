@@ -21,18 +21,20 @@ class AccountInfo extends Component {
   }
 
   componentWillMount() {
+    const accountArray = ['现金', '支付宝', '微信钱包', 'QQ 钱包', '余额宝', '工商银行（1233）', '农业银行（9292）'];
     for (let i = 0; i < 7; i++) {
       this.state.dataSource.push({
         key: i.toString(),
-        accountName: `Edrward ${i}`,
-        money1: i,
-        money2: i,
-        money3: i,
-        money4: i,
+        accountName: accountArray[i],
+        money1: (Math.random() * 1000).toFixed(2),
+        money2: (Math.random() * 1000).toFixed(2),
+        money3: (((Math.random() * 1000).toFixed(2)) * 10).toFixed(2),
+        money4: (Math.random() * 1000).toFixed(2),
       });
     }
     this.cacheData = this.state.dataSource.map(item => ({ ...item }));
   }
+
 
   renderColumn(text, record, column) {
     return (

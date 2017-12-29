@@ -3,6 +3,7 @@ import MoneyIndex from './MoneyIndex';
 import Account from './Account';
 import Transaction from './Transaction';
 import Category from './Category';
+import Statistics from './Statistics';
 import Setting from './Setting';
 
 export {
@@ -11,5 +12,6 @@ export {
   Account,
   Transaction,
   Category,
+  Statistics,
   Setting,
 }

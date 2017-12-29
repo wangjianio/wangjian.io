@@ -4,7 +4,7 @@ class Setting extends Component {
   render() {
     return (
       <div className="money-setting">
-        Setting
+        未完
       </div>
     )
   }
