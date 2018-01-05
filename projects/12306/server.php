@@ -132,7 +132,7 @@ function getTrainNo($train_date, $from_station, $to_station, $train_code)
     $context = stream_context_create($opts);
     
     // 根据参数从 12306.cn 查询
-    $url = "https://kyfw.12306.cn/otn/leftTicket/queryO?leftTicketDTO.train_date=$train_date&leftTicketDTO.from_station=$from_station&leftTicketDTO.to_station=$to_station&purpose_codes=ADULT";
+    $url = "https://kyfw.12306.cn/otn/leftTicket/queryA?leftTicketDTO.train_date=$train_date&leftTicketDTO.from_station=$from_station&leftTicketDTO.to_station=$to_station&purpose_codes=ADULT";
     $result = file_get_contents($url, false, $context);
     
     // 根据 train_code 匹配得出 12 位 train_no
