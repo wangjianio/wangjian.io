@@ -32,9 +32,7 @@ if ($action === 'query' || $current_month === '10') {
     $to_station = getStationTelecodeByStationName($to_station_name);
     $train_no = getTrainNo($train_date, $from_station, $to_station, $train_code);
     $query = queryByTrainNo($train_no, $from_station, $to_station, $train_date);
-    
-    // echo '<pre>';
-    // print_r($query);
+
     $data = $query->data->data;
     
     $day = 0;
@@ -123,42 +121,49 @@ function getStationTelecodeByStationName($station_name)
 
 function getTrainNo($train_date, $from_station, $to_station, $train_code)
 {
-    // 设置 file_get_contents() 的参数：不验证 SSL 证书
-    $opts = array(
-        'ssl' => array(
-            'verify_peer' => false,
-        ),
-    );
-    $context = stream_context_create($opts);
+    if (!$train_date || !$from_station || !$to_station || !$train_code) return;
     
-    // 根据参数从 12306.cn 查询
     $url = "https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date=$train_date&leftTicketDTO.from_station=$from_station&leftTicketDTO.to_station=$to_station&purpose_codes=ADULT";
-    $result = file_get_contents($url, false, $context);
+    $ch = curl_init($url);
+
+    // curl_setopt($ch, CURLOPT_HEADER, TRUE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $result = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    // if ($http_code == 302) {
+    //     echo 1;
+    // }
+
+    curl_close($ch);
     
     // 根据 train_code 匹配得出 12 位 train_no
     $pattern = "/\|(.{12})\|$train_code\|/";
     preg_match($pattern, $result, $train_no);
 
     // 检查是否成功
-    return empty($train_no[1])?false:$train_no[1];
+    return empty($train_no[1]) ? false : $train_no[1];
 }
 
 function queryByTrainNo($train_no, $from_station, $to_station, $train_date)
 {
-    // 设置 file_get_contents() 的参数：不验证 SSL 证书    
-    $opts = array(
-        'ssl' => array(
-            'verify_peer' => false,
-        ),
-    );
-    $context = stream_context_create($opts);
-    
-    // 根据参数从 12306.cn 查询
-    $url = "https://kyfw.12306.cn/otn/czxx/queryByTrainNo?train_no=$train_no&from_station_telecode=$from_station&to_station_telecode=$to_station&depart_date=$train_date";
-    $json = file_get_contents($url, false, $context);
-    
+    if (!$train_no || !$from_station || !$to_station || !$train_date) return;
+
+    $url = "https://kyfw.12306.cn/otn/czxx/queryByTrainNo?train_no=$train_no&from_station_telecode=$from_station&to_station_telecode=$to_station&depart_date=$train_date";    
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $json = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    // if ($http_code == 302) {
+    //     echo 2;
+    // }
+
+    curl_close($ch);
+
     // 检查是否成功
-    return empty($json)?false:json_decode($json);
+    return empty($json) ? false : json_decode($json);
 }
 
 function getLastTimeText($start_datetime, $arrive_datetime)
