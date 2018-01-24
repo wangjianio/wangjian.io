@@ -122,18 +122,20 @@ function getStationTelecodeByStationName($station_name)
 function getTrainNo($train_date, $from_station, $to_station, $train_code)
 {
     if (!$train_date || !$from_station || !$to_station || !$train_code) return;
-    
+
     $url = "https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date=$train_date&leftTicketDTO.from_station=$from_station&leftTicketDTO.to_station=$to_station&purpose_codes=ADULT";
     $ch = curl_init($url);
 
-    // curl_setopt($ch, CURLOPT_HEADER, TRUE);
+    curl_setopt($ch, CURLOPT_HTTPHEADER,  array('User-agent: curl/7.54.0'));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    
     $result = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // if ($http_code == 302) {
-    //     echo 1;
-    // }
+    if ($http_code != 200) {
+        // echo 1;
+    }
 
     curl_close($ch);
     
@@ -152,13 +154,16 @@ function queryByTrainNo($train_no, $from_station, $to_station, $train_date)
     $url = "https://kyfw.12306.cn/otn/czxx/queryByTrainNo?train_no=$train_no&from_station_telecode=$from_station&to_station_telecode=$to_station&depart_date=$train_date";    
     $ch = curl_init($url);
 
+    curl_setopt($ch, CURLOPT_HTTPHEADER,  array('User-agent: curl/7.54.0'));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    
     $json = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // if ($http_code == 302) {
-    //     echo 2;
-    // }
+    if ($http_code != 200) {
+        // echo 2;
+    }
 
     curl_close($ch);
 
