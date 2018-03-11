@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Menu, Icon, Row, Col } from 'antd';
 import { NavLink, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './Header.less';
 
-class Header extends Component {
+class Header extends React.Component {
 
   render() {
     const { pathname } = this.props.location;
@@ -17,22 +17,12 @@ class Header extends Component {
 
     let selectedKeys = isPost ? '/blog' : pathname;
     selectedKeys = isMoney ? '/projects/money' : pathname;
-    // const selectedKeys = isMoneySub ? '/projects/money' : pathname;
-
-    // const isMoney = selectedKeys === '/projects/money';
 
     const MenuPost = (
       <Menu.Item key="/backToBlog">
         <NavLink to="/blog">返回文章列表</NavLink>
       </Menu.Item>
     )
-
-    // const MenuMoney = (
-    //   <div>
-    //     <Menu.Item key="/backToMoney"><NavLink to="/money">主页</NavLink></Menu.Item>
-    //   </div>
-    // )
-
 
     return (
       <header>
@@ -45,7 +35,7 @@ class Header extends Component {
                 theme="dark"
                 selectable={false}
               >
-                <Menu.Item><a href="/">a</a></Menu.Item>
+                <Menu.Item><a href="/">Wang Jian IO</a></Menu.Item>
                 {isPost && MenuPost}
               </Menu>
             </Switch>

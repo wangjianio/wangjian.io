@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
-import { Tabs, message } from 'antd';
+import { Tabs } from 'antd';
 import ChartPieLabelLine from '../../../components/Money/ChartPieLabelLine';
 import ChartBarGroupedColumn from '../../../components/Money/ChartBarGroupedColumn';
 
 const TabPane = Tabs.TabPane;
 
 class Statistics extends Component {
-
-  componentWillMount() {
-    message.error('网络错误');
-  }
-
-  componentDidMount() {
-    setTimeout(
-      () => {
-        message.error('网络错误');
-      }, 200
-    )
-    message.error('网络错误');
-
-  }
 
   render() {
 

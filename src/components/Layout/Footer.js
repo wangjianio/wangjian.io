@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Layout, Row, Col, Icon } from 'antd';
 import './Footer.less';
 
-class Footer extends Component {
+class Footer extends React.Component {
   render() {
-    if (this.props.type === 'money') return (
-      <Layout.Footer className="money">
-        © 2017 Wang Jian
-      </Layout.Footer>
-    );
     return (
       <Layout.Footer className="footer">
         <Row type="flex" justify="center">
