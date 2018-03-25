@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.2.3",
+    "antd": "^3.3.3",
     "copy-to-clipboard": "^3.0.8",
     "jshashes": "^1.0.7",
     "primer-markdown": "^3.7.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.0-alpha.3",
+    "react-dom": "^16.3.0-alpha.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17"

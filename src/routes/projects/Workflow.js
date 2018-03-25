@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Tabs, Card } from 'antd';
+import { Row, Col, Tabs } from 'antd';
 import PageTitle from '../../components/PageTitle';
+import ArticleCard from '../../components/ArticleCard';
 
 class Workflow extends Component {
   render() {
@@ -10,7 +11,7 @@ class Workflow extends Component {
         <Col>
           <Tabs defaultActiveKey="1">
             <Tabs.TabPane tab="12306 SMS to Cal" key="1">
-              <Card>
+              <ArticleCard>
                 <div className="markdown-body">
                   <h2>使用方法</h2>
                   <p>复制 12306 短信，在应用内或通知中心运行 Workflow，选择目的地，即可将火车票信息保存到系统日历（需使用网络）。</p>
@@ -66,7 +67,7 @@ class Workflow extends Component {
                   <h3>v1.0<small> - 20170407 <a href="https://workflow.is/workflows/9c581dd83da74c33bbfe17fa937bfbc7" target="_blank" rel="noopener noreferrer">GET</a></small></h3>
                   <p>初始版本。</p>
                 </div>
-              </Card>
+              </ArticleCard>
             </Tabs.TabPane>
           </Tabs>
         </Col>

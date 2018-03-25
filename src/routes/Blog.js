@@ -39,12 +39,10 @@ class Blog extends Component {
 
   render() {
     return (
-      <Row>
-        <Col>
-          <PageTitle title='文章列表' />
-          {this.state.blogList}
-        </Col>
-      </Row>
+      <React.Fragment>
+        <PageTitle title='文章列表' />
+        {this.state.blogList}
+      </React.Fragment>
     )
   }
 }

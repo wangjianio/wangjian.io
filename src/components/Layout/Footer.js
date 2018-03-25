@@ -7,7 +7,7 @@ class Footer extends React.Component {
     return (
       <Layout.Footer className="footer">
         <Row type="flex" justify="center">
-          <Col xs={24} md={20} lg={18}>
+          <Col xs={22} md={20} lg={18}>
             <Col xs={24} sm={12}>
               <p className="heading" id="contact-info">联系方式</p>
               <ul>

@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import { Row, Col, Card } from 'antd';
+import React from 'react';
 import PageTitle from '../components/PageTitle';
+import ArticleCard from '../components/ArticleCard';
+import './Post.less';
 
-class Post extends Component {
+export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
   }
 
   componentDidMount() {
+
     const config = {
       method: 'get',
       mode: 'cors',
@@ -31,17 +33,14 @@ class Post extends Component {
   }
 
   render() {
+
     return (
-      <Row>
-        <Col>
-          <PageTitle title={this.state.title} updateTime={this.state.editDate} />
-          <Card>
-            <div className="markdown-body" dangerouslySetInnerHTML={{ __html: this.state.content }} />
-          </Card>
-        </Col>
-      </Row>
+      <React.Fragment>
+        <PageTitle title={this.state.title} updateTime={this.state.editDate} />
+        <ArticleCard>
+          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: this.state.content }} />
+        </ArticleCard>
+      </React.Fragment>
     )
   }
 }
-
-export default Post;

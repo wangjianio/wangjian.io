@@ -1,7 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { LocaleProvider, Layout, Row } from 'antd';
+import { AppContext, AppProvider } from './context/App';
+
+import { LocaleProvider, Layout, Row, Col } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
@@ -21,6 +23,7 @@ import CetJilin from './routes/projects/CetJilin';
 import OxfordDictionary from './routes/projects/OxfordDictionary';
 import Workflow from './routes/projects/Workflow';
 import Railway12306 from './routes/projects/Railway12306';
+import NotFound from './routes/NotFound';
 
 import './App.less';
 
@@ -28,37 +31,49 @@ moment.locale('zh-cn');
 
 class App extends React.Component {
   render() {
-    console.log(this.props);
-
     return (
       <LocaleProvider locale={zhCN}>
         <BrowserRouter>
-          <Layout className="layout" style={{ height: '100vh' }}>
-            <Header />
-            {/* <Content style={{ padding: '24px 50px', background: '#fff' }}> */}
-            <Row type="flex" justify="center">
-              {/* <Col xs={24} md={20} lg={18}> */}
-              <Route path="/" exact component={Home} />
-              <Route path="/blog" exact component={Blog} />
-              <Route path="/blog/post/:id" component={Post} />
-              <Route path="/about" component={About} />
-              <Route path="/tools/ip" component={Ip} />
-              <Route path="/tools/time" component={Time} />
-              <Route path="/tools/ua" component={UserAgent} />
-              <Route path="/tools/md5" component={Md5} />
-              <Route path="/projects/cet/jilin" component={CetJilin} />
-              <Route path="/projects/oxford_dictionary" component={OxfordDictionary} />
-              <Route path="/projects/railway12306" component={Railway12306} />
-              <Route path="/projects/workflow" component={Workflow} />
-              {/* <Route path="/projects/money" exact component={Money} />
+          <AppProvider>
+            <AppContext.Consumer>
+              {context => (
+                <Layout style={{ height: '100vh', background: 'none' }}>
+                  <Header />
+                  <Layout.Content style={{ padding: '24px 0' }}>
+                    <Row type="flex" justify="center">
+                      <Col xs={22} md={20} lg={18}>
+
+                        <Switch>
+                          <Route path="/" exact component={Home} />
+                          <Route path="/blog" exact component={Blog} />
+                          <Route path="/blog/post/:id" component={Post} />
+                          <Route path="/about" component={About} />
+                          <Route path="/tools/ip" component={Ip} />
+                          <Route path="/tools/time" component={Time} />
+                          <Route path="/tools/ua" component={UserAgent} />
+                          <Route path="/tools/md5" component={Md5} />
+                          <Route path="/projects/cet/jilin" component={CetJilin} />
+                          <Route path="/projects/oxford_dictionary" component={OxfordDictionary} />
+                          <Route path="/projects/railway12306" component={Railway12306} />
+                          <Route path="/projects/workflow" component={Workflow} />
+                          <Route component={NotFound} />
+                          {/* <Route path="/projects/money" exact component={Money} />
               <Route path="/projects/money/:sub" component={Money} /> */}
-              {/* </Col> */}
-            </Row>
-            {/* </Content> */}
-            <Footer type={this.props.footerType} />
-          </Layout>
+                        </Switch>
+
+                      </Col>
+                    </Row>
+                  </Layout.Content>
+                  <Footer />
+                </Layout>
+
+
+
+              )}
+            </AppContext.Consumer>
+          </AppProvider>
         </BrowserRouter>
-      </LocaleProvider>
+      </LocaleProvider >
     );
   }
 }
