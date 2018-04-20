@@ -56,7 +56,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       <h3>v1.3<small> - 20170504 <a href="https://workflow.is/workflows/43c23c8df41c49a881b548bc35c7b318" target="_blank">GET</a></small></h3>
       <p>修复了在始发站出发不能正确确定时间的 bug。</p>
       
-      <h3>v1.2<small> - 20170407 <a href="https://workflow.is/workflows/c50626367c8e4d649f5978338a432e15" target="_blank">GET</a></small></h3>
+      <h3>v1.2<small> - 20170421 <a href="https://workflow.is/workflows/c50626367c8e4d649f5978338a432e15" target="_blank">GET</a></small></h3>
       <p>感谢 <a href="https://twitter.com/ysjiang4869" target="_blank">@ysjiang4869</a> 介绍的接口，现在只需要选择目的地即可完成操作（需使用网络）；</p>
       <p>现支持在通知中心直接运行，但如果可选车站列表大于 16 个，在通知中心会显示不全，届时请进入应用运行。</p>
       
