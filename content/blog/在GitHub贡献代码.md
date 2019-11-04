@@ -40,3 +40,8 @@ description: 在 GitHub 贡献代码
 其他需要注意的事项：
 
 1. 最好是每次从 master 分支新建分支提交代码，直接把代码提交到 master 分支会导致 pull 代码时有冲突，之后再发 PR 时会多出无用的 commit。
+
+
+参考：
+
+https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork
