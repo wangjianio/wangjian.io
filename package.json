@@ -3,8 +3,21 @@
   "private": true,
   "description": "Wang Jian's blog powered by Gatsby and use gatsby-starter-blog.",
   "author": "Wang Jian",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "homepage": "https://blog.wangjian.io/",
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangjianio/blog.wangjian.io.git"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
   "dependencies": {
     "gatsby": "^2.17.0",
@@ -36,24 +49,5 @@
   },
   "devDependencies": {
     "prettier": "^1.18.2"
-  },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
-  "scripts": {
-    "build": "gatsby build",
-    "dev": "gatsby develop",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   }
 }
