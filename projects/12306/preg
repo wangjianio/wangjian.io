@@ -1,8 +1,0 @@
-\d+月\d+日|([A-Z0-9]+)(?=次)|(?<=次)(.*[号铺座])|(?<=[号铺。])([\u4e00-\u9fa5]+)(?=站)|\d+:\d+|检票口[A-Z0-9]+
-
-sms_start_date      \d+月\d+日
-sms_train_code      ([A-Z0-9]+)(?=次)
-sms_seat            (?<=次)(.*[号铺座])
-sms_start_station   (?<=[号铺。])([\u4e00-\u9fa5]+)(?=站)
-sms_start_time      \d+:\d+
-sms_entrance        检票口[A-Z0-9]+
