@@ -1,11 +1,21 @@
-.DS_Store
-blog/posts/source/drafts
-projects/niu79/bookmark/images
-projects/niu79/includes/config.php
-wordpress
-projects/netease/poi/original_file
-projects/netease/poi/result_file
-projects/netease/gbt2260/original_file
-projects/netease/gbt2260/result_file
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-/api/blog/posts/drafts
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
